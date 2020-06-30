@@ -1,5 +1,14 @@
 #include "CircleScene.h"
+#include "SquareScene.h"
 #include "Game.h"
+
+void CircleScene::onKeyPress(sf::Keyboard::Key key)
+{
+	if (key == sf::Keyboard::A) {
+		next = new SquareScene();
+		exit = true;
+	}
+}
 
 void CircleScene::init()
 {

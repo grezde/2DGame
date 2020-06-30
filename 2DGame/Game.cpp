@@ -10,6 +10,7 @@ void Game::run(Scene* initialScene)
     scenes.push_back(initialScene);
     initialScene->init();
 
+    sf::Clock clock;
     while (window->isOpen())
     {
         sf::Event event;
@@ -17,11 +18,26 @@ void Game::run(Scene* initialScene)
         {
             if (event.type == sf::Event::Closed)
                 window->close();
+            if (event.type == sf::Event::KeyPressed)
+                scenes.back()->onKeyPress(event.key.code);
         }
         
-        if (scenes.size() == 0)
+        sf::Time dt = clock.getElapsedTime();
+        scenes.back()->update(float(dt.asMicroseconds()) / 1e6);
+        
+        Scene* next = scenes.back()->nextScene();
+        if (scenes.back()->shouldQuit()) {
+            delete scenes.back();
+            scenes.pop_back();
+        }
+        if (next != nullptr) {
+            scenes.push_back(next);
+            next->init();
+        }
+        if (scenes.size() == 0) {
+            window->close();
             return;
-        scenes.back()->update(0.1f);
+        }
 
         window->clear();
         for (auto scene : scenes)
