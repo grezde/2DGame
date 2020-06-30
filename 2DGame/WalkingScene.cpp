@@ -40,8 +40,8 @@ void WalkingScene::parseFile(std::string roomPath)
 void WalkingScene::setPlayerTex(int i, int j)
 {
 	sf::IntRect rect;
-	rect.left = j * playerTex.getSize().x / 4;
-	rect.top = i * playerTex.getSize().y / 4;
+	rect.left = (j == -1) ? playerSprite.getTextureRect().left : j * playerTex.getSize().x / 4;
+	rect.top = (i == -1) ? playerSprite.getTextureRect().top : i * playerTex.getSize().y / 4;
 	rect.height = playerTex.getSize().y / 4;
 	rect.width = playerTex.getSize().x / 4;
 	playerSprite.setTextureRect(rect);
@@ -94,17 +94,23 @@ void WalkingScene::update(float dt)
 		dy += 1.0f;
 	
 	if (dx == 1.0f)
-		setPlayerTex(1, 0);
+		setPlayerTex(1, int(timeSinceStopped / 0.2f) % 4);
 	if (dx == -1.0f)
-		setPlayerTex(3, 0);
+		setPlayerTex(3, int(timeSinceStopped / 0.2f) % 4);
 	if (dy == 1.0f)
-		setPlayerTex(0, 0);
+		setPlayerTex(0, int(timeSinceStopped / 0.2f) % 4);
 	if (dy == -1.0f)
-		setPlayerTex(2, 0);
+		setPlayerTex(2, int(timeSinceStopped / 0.2f) % 4);
 
 	if (dx != 0 && dy != 0) {
 		dx *= 0.7f;
 		dy *= 0.7f;
+	}
+
+	timeSinceStopped += dt;
+	if (dx == 0 && dy == 0) {
+		setPlayerTex(-1, 0);
+		timeSinceStopped = 0;
 	}
 
 	playerSprite.move(dx * dt * 48 * SCALE, dy * dt * 48 * SCALE);

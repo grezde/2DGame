@@ -30,6 +30,8 @@ private:
 	sf::Texture playerTex;
 	sf::Sprite playerSprite;
 
+	float timeSinceStopped;
+
 private:
 	void parseFile(std::string roomPath);
 	
