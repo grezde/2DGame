@@ -5,10 +5,10 @@ const float Player::SCALE = 1.5f;
 const float Player::STEPSPS = 5.0f;
 const float Player::SPEED = 2;
 const sf::Vector2f Player::BOUNDING_BOX[4] = {
-	sf::Vector2f(-0.5f,  0.0f),
-	sf::Vector2f( 0.5f,  0.0f),
-	sf::Vector2f(-0.5f, -0.3f),
-	sf::Vector2f( 0.5f, -0.3f)
+	sf::Vector2f(-0.45f,  0.0f),
+	sf::Vector2f( 0.45f,  0.0f),
+	sf::Vector2f(-0.45f, -0.5f),
+	sf::Vector2f( 0.45f, -0.5f)
 };
 
 void Player::setTexCoords(int i, int j)

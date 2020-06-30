@@ -6,10 +6,8 @@
 const float Room::SCALE = 4.0f;
 const float Room::PIXPM = 16;
 
-Room::Room(std::string name)
+void Room::parseFile()
 {
-	roomPath = "files/rooms/" + name + "/";
-
 	std::ifstream fin(roomPath + "format.txt");
 	fin >> rHeight >> rWidth;
 
@@ -40,11 +38,34 @@ Room::Room(std::string name)
 			types[typeNum].actions.push_back(a);
 		}
 	}
+}
+
+Room::Room(std::string name)
+{
+	roomPath = "files/rooms/" + name + "/";
+	parseFile();
 
 	tex.loadFromFile(roomPath + "image.png");
 	spr.setTexture(tex);
 	spr.setScale(SCALE, SCALE);
 	spr.setPosition(0, 0);
+
+	for(int it = 0; it < types.size(); it++)
+		for (int ia = 0; ia < types[it].actions.size(); ia++)
+			if (types[it].actions[ia].code == 'i') {// render image 
+				sf::Texture* t = new sf::Texture();
+				t->loadFromFile(roomPath + types[it].actions[ia].data[0]);
+				textures.push_back(t);
+				for(int i=0; i<rWidth*rHeight; i++)
+					if (data[i] == it) {
+						sf::Vector2f pos = sf::Vector2f(i % rWidth, i / rWidth + 1);
+						sf::Sprite sp;
+						sp.setTexture(*t);
+						sp.setScale(SCALE, SCALE);
+						sp.setOrigin(0, t->getSize().y);
+						sprites.push_back(std::make_pair(sp, pos));
+					}
+			}
 }
 
 Room::~Room()
@@ -106,6 +127,9 @@ void Room::setCenterPosition(sf::Vector2f pos)
 
 	spr.setPosition(-PIXPM * SCALE * beg);
 	hlPoint = pos;
+
+	for (int i = 0; i < sprites.size(); i++)
+		sprites[i].first.setPosition(getPosOnScreen(sprites[i].second));
 }
 
 sf::Vector2i Room::onEdges()
@@ -127,24 +151,26 @@ sf::Vector2f Room::getPosOnScreen(sf::Vector2f pos)
 	else if (hlPoint.x >= rWidth - hw)
 		screen.x = 2*hw + pos.x - rWidth;
 	else
-		screen.x = hw;
+		screen.x = hw + pos.x - hlPoint.x;
 
 	if (hlPoint.y <= hh)
 		screen.y = pos.y;
 	else if (hlPoint.y >= rHeight - hh)
 		screen.y = 2*hh + pos.y - rHeight;
 	else
-		screen.y = hh;
+		screen.y = hh + pos.y - hlPoint.y;
 
 	screen = screen * PIXPM * SCALE;
 	return screen;
 }
 
-void Room::draw(sf::RenderWindow* window)
+void Room::drawBackground(sf::RenderWindow* window)
 {
 	window->draw(spr);
 }
 
-void Room::update(float dt)
+void Room::drawForeground(sf::RenderWindow* window)
 {
+	for (auto sp : sprites)
+		window->draw(sp.first);
 }

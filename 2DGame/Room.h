@@ -4,7 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include "Scene.h"
 
-class Room : public IGameElement
+class Room
 {
 public:
 	struct Action {
@@ -27,10 +27,16 @@ private:
 	int* data;
 	std::vector<Type> types;
 
+	std::vector<sf::Texture*> textures;
+	std::vector<std::pair<sf::Sprite, sf::Vector2f>> sprites;
+
 	sf::Texture tex;
 	sf::Sprite spr;
 
 	sf::Vector2f hlPoint;
+
+private:
+	void parseFile();
 
 public:
 	Room(std::string path);
@@ -43,8 +49,8 @@ public:
 	sf::Vector2i onEdges();
 	sf::Vector2f getPosOnScreen(sf::Vector2f pos);
 
-	virtual void draw(sf::RenderWindow* window);
-	virtual void update(float dt);
+	void drawBackground(sf::RenderWindow* window);
+	void drawForeground(sf::RenderWindow* window);
 
 	inline int width()  { return rWidth;  };
 	inline int height() { return rHeight; };

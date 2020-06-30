@@ -19,8 +19,9 @@ WalkingScene::~WalkingScene()
 
 void WalkingScene::draw(sf::RenderWindow* window)
 {
-	r->draw(window);
+	r->drawBackground(window);
 	p->draw(window);
+	r->drawForeground(window);
 }
 
 void WalkingScene::update(float dt)

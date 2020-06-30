@@ -32,10 +32,10 @@ flori_2.png
 
 05 0 1
 1 i
-fori_1.png
+flori_1.png
 
 06 1 1
-1 i
+1 a
 * Sub masa de flori sunt multe dosare.
 
 07 1 1
@@ -55,7 +55,7 @@ de hartie igienica.
 * Nu vreau sa ma apropii.
 
 09 0 1
-1 i
+1 t
 hol_etaj_3
 
 10 1 1
