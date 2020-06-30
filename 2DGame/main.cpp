@@ -1,9 +1,9 @@
 #include "Game.h"
-#include "CircleScene.h"
+#include "WalkingScene.h"
 
 int main()
 {
     Game johnson;
-    johnson.run(new CircleScene());
+    johnson.run(new WalkingScene("johnson_classroom"));
     return 0;
 }

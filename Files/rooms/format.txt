@@ -1,0 +1,12 @@
+height width
+**
+array of numbers with height and width of the map
+**
+
+number (is it solid?) (number of action)
+(number of lines for action) (action code)
+/* ACTION CODES:
+i -> displays an image with the corner on that location
+a -> displays chat text
+t -> teleport player to a new room
+*/

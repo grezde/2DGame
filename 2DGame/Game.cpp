@@ -2,7 +2,7 @@
 
 Game::Game()
 {
-    window = new sf::RenderWindow(sf::VideoMode(WIDTH, HEIGHT), "SFML works!");
+    window = new sf::RenderWindow(sf::VideoMode(WIDTH, HEIGHT), "Johnson INC");
 }
 
 void Game::run(Scene* initialScene)
@@ -11,6 +11,7 @@ void Game::run(Scene* initialScene)
     initialScene->init();
 
     sf::Clock clock;
+    sf::Time previous = clock.getElapsedTime();
     while (window->isOpen())
     {
         sf::Event event;
@@ -22,9 +23,10 @@ void Game::run(Scene* initialScene)
                 scenes.back()->onKeyPress(event.key.code);
         }
         
-        sf::Time dt = clock.getElapsedTime();
-        scenes.back()->update(float(dt.asMicroseconds()) / 1e6);
-        
+        sf::Time current = clock.getElapsedTime();
+        scenes.back()->update(float((current-previous).asMicroseconds()) / 1e6);
+        previous = current;
+
         Scene* next = scenes.back()->nextScene();
         if (scenes.back()->shouldQuit()) {
             delete scenes.back();

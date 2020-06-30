@@ -164,12 +164,14 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SquareScene.cpp" />
+    <ClCompile Include="WalkingScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CircleScene.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SquareScene.h" />
+    <ClInclude Include="WalkingScene.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

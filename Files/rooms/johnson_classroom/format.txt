@@ -1,0 +1,66 @@
+12 15
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+01 01 02 02 02 02 02 03 03 03 03 01 01 01 01 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+06 06 00 00 00 00 00 00 00 00 00 00 00 00 09 
+00 06 00 00 00 11 00 00 00 00 00 00 00 00 09 
+00 06 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 07 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 07 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 07 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 07 07 10 07 07 07 07 07 07 07 07 07 00 00 
+05 07 04 00 00 00 00 00 00 00 00 00 00 08 00 
+
+00 0 0
+
+01 1 0
+
+02 1 1 
+2 a
+* Vezi ca pe tavita tablei
+este mult praf de creta.
+
+03 1 1
+2 a
+* Pe tabla vezi multe formule sterse.
+* Aerul e plin de praf de creta.
+
+04 0 1
+1 i
+flori_2.png
+
+05 0 1
+1 i
+fori_1.png
+
+06 1 1
+1 i
+* Sub masa de flori sunt multe dosare.
+
+07 1 1
+4 a 
+* Florile de pe masa doamnei Ionescu
+sunt foarte ingrijite.
+* Sunt furnici pe frunze
+* Putin pamant a cazut pe masa.
+
+08 1 2 
+1 i
+cos_gunoi.png
+4 a
+* Cosul de gunoi e plin
+de hartie igienica.
+* Probabil de la Coman.
+* Nu vreau sa ma apropii.
+
+09 0 1
+1 i
+hol_etaj_3
+
+10 1
+1 a
+* Floarea asta e gigantica.
+
+11 0
+0 s
