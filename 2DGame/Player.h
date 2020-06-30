@@ -17,6 +17,7 @@ public:
 	static const float SCALE;
 	static const float STEPSPS;
 	static const float SPEED;
+	static const sf::Vector2f BOUNDING_BOX[4];
 
 private:
 	void setTexCoords(int i, int j);

@@ -73,6 +73,17 @@ int Room::getUniqueAction(char code)
 	return -1;
 }
 
+bool Room::positionValid(sf::Vector2f pos)
+{
+	if (pos.x < 0 || pos.x > rWidth)
+		return false;
+	if (pos.y < 0 || pos.y > rHeight)
+		return false;
+
+	int type = data[int(pos.y) * rWidth + int(pos.x)];
+	return !types[type].solid;
+}
+
 void Room::setCenterPosition(sf::Vector2f pos)
 {
 	sf::Vector2f beg;

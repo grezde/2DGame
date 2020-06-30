@@ -4,6 +4,12 @@
 const float Player::SCALE = 1.5f;
 const float Player::STEPSPS = 5.0f;
 const float Player::SPEED = 2;
+const sf::Vector2f Player::BOUNDING_BOX[4] = {
+	sf::Vector2f(-0.5f,  0.0f),
+	sf::Vector2f( 0.5f,  0.0f),
+	sf::Vector2f(-0.5f, -0.3f),
+	sf::Vector2f( 0.5f, -0.3f)
+};
 
 void Player::setTexCoords(int i, int j)
 {
@@ -66,7 +72,12 @@ void Player::update(float dt)
 
 	float mult = dt * SPEED * Room::SCALE * Room::PIXPM;
 
-	pos += sf::Vector2f(dx * dt * SPEED, dy * dt * SPEED);
+	sf::Vector2f newpos = pos + sf::Vector2f(dx * dt * SPEED, dy * dt * SPEED);
+	for (auto dp : BOUNDING_BOX)
+		if (!room->positionValid(newpos + dp))
+			return;
+
+	pos = newpos;
 	room->setCenterPosition(pos);
 	spr.setPosition(room->getPosOnScreen(pos));
 }

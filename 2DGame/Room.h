@@ -37,11 +37,11 @@ public:
 	~Room();
 
 	int getUniqueAction(char code);
+	bool positionValid(sf::Vector2f pos);
 
 	void setCenterPosition(sf::Vector2f pos);
 	sf::Vector2i onEdges();
 	sf::Vector2f getPosOnScreen(sf::Vector2f pos);
-
 
 	virtual void draw(sf::RenderWindow* window);
 	virtual void update(float dt);
