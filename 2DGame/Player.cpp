@@ -1,7 +1,7 @@
 #include "Player.h"
 #include "Room.h"
 
-const float Player::SCALE = 2.0f;
+const float Player::SCALE = 1.5f;
 const float Player::STEPSPS = 5.0f;
 const float Player::SPEED = 2;
 
@@ -15,16 +15,15 @@ void Player::setTexCoords(int i, int j)
 	spr.setTextureRect(rect);
 }
 
-Player::Player(sf::Vector2i startPos, sf::Vector2i mapSize)
+Player::Player(sf::Vector2i startPos, Room* room)
 {
 	tex.loadFromFile("Files/global_pictures/player.png");
 	spr.setTexture(tex);
 	spr.setScale(SCALE, SCALE);
 	spr.setOrigin(tex.getSize().x / 8, tex.getSize().y / 4);
-	spr.setPosition(400, 400);
 	setTexCoords(0, 0);
 
-	this->mapSize = mapSize;
+	this->room = room;
 	this->pos = sf::Vector2f(startPos.x, startPos.y);
 }
 
@@ -68,7 +67,8 @@ void Player::update(float dt)
 	float mult = dt * SPEED * Room::SCALE * Room::PIXPM;
 
 	pos += sf::Vector2f(dx * dt * SPEED, dy * dt * SPEED);
-	spr.move(dx * mult, dy * mult);
+	room->setCenterPosition(pos);
+	spr.setPosition(room->getPosOnScreen(pos));
 }
 
 

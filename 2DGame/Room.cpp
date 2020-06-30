@@ -1,7 +1,9 @@
-#include "Room.h"
 #include <fstream>
+#include <iostream>
+#include "Room.h"
+#include "Game.h"
 
-const float Room::SCALE = 5.0f;
+const float Room::SCALE = 4.0f;
 const float Room::PIXPM = 16;
 
 Room::Room(std::string name)
@@ -39,9 +41,10 @@ Room::Room(std::string name)
 		}
 	}
 
-	roomTex.loadFromFile(roomPath + "image.png");
-	roomSprite.setTexture(roomTex);
-	roomSprite.setScale(SCALE, SCALE);
+	tex.loadFromFile(roomPath + "image.png");
+	spr.setTexture(tex);
+	spr.setScale(SCALE, SCALE);
+	spr.setPosition(0, 0);
 }
 
 Room::~Room()
@@ -70,9 +73,65 @@ int Room::getUniqueAction(char code)
 	return -1;
 }
 
+void Room::setCenterPosition(sf::Vector2f pos)
+{
+	sf::Vector2f beg;
+	float hw = Game::WIDTH / PIXPM / SCALE / 2.0f;
+	float hh = Game::HEIGHT / PIXPM / SCALE / 2.0f;
+
+	if (pos.x <= hw)
+		beg.x = 0;
+	else if (pos.x >= rWidth - hw)
+		beg.x = rWidth - 2 * hw;
+	else
+		beg.x = pos.x - hw;
+	
+	if (pos.y <= hh)
+		beg.y = 0;
+	else if (pos.y >= rHeight - hh)
+		beg.y = rHeight - 2 * hh;
+	else
+		beg.y = pos.y - hh;
+
+	spr.setPosition(-PIXPM * SCALE * beg);
+	hlPoint = pos;
+}
+
+sf::Vector2i Room::onEdges()
+{
+	float hw = Game::WIDTH / PIXPM;
+	float hh = Game::HEIGHT / PIXPM;
+	return sf::Vector2i(hlPoint.x <= hw || hlPoint.x >= rWidth - hw, hlPoint.y <= hh || hlPoint.y >= rHeight - hh);
+}
+
+sf::Vector2f Room::getPosOnScreen(sf::Vector2f pos)
+{
+	float hw = Game::WIDTH / PIXPM / SCALE / 2.0f;
+	float hh = Game::HEIGHT / PIXPM / SCALE / 2.0f;
+
+	sf::Vector2f screen;
+	
+	if (hlPoint.x <= hw)
+		screen.x = pos.x;
+	else if (hlPoint.x >= rWidth - hw)
+		screen.x = 2*hw + pos.x - rWidth;
+	else
+		screen.x = hw;
+
+	if (hlPoint.y <= hh)
+		screen.y = pos.y;
+	else if (hlPoint.y >= rHeight - hh)
+		screen.y = 2*hh + pos.y - rHeight;
+	else
+		screen.y = hh;
+
+	screen = screen * PIXPM * SCALE;
+	return screen;
+}
+
 void Room::draw(sf::RenderWindow* window)
 {
-	window->draw(roomSprite);
+	window->draw(spr);
 }
 
 void Room::update(float dt)

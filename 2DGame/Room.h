@@ -27,14 +27,21 @@ private:
 	int* data;
 	std::vector<Type> types;
 
-	sf::Texture roomTex;
-	sf::Sprite roomSprite;
+	sf::Texture tex;
+	sf::Sprite spr;
+
+	sf::Vector2f hlPoint;
 
 public:
 	Room(std::string path);
 	~Room();
 
 	int getUniqueAction(char code);
+
+	void setCenterPosition(sf::Vector2f pos);
+	sf::Vector2i onEdges();
+	sf::Vector2f getPosOnScreen(sf::Vector2f pos);
+
 
 	virtual void draw(sf::RenderWindow* window);
 	virtual void update(float dt);

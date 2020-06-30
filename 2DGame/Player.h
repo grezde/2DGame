@@ -2,6 +2,8 @@
 #include <SFML/Graphics.hpp>
 #include "Scene.h"
 
+class Room;
+
 class Player : public IGameElement
 {
 private:
@@ -9,7 +11,7 @@ private:
 	sf::Sprite spr;
 	float timeSinceStopped;
 	sf::Vector2f pos;
-	sf::Vector2i mapSize;
+	Room* room;
 
 public:
 	static const float SCALE;
@@ -20,7 +22,7 @@ private:
 	void setTexCoords(int i, int j);
 
 public:
-	Player(sf::Vector2i startPos, sf::Vector2i mapSize);
+	Player(sf::Vector2i startPos, Room* room);
 
 	virtual void draw(sf::RenderWindow* window) override;
 	virtual void update(float dt) override;

@@ -8,7 +8,7 @@ WalkingScene::WalkingScene(std::string roomName)
 {
 	r = new Room(roomName);
 	int spos = r->getUniqueAction('s');
-	p = new Player(sf::Vector2i(spos%r->width(), spos/r->width()), sf::Vector2i(r->width(), r->height()));
+	p = new Player(sf::Vector2i(spos%r->width(), spos/r->width()), r);
 }
 
 WalkingScene::~WalkingScene()
@@ -19,7 +19,7 @@ WalkingScene::~WalkingScene()
 
 void WalkingScene::draw(sf::RenderWindow* window)
 {
-	window->draw(roomSprite);
+	r->draw(window);
 	p->draw(window);
 }
 

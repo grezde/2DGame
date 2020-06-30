@@ -58,9 +58,9 @@ de hartie igienica.
 1 i
 hol_etaj_3
 
-10 1
+10 1 1
 1 a
 * Floarea asta e gigantica.
 
-11 0
+11 0 1
 0 s
