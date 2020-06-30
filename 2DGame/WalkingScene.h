@@ -1,41 +1,20 @@
 #pragma once
 #include "Scene.h"
 #include <string>
+#include "Player.h"
+#include "Room.h"
 
 class WalkingScene : public Scene
 {
 public:
-	float SCALE = 5;
-	float PLAYER_SCALE = 5;
+	static const float SCALE;
 
 private:
-	
-	struct Action {
-		char code;
-		std::vector<std::string> data;
-	};
-
-	static struct Type {
-		bool solid;
-		std::vector<Action> actions;
-	};
-
-	int width, height;
-	int* data;
-	std::vector<Type> types;
-	
-	sf::Texture roomTex;
-	sf::Sprite roomSprite;
-
-	sf::Texture playerTex;
-	sf::Sprite playerSprite;
-
-	float timeSinceStopped;
+	Player* p;
+	Room* r;
 
 private:
 	void parseFile(std::string roomPath);
-	
-	void setPlayerTex(int i, int j);
 
 public:
 	WalkingScene(std::string roomName);

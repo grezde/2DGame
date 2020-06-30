@@ -19,6 +19,12 @@
     <Filter Include="Source Files\Scenes">
       <UniqueIdentifier>{601513f9-553d-4ca0-8c4b-ab722c50bada}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Helpers">
+      <UniqueIdentifier>{dec5e585-a6c5-48bb-ba9c-424f6aecf914}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Helpers">
+      <UniqueIdentifier>{b734166c-d95b-4f2e-82d1-8d3cab52a87c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -37,6 +43,12 @@
       <Filter>Source Files\Scenes</Filter>
     </ClCompile>
     <ClCompile Include="WalkingScene.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Source Files\Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="Room.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -54,6 +66,12 @@
       <Filter>Header Files\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="WalkingScene.h">
+      <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Header Files\Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="Room.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
