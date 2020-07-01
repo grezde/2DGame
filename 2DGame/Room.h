@@ -44,6 +44,7 @@ public:
 
 	int getUniqueAction(char code);
 	bool positionValid(sf::Vector2f pos);
+	sf::Vector2f projectSpeed(sf::Vector2f oldPos, sf::Vector2f newPos);
 
 	void setCenterPosition(sf::Vector2f pos);
 	sf::Vector2i onEdges();

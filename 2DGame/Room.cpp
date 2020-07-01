@@ -105,6 +105,32 @@ bool Room::positionValid(sf::Vector2f pos)
 	return !types[type].solid;
 }
 
+sf::Vector2f Room::projectSpeed(sf::Vector2f oldPos, sf::Vector2f newPos)
+{
+	sf::Vector2f vel = newPos - oldPos;
+	sf::Vector2i oldPosI(oldPos.x, oldPos.y);
+	sf::Vector2i newPosI(newPos.x, newPos.y);
+
+	if (newPos.x < 0 || newPos.x > rWidth)
+		vel.x = 0;
+	if (newPos.y < 0 || newPos.y > rHeight)
+		vel.y = 0;
+	if (newPos.x < 0 || newPos.x > rWidth || newPos.y < 0 || newPos.y > rHeight)
+		return vel;
+
+	int newType = data[newPosI.y * rWidth + newPosI.x];
+	if (types[newType].solid == 1) {
+		int typeX = data[oldPosI.y * rWidth + newPosI.x];
+		int typeY = data[newPosI.y * rWidth + oldPosI.x];
+		if (types[typeX].solid == 1)
+			vel.x = 0;
+		if (types[typeY].solid == 1)
+			vel.y = 0;
+	}
+
+	return vel;
+}
+
 void Room::setCenterPosition(sf::Vector2f pos)
 {
 	sf::Vector2f beg;
