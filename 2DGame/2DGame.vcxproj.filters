@@ -25,6 +25,12 @@
     <Filter Include="Source Files\Helpers">
       <UniqueIdentifier>{b734166c-d95b-4f2e-82d1-8d3cab52a87c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Actions">
+      <UniqueIdentifier>{67849270-5ec6-4305-ac33-1a0a7a839863}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Actions">
+      <UniqueIdentifier>{671b9b50-310d-4903-b41a-6df8d843bb27}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -34,9 +40,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CircleScene.cpp">
-      <Filter>Source Files\Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene.cpp">
       <Filter>Source Files\Scenes</Filter>
     </ClCompile>
     <ClCompile Include="SquareScene.cpp">
@@ -50,6 +53,12 @@
     </ClCompile>
     <ClCompile Include="Room.cpp">
       <Filter>Source Files\Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderAction.cpp">
+      <Filter>Source Files\Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="InteractAction.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -73,6 +82,15 @@
     </ClInclude>
     <ClInclude Include="Room.h">
       <Filter>Header Files\Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="Action.h">
+      <Filter>Header Files\Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderAction.h">
+      <Filter>Header Files\Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="InteractAction.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -33,7 +33,7 @@ Player::Player(sf::Vector2i startPos, Room* room)
 
 	emoteTex.loadFromFile("Files/global_pictures/emotes.png");
 	emoteSpr.setTexture(emoteTex);
-	setEmote(1);
+	setEmote(4);
 	emoteSpr.setScale(EMOTE_SCALE, EMOTE_SCALE);
 	emoteSpr.setOrigin(emoteTex.getSize().x / 4, emoteTex.getSize().y / 2);
 
@@ -43,11 +43,9 @@ Player::Player(sf::Vector2i startPos, Room* room)
 
 void Player::setEmote(int number)
 {
-	if (number == 0) {
-		drawEmote = false;
-		return;
-	}
-
+	if(number != 0)
+		emoteNumber = number;
+	/*
 	drawEmote = true;
 	int x = (number - 1) % 2;
 	int y = (number - 1) / 2;
@@ -56,14 +54,24 @@ void Player::setEmote(int number)
 		y * emoteTex.getSize().y / 2,
 		emoteTex.getSize().x / 2,
 		emoteTex.getSize().y / 2
-	));
+	)); */
 }
 
 void Player::draw(sf::RenderWindow* window)
 {
 	window->draw(spr);
-	if (drawEmote)
+	if (emoteNumber != 0) {
+		int x = (emoteNumber - 1) % 2;
+		int y = (emoteNumber - 1) / 2;
+		emoteSpr.setTextureRect(sf::IntRect(
+			x * emoteTex.getSize().x / 2,
+			y * emoteTex.getSize().y / 2,
+			emoteTex.getSize().x / 2,
+			emoteTex.getSize().y / 2
+		));
 		window->draw(emoteSpr);
+		emoteNumber = 0;
+	}
 }
 
 void Player::update(float dt)
@@ -99,6 +107,8 @@ void Player::update(float dt)
 		setTexCoords(-1, 0);
 		timeSinceStopped = 0;
 	}
+	else
+		nextCoords = sf::Vector2i(pos.x + dx/1.5f, pos.y + dy/1.5f);
 
 	float mult = dt * SPEED * Room::SCALE * Room::PIXPM;
 

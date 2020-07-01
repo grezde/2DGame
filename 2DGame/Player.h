@@ -12,10 +12,11 @@ private:
 	
 	sf::Texture emoteTex;
 	sf::Sprite emoteSpr;
-	bool drawEmote;
+	int emoteNumber;
 
 	float timeSinceStopped;
 	sf::Vector2f pos;
+	sf::Vector2i nextCoords;
 	Room* room;
 
 public:
@@ -32,6 +33,7 @@ public:
 	Player(sf::Vector2i startPos, Room* room);
 
 	void setEmote(int number);
+	inline sf::Vector2i lookingAt() { return nextCoords; };
 
 	virtual void draw(sf::RenderWindow* window) override;
 	virtual void update(float dt) override;

@@ -13,9 +13,6 @@ private:
 	Player* p;
 	Room* r;
 
-private:
-	void parseFile(std::string roomPath);
-
 public:
 	WalkingScene(std::string roomName);
 	~WalkingScene();

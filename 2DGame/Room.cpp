@@ -2,6 +2,8 @@
 #include <iostream>
 #include "Room.h"
 #include "Game.h"
+#include "RenderAction.h"
+#include "InteractAction.h"
 
 const float Room::SCALE = 4.0f;
 const float Room::PIXPM = 16;
@@ -26,51 +28,58 @@ void Room::parseFile()
 		fin >> typeNum;
 		fin >> types[typeNum].solid >> nrActions;
 		for (int j = 0; j < nrActions; j++) {
-			Action a;
+			ActionData a;
 			std::string s;
 			int nrLines;
 			fin >> nrLines >> a.code;
 			std::getline(fin, s);
 			for (int k = 0; k < nrLines; k++) {
 				std::getline(fin, s);
-				a.data.push_back(s);
+				a.text.push_back(s);
 			}
+			a.action = getAction(a.code, a.text);
+			a.action->setRoom(this);
 			types[typeNum].actions.push_back(a);
 		}
 	}
 }
 
+Action* Room::getAction(char code, std::vector<std::string> data)
+{
+	if (code == 'i')
+		return new RenderAction(data);
+	else if (code == 'a')
+		return new InteractAction(data);
+
+	return new Action(data);
+}
+
 Room::Room(std::string name)
 {
+	roomName = name;
 	roomPath = "files/rooms/" + name + "/";
 	parseFile();
+
+	for (int i = 0; i < rWidth * rHeight; i++)
+		for (auto action : types[data[i]].actions)
+			action.action->addLocation(i % rWidth, i / rWidth);
 
 	tex.loadFromFile(roomPath + "image.png");
 	spr.setTexture(tex);
 	spr.setScale(SCALE, SCALE);
 	spr.setPosition(0, 0);
-
-	for(int it = 0; it < types.size(); it++)
-		for (int ia = 0; ia < types[it].actions.size(); ia++)
-			if (types[it].actions[ia].code == 'i') {// render image 
-				sf::Texture* t = new sf::Texture();
-				t->loadFromFile(roomPath + types[it].actions[ia].data[0]);
-				textures.push_back(t);
-				for(int i=0; i<rWidth*rHeight; i++)
-					if (data[i] == it) {
-						sf::Vector2f pos = sf::Vector2f(i % rWidth, i / rWidth + 1);
-						sf::Sprite sp;
-						sp.setTexture(*t);
-						sp.setScale(SCALE, SCALE);
-						sp.setOrigin(0, t->getSize().y);
-						sprites.push_back(std::make_pair(sp, pos));
-					}
-			}
 }
 
 Room::~Room()
 {
 	delete[] data;
+}
+
+void Room::setPlayer(Player* player)
+{
+	for (auto type : types)
+		for (auto action : type.actions)
+			action.action->setPlayer(player);
 }
 
 int Room::getUniqueAction(char code)
@@ -92,6 +101,19 @@ int Room::getUniqueAction(char code)
 		if (data[i] == lookType)
 			return i;
 	return -1;
+}
+
+bool Room::hasAction(char code, sf::Vector2i position)
+{
+	if (position.x < 0 || position.x >= rWidth)
+		return false;
+	if (position.y < 0 || position.y >= rHeight)
+		return false;
+	int type = data[position.y * rWidth + position.x];
+	for (auto x : types[type].actions)
+		if (x.code == code)
+			return true;
+	return false;
 }
 
 bool Room::positionValid(sf::Vector2f pos)
@@ -154,15 +176,10 @@ void Room::setCenterPosition(sf::Vector2f pos)
 	spr.setPosition(-PIXPM * SCALE * beg);
 	hlPoint = pos;
 
-	for (int i = 0; i < sprites.size(); i++)
-		sprites[i].first.setPosition(getPosOnScreen(sprites[i].second));
-}
-
-sf::Vector2i Room::onEdges()
-{
-	float hw = Game::WIDTH / PIXPM;
-	float hh = Game::HEIGHT / PIXPM;
-	return sf::Vector2i(hlPoint.x <= hw || hlPoint.x >= rWidth - hw, hlPoint.y <= hh || hlPoint.y >= rHeight - hh);
+	for (auto type : types)
+		for (auto action : type.actions)
+			if(action.action != nullptr)
+				action.action->hlPointMoved();
 }
 
 sf::Vector2f Room::getPosOnScreen(sf::Vector2f pos)
@@ -197,6 +214,14 @@ void Room::drawBackground(sf::RenderWindow* window)
 
 void Room::drawForeground(sf::RenderWindow* window)
 {
-	for (auto sp : sprites)
-		window->draw(sp.first);
+	for (auto type : types)
+		for (auto action : type.actions)
+			action.action->draw(window);
+}
+
+void Room::update(float dt)
+{
+	for (auto type : types)
+		for (auto action : type.actions)
+			action.action->update(dt);
 }

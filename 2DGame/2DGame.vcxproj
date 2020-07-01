@@ -161,17 +161,21 @@
   <ItemGroup>
     <ClCompile Include="CircleScene.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="InteractAction.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="RenderAction.cpp" />
     <ClCompile Include="Room.cpp" />
-    <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SquareScene.cpp" />
     <ClCompile Include="WalkingScene.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Action.h" />
     <ClInclude Include="CircleScene.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="InteractAction.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="RenderAction.h" />
     <ClInclude Include="Room.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SquareScene.h" />

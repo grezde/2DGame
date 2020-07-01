@@ -9,6 +9,7 @@ WalkingScene::WalkingScene(std::string roomName)
 	r = new Room(roomName);
 	int spos = r->getUniqueAction('s');
 	p = new Player(sf::Vector2i(spos%r->width(), spos/r->width()), r);
+	r->setPlayer(p);
 }
 
 WalkingScene::~WalkingScene()
@@ -26,5 +27,6 @@ void WalkingScene::draw(sf::RenderWindow* window)
 
 void WalkingScene::update(float dt)
 {
+	r->update(dt);
 	p->update(dt);
 }
