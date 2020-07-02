@@ -187,20 +187,18 @@ sf::Vector2f Room::projectSpeed(sf::Vector2f oldPos, sf::Vector2f newPos)
 
 	bool changedBlock = oldPosI.x != newPosI.x || oldPosI.y != newPosI.y;
 
-	if (!changedBlock) {
-		if (solid == 2 || solid == 3) {
-			bool atTheEdge = (offNew.x > 0.5f && offOld.x < 0.5f) || (offNew.x < 0.5f && offOld.x > 0.5f);
-			if (atTheEdge) {
-				vel.x = 0;
-				return vel;
-			}
+	if (solid == 2 || solid == 3 && oldPosI.x == newPosI.x) {
+		bool atTheEdge = (offNew.x > 0.5f && offOld.x < 0.5f) || (offNew.x < 0.5f && offOld.x > 0.5f);
+		if (atTheEdge) {
+			vel.x = 0;
+			return vel;
 		}
-		if (solid == 4 || solid == 5) {
-			bool atTheEdge = (offNew.y > 0.5f && offOld.y < 0.5f) || (offNew.y < 0.5f && offOld.y > 0.5f);
-			if (atTheEdge) {
-				vel.y = 0;
-				return vel;
-			}
+	}
+	if (solid == 4 || solid == 5 && oldPosI.y == newPosI.y) {
+		bool atTheEdge = (offNew.y > 0.5f && offOld.y < 0.5f) || (offNew.y < 0.5f && offOld.y > 0.5f);
+		if (atTheEdge) {
+			vel.y = 0;
+			return vel;
 		}
 	}
 	
