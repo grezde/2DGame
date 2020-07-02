@@ -39,8 +39,9 @@ private:
 
 private:
 	void parseFile();
-	
 	Action* getAction(char code, std::vector<std::string> data);
+
+	sf::Vector2f changeRef45(sf::Vector2f inital, int sign);
 
 public:
 	Room(std::string path);

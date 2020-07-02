@@ -19,6 +19,21 @@ Action* Room::getAction(char code, std::vector<std::string> data)
 	return new Action(data);
 }
 
+sf::Vector2f Room::changeRef45(sf::Vector2f v, int sign)
+{
+	/*
+	if(sign == 1)
+		return sf::Vector2f(
+			v.x * SQ + v.y * SQ,
+			- v.x * SQ + v.y * SQ
+		);
+	return sf::Vector2f(
+		v.x * SQ - v.y * SQ,
+		v.x * SQ + v.y * SQ
+	); */
+	return sf::Vector2f(0, 0);
+}
+
 const float Room::SCALE = 4.0f;
 const float Room::PIXPM = 16;
 
@@ -130,7 +145,25 @@ bool Room::positionValid(sf::Vector2f pos)
 		return false;
 
 	int type = data[int(pos.y) * rWidth + int(pos.x)];
-	return !types[type].solid;
+	int solid = types[type].solid;
+	if (solid == 0)
+		return true;
+	if (solid == 1)
+		return false;
+	sf::Vector2i posi(pos.x, pos.y);
+	sf::Vector2f offset(pos.x - float(posi.x), pos.y - float(posi.y));
+	switch (solid)
+	{ //solid in
+	case 2: return offset.x < 0.5f; //dreapta
+	case 3: return offset.x > 0.5f; //stanga
+	case 4: return offset.y < 0.5f; //jos
+	case 5: return offset.y > 0.5f; //sus
+	case 6: return offset.x + offset.y < 1.0f; //dreapta jos
+	case 7: return offset.x + offset.y > 1.0f; //stanga sus
+	case 8: return 1.0f - offset.x + offset.y < 1.0f; //stanga jos
+	case 9: return 1.0f - offset.x + offset.y > 1.0f; //dreapta sus
+	}
+	return true;
 }
 
 sf::Vector2f Room::projectSpeed(sf::Vector2f oldPos, sf::Vector2f newPos)
@@ -138,6 +171,8 @@ sf::Vector2f Room::projectSpeed(sf::Vector2f oldPos, sf::Vector2f newPos)
 	sf::Vector2f vel = newPos - oldPos;
 	sf::Vector2i oldPosI(oldPos.x, oldPos.y);
 	sf::Vector2i newPosI(newPos.x, newPos.y);
+	sf::Vector2f offOld(oldPos.x - float(oldPosI.x), oldPos.y - float(oldPosI.y));
+	sf::Vector2f offNew(newPos.x - float(newPosI.x), newPos.y - float(newPosI.y));
 
 	if (newPos.x < 0 || newPos.x > rWidth)
 		vel.x = 0;
@@ -146,16 +181,36 @@ sf::Vector2f Room::projectSpeed(sf::Vector2f oldPos, sf::Vector2f newPos)
 	if (newPos.x < 0 || newPos.x > rWidth || newPos.y < 0 || newPos.y > rHeight)
 		return vel;
 
-	int newType = data[newPosI.y * rWidth + newPosI.x];
-	if (types[newType].solid == 1) {
-		int typeX = data[oldPosI.y * rWidth + newPosI.x];
-		int typeY = data[newPosI.y * rWidth + oldPosI.x];
-		if (types[typeX].solid == 1)
-			vel.x = 0;
-		if (types[typeY].solid == 1)
-			vel.y = 0;
-	}
+	int solid = types[data[newPosI.y * rWidth + newPosI.x]].solid;
+	if (solid == 0)
+		return vel;
 
+	bool changedBlock = oldPosI.x != newPosI.x || oldPosI.y != newPosI.y;
+
+	if (!changedBlock) {
+		if (solid == 2 || solid == 3) {
+			bool atTheEdge = (offNew.x > 0.5f && offOld.x < 0.5f) || (offNew.x < 0.5f && offOld.x > 0.5f);
+			if (atTheEdge) {
+				vel.x = 0;
+				return vel;
+			}
+		}
+		if (solid == 4 || solid == 5) {
+			bool atTheEdge = (offNew.y > 0.5f && offOld.y < 0.5f) || (offNew.y < 0.5f && offOld.y > 0.5f);
+			if (atTheEdge) {
+				vel.y = 0;
+				return vel;
+			}
+		}
+	}
+	
+	int typeX = data[oldPosI.y * rWidth + newPosI.x];
+	int typeY = data[newPosI.y * rWidth + oldPosI.x];
+	if (types[typeX].solid)
+		vel.x = 0;
+	if (types[typeY].solid)
+		vel.y = 0;
+	return vel;
 	return vel;
 }
 
