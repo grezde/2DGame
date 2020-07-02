@@ -25,13 +25,13 @@ void Player::setTexCoords(int i, int j)
 
 Player::Player(sf::Vector2i startPos, Room* room)
 {
-	tex.loadFromFile("Files/global_pictures/player.png");
+	tex.loadFromFile("Files/global/player.png");
 	spr.setTexture(tex);
 	spr.setScale(SCALE, SCALE);
 	spr.setOrigin(tex.getSize().x / 8, tex.getSize().y / 4);
 	setTexCoords(0, 0);
 
-	emoteTex.loadFromFile("Files/global_pictures/emotes.png");
+	emoteTex.loadFromFile("Files/global/emotes.png");
 	emoteSpr.setTexture(emoteTex);
 	setEmote(4);
 	emoteSpr.setScale(EMOTE_SCALE, EMOTE_SCALE);

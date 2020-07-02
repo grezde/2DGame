@@ -35,6 +35,7 @@ void Game::run(Scene* initialScene)
         if (scenes.back()->shouldQuit() || exit) {
             delete scenes.back();
             scenes.pop_back();
+            exit = false;
         }
         if (nextScene != nullptr) {
             scenes.push_back(nextScene);
@@ -43,6 +44,7 @@ void Game::run(Scene* initialScene)
         if (next != nullptr) {
             scenes.push_back(next);
             next->init();
+            next = nullptr;
         }
         if (scenes.size() == 0) {
             window->close();
