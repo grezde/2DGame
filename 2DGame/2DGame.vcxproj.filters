@@ -60,6 +60,9 @@
     <ClCompile Include="InteractAction.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SpeechBoxScene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -90,6 +93,9 @@
       <Filter>Header Files\Actions</Filter>
     </ClInclude>
     <ClInclude Include="InteractAction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SpeechBoxScene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

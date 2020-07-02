@@ -1,5 +1,7 @@
 #include "Game.h"
 
+Game* Game::curentGame = nullptr;
+
 Game::Game()
 {
     window = new sf::RenderWindow(sf::VideoMode(WIDTH, HEIGHT), "Johnson INC");
@@ -7,6 +9,8 @@ Game::Game()
 
 void Game::run(Scene* initialScene)
 {
+    curentGame = this;
+
     scenes.push_back(initialScene);
     initialScene->init();
 
@@ -27,10 +31,14 @@ void Game::run(Scene* initialScene)
         scenes.back()->update(float((current-previous).asMicroseconds()) / 1e6);
         previous = current;
 
-        Scene* next = scenes.back()->nextScene();
-        if (scenes.back()->shouldQuit()) {
+        Scene* nextScene = scenes.back()->nextScene();
+        if (scenes.back()->shouldQuit() || exit) {
             delete scenes.back();
             scenes.pop_back();
+        }
+        if (nextScene != nullptr) {
+            scenes.push_back(nextScene);
+            nextScene->init();
         }
         if (next != nullptr) {
             scenes.push_back(next);
@@ -46,6 +54,12 @@ void Game::run(Scene* initialScene)
             scene->draw(window);
         window->display();
     }
+}
+
+void Game::setNextScene(bool shouldExit, Scene* nextScene)
+{
+    exit = shouldExit;
+    next = nextScene;
 }
 
 Game::~Game()

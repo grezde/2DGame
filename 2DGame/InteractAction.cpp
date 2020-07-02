@@ -1,6 +1,9 @@
 #include "InteractAction.h"
 #include "Player.h"
 #include <algorithm>
+#include "Game.h"
+#include "WalkingScene.h"
+#include "SpeechBoxScene.h"
 
 void InteractAction::addLocation(int x, int y)
 {
@@ -9,9 +12,13 @@ void InteractAction::addLocation(int x, int y)
 
 void InteractAction::update(float dt)
 {
-	if (std::count(positions.begin(), positions.end(), player->lookingAt()))
+	if (std::count(positions.begin(), positions.end(), player->lookingAt())) {
 		player->setEmote(1);
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
+			Game::curent()->setNextScene(false, new SpeechBoxScene(data));
+	}
 	else
 		player->setEmote(0);
+
 }
 

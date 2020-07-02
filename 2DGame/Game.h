@@ -8,6 +8,10 @@ class Game
 private:
 	sf::RenderWindow* window;
 	std::vector<Scene*> scenes;
+	static Game* curentGame;
+
+	bool exit;
+	Scene* next;
 
 public: 
 	static const int HEIGHT = 600;
@@ -16,6 +20,8 @@ public:
 public:
 	Game();
 	void run(Scene* initialScene);
+	void setNextScene(bool shouldExit, Scene* nextScene = nullptr);
+	inline static Game* curent() { return curentGame; }
 	~Game();
 };
 

@@ -3,6 +3,7 @@
 #include <iostream>
 
 const float WalkingScene::SCALE = 5.0f;
+WalkingScene* WalkingScene::curentWS = nullptr;
 
 WalkingScene::WalkingScene(std::string roomName)
 {
@@ -16,6 +17,12 @@ WalkingScene::~WalkingScene()
 {
 	delete p;
 	delete r;
+}
+
+void WalkingScene::setNextScene(bool shouldExit, Scene* nextScene)
+{
+	curentWS->next = nextScene;
+	curentWS->exit = shouldExit;
 }
 
 void WalkingScene::draw(sf::RenderWindow* window)

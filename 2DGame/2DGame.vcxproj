@@ -166,6 +166,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="RenderAction.cpp" />
     <ClCompile Include="Room.cpp" />
+    <ClCompile Include="SpeechBoxScene.cpp" />
     <ClCompile Include="SquareScene.cpp" />
     <ClCompile Include="WalkingScene.cpp" />
   </ItemGroup>
@@ -178,6 +179,7 @@
     <ClInclude Include="RenderAction.h" />
     <ClInclude Include="Room.h" />
     <ClInclude Include="Scene.h" />
+    <ClInclude Include="SpeechBoxScene.h" />
     <ClInclude Include="SquareScene.h" />
     <ClInclude Include="WalkingScene.h" />
   </ItemGroup>
