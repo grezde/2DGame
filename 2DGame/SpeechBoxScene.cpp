@@ -4,11 +4,13 @@
 
 const float SpeechBoxScene::SCALE = 0.8f;
 const float SpeechBoxScene::INTERVAL = 0.05f;
-const float SpeechBoxScene::FAST_INTERVAL = 0.02f;
-const float SpeechBoxScene::BETWEEN_LINES_PAUSE = 0.6f;
+const float SpeechBoxScene::FAST_INTERVAL = 0.015f;
+
+const float SpeechBoxScene::LINE_SPACING = 1.5f;
 const float SpeechBoxScene::PADDING_X = 25;
-const float SpeechBoxScene::PADDING_Y = 25;
+const float SpeechBoxScene::PADDING_Y = 35;
 const int SpeechBoxScene::CHAR_SIZE = 25;
+
 sf::Font* SpeechBoxScene::font = nullptr;
 
 SpeechBoxScene::SpeechBoxScene(std::vector<std::string> data)
@@ -19,9 +21,6 @@ SpeechBoxScene::SpeechBoxScene(std::vector<std::string> data)
 		else
 			lines.back() += "\n" + line;
 	}
-
-	for (auto line : lines)
-		std::cout << line << "\n";
 
 	boxTex.loadFromFile("Files/global/speech_box.png");
 	boxSpr.setTexture(boxTex);
@@ -40,9 +39,9 @@ SpeechBoxScene::SpeechBoxScene(std::vector<std::string> data)
 	float y = Game::HEIGHT;
 	y -= float(boxTex.getSize().y) * SCALE;
 	y += PADDING_Y;
-	std::cout << x << " " << y << "\n";
 	label.setPosition(x, y);
-	label.setString("muie psd");
+	label.setString("");
+	label.setLineSpacing(LINE_SPACING);
 	label.setCharacterSize(CHAR_SIZE);
 	label.setFillColor(sf::Color::Black);
 }
@@ -61,19 +60,26 @@ void SpeechBoxScene::update(float dt)
 	else
 		interval = INTERVAL;
 
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z) || sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
+		if (finished) {
+			index++;
+			untilNow.clear();
+			finished = false;
+			if (index == lines.size()) {
+				exit = true;
+				return;
+			}
+		}
+
+	if (finished)
+		return;
+
 	timeSinceLast += dt;
 	while (timeSinceLast > interval) {
 		timeSinceLast -= interval;
 		
-		if (index == lines.size()) {
-			exit = true;
-			break;
-		}
-
 		if (untilNow.size() == lines[index].size()) {
-			index++;
-			timeSinceLast -= BETWEEN_LINES_PAUSE;
-			untilNow.clear();
+			finished = true;
 			break;
 		}
 

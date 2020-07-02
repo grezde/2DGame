@@ -15,13 +15,14 @@ private:
 	int index = 0;
 	std::string untilNow;
 	float timeSinceLast = 0.0f;
+	bool finished = false;
 
 public:
 	static const float SCALE;
 	static const float INTERVAL;
 	static const float FAST_INTERVAL;
-	static const float BETWEEN_LINES_PAUSE;
 
+	static const float LINE_SPACING;
 	static const float PADDING_X;
 	static const float PADDING_Y;
 	static const int CHAR_SIZE;
