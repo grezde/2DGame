@@ -19,6 +19,8 @@ private:
 	sf::Vector2i nextCoords;
 	Room* room;
 
+	bool pWalking = false;
+
 public:
 	static const float SCALE;
 	static const float STEPSPS;
@@ -34,6 +36,9 @@ public:
 
 	void setEmote(int number);
 	inline sf::Vector2i lookingAt() { return nextCoords; };
+	inline bool walking() { return pWalking; }
+	inline sf::Vector2f position() { return pos; }
+	inline void setPosition(sf::Vector2f pos) { this->pos = pos; }
 
 	virtual void draw(sf::RenderWindow* window) override;
 	virtual void update(float dt) override;

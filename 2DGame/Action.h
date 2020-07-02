@@ -17,6 +17,7 @@ public:
 	void setRoom(Room* roomPtr) { room = roomPtr; }
 	void setPlayer(Player* playerPtr) { player = playerPtr; }
 
+	virtual void init() {};
 	virtual void addLocation(int x, int y) {};
 	virtual void draw(sf::RenderWindow* window) {};
 	virtual void hlPointMoved() {};

@@ -2,8 +2,22 @@
 #include <iostream>
 #include "Room.h"
 #include "Game.h"
+
 #include "RenderAction.h"
 #include "InteractAction.h"
+#include "TeleportAction.h"
+
+Action* Room::getAction(char code, std::vector<std::string> data)
+{
+	if (code == 'i')
+		return new RenderAction(data);
+	if (code == 'a')
+		return new InteractAction(data);
+	if (code == 't')
+		return new TeleportAction(data);
+
+	return new Action(data);
+}
 
 const float Room::SCALE = 4.0f;
 const float Room::PIXPM = 16;
@@ -44,16 +58,6 @@ void Room::parseFile()
 	}
 }
 
-Action* Room::getAction(char code, std::vector<std::string> data)
-{
-	if (code == 'i')
-		return new RenderAction(data);
-	else if (code == 'a')
-		return new InteractAction(data);
-
-	return new Action(data);
-}
-
 Room::Room(std::string name)
 {
 	roomName = name;
@@ -78,8 +82,10 @@ Room::~Room()
 void Room::setPlayer(Player* player)
 {
 	for (auto type : types)
-		for (auto action : type.actions)
+		for (auto action : type.actions) {
 			action.action->setPlayer(player);
+			action.action->init();
+		}
 }
 
 int Room::getUniqueAction(char code)

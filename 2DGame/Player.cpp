@@ -45,16 +45,6 @@ void Player::setEmote(int number)
 {
 	if(number != 0)
 		emoteNumber = number;
-	/*
-	drawEmote = true;
-	int x = (number - 1) % 2;
-	int y = (number - 1) / 2;
-	emoteSpr.setTextureRect(sf::IntRect(
-		x * emoteTex.getSize().x / 2,
-		y * emoteTex.getSize().y / 2,
-		emoteTex.getSize().x / 2,
-		emoteTex.getSize().y / 2
-	)); */
 }
 
 void Player::draw(sf::RenderWindow* window)
@@ -106,9 +96,12 @@ void Player::update(float dt)
 	if (dx == 0 && dy == 0) {
 		setTexCoords(-1, 0);
 		timeSinceStopped = 0;
+		pWalking = false;
 	}
-	else
+	else {
+		pWalking = true;
 		nextCoords = sf::Vector2i(pos.x + dx/1.5f, pos.y + dy/1.5f);
+	}
 
 	float mult = dt * SPEED * Room::SCALE * Room::PIXPM;
 

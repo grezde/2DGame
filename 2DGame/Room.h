@@ -64,6 +64,7 @@ public:
 	inline int width()  { return rWidth;  };
 	inline int height() { return rHeight; };
 	inline std::string filepath() { return roomPath; }
+	inline std::string name() { return roomName; }
 
 };
 
