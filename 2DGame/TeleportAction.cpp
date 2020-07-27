@@ -6,6 +6,7 @@
 const float TeleportAction::TIME_INTERVAL = 0.1f;
 const sf::Vector2f TeleportAction::OFFSET_ON_TELEPORT = sf::Vector2f(0.5f, 0.8f);
 std::string TeleportAction::lastTeleport = "";
+bool TeleportAction::teleported = false;
 
 TeleportAction::TeleportAction(std::vector<std::string> data)
 	: Action(data)
@@ -19,13 +20,20 @@ TeleportAction::TeleportAction(std::vector<std::string> data)
 		dloc *= -1;
 }
 
+void TeleportAction::preinit()
+{
+	teleported = false;
+}
+
 void TeleportAction::init()
 {
 	if (lastTeleport.empty())
 		return;
 
-	if (lastTeleport == nextRoom)
+	if (lastTeleport == nextRoom) {
 		player->setPosition(sf::Vector2f(locations.back().x, locations.back().y) + OFFSET_ON_TELEPORT);
+		teleported = true;
+	}
 }
 
 void TeleportAction::addLocation(int x, int y)

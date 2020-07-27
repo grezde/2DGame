@@ -3,37 +3,6 @@
 #include "Room.h"
 #include "Game.h"
 
-#include "RenderAction.h"
-#include "InteractAction.h"
-#include "TeleportAction.h"
-
-Action* Room::getAction(char code, std::vector<std::string> data)
-{
-	if (code == 'i')
-		return new RenderAction(data);
-	if (code == 'a')
-		return new InteractAction(data);
-	if (code == 't')
-		return new TeleportAction(data);
-
-	return new Action(data);
-}
-
-sf::Vector2f Room::changeRef45(sf::Vector2f v, int sign)
-{
-	/*
-	if(sign == 1)
-		return sf::Vector2f(
-			v.x * SQ + v.y * SQ,
-			- v.x * SQ + v.y * SQ
-		);
-	return sf::Vector2f(
-		v.x * SQ - v.y * SQ,
-		v.x * SQ + v.y * SQ
-	); */
-	return sf::Vector2f(0, 0);
-}
-
 const float Room::SCALE = 4.0f;
 const float Room::PIXPM = 16;
 
@@ -56,20 +25,8 @@ void Room::parseFile()
 		int typeNum, nrActions;
 		fin >> typeNum;
 		fin >> types[typeNum].solid >> nrActions;
-		for (int j = 0; j < nrActions; j++) {
-			ActionData a;
-			std::string s;
-			int nrLines;
-			fin >> nrLines >> a.code;
-			std::getline(fin, s);
-			for (int k = 0; k < nrLines; k++) {
-				std::getline(fin, s);
-				a.text.push_back(s);
-			}
-			a.action = getAction(a.code, a.text);
-			a.action->setRoom(this);
-			types[typeNum].actions.push_back(a);
-		}
+		for (int j = 0; j < nrActions; j++)
+			types[typeNum].actions.push_back(Action::readFromFile(fin));
 	}
 }
 
@@ -78,10 +35,6 @@ Room::Room(std::string name)
 	roomName = name;
 	roomPath = "files/rooms/" + name + "/";
 	parseFile();
-
-	for (int i = 0; i < rWidth * rHeight; i++)
-		for (auto action : types[data[i]].actions)
-			action.action->addLocation(i % rWidth, i / rWidth);
 
 	tex.loadFromFile(roomPath + "image.png");
 	spr.setTexture(tex);
@@ -92,49 +45,34 @@ Room::Room(std::string name)
 Room::~Room()
 {
 	delete[] data;
+	for (auto type : types)
+		for (auto action : type.actions)
+			delete action;
 }
 
 void Room::setPlayer(Player* player)
 {
 	for (auto type : types)
 		for (auto action : type.actions) {
-			action.action->setPlayer(player);
-			action.action->init();
+			action->setRoom(this);
+			action->setPlayer(player);
 		}
-}
-
-int Room::getUniqueAction(char code)
-{
-	int lookType = -1;
-	for (int it = 0; it < types.size(); it++) {
-		for (int ia = 0; ia < types[it].actions.size(); ia++)
-			if (types[it].actions[ia].code == code) {
-				lookType = it;
-				break;
-			}
-		if (lookType != -1)
-			break;
-	}
-	if (lookType == -1)
-		return -1;
 
 	for (int i = 0; i < rWidth * rHeight; i++)
-		if (data[i] == lookType)
-			return i;
-	return -1;
-}
+		for (auto action : types[data[i]].actions)
+			action->addLocation(i % rWidth, i / rWidth);
 
-bool Room::hasAction(char code, sf::Vector2i position)
-{
-	if (position.x < 0 || position.x >= rWidth)
-		return false;
-	if (position.y < 0 || position.y >= rHeight)
-		return false;
-	int type = data[position.y * rWidth + position.x];
-	for (auto x : types[type].actions)
-		if (x.code == code)
-			return true;
-	return false;
+	for (auto type : types)
+		for (auto action : type.actions)
+			action->preinit();
+
+	for (auto type : types)
+		for (auto action : type.actions)
+			action->init();
+
+	for (auto type : types)
+		for (auto action : type.actions)
+			action->postinit();
 }
 
 bool Room::positionValid(sf::Vector2f pos)
@@ -237,8 +175,8 @@ void Room::setCenterPosition(sf::Vector2f pos)
 
 	for (auto type : types)
 		for (auto action : type.actions)
-			if(action.action != nullptr)
-				action.action->hlPointMoved();
+			if(action != nullptr)
+				action->hlPointMoved();
 }
 
 sf::Vector2f Room::getPosOnScreen(sf::Vector2f pos)
@@ -275,12 +213,12 @@ void Room::drawForeground(sf::RenderWindow* window)
 {
 	for (auto type : types)
 		for (auto action : type.actions)
-			action.action->draw(window);
+			action->draw(window);
 }
 
 void Room::update(float dt)
 {
 	for (auto type : types)
 		for (auto action : type.actions)
-			action.action->update(dt);
+			action->update(dt);
 }

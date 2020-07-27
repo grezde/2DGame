@@ -10,15 +10,10 @@ class Player;
 class Room
 {
 public:
-	struct ActionData {
-		char code;
-		Action* action;
-		std::vector<std::string> text;
-	};
 
 	static struct Type {
 		int solid;
-		std::vector<ActionData> actions;
+		std::vector<Action*> actions;
 	};
 
 	static const float SCALE;
@@ -39,18 +34,12 @@ private:
 
 private:
 	void parseFile();
-	Action* getAction(char code, std::vector<std::string> data);
-
-	sf::Vector2f changeRef45(sf::Vector2f inital, int sign);
 
 public:
 	Room(std::string path);
 	~Room();
 
 	void setPlayer(Player* player);
-
-	int getUniqueAction(char code);
-	bool hasAction(char code, sf::Vector2i position);
 
 	bool positionValid(sf::Vector2f pos);
 	sf::Vector2f projectSpeed(sf::Vector2f oldPos, sf::Vector2f newPos);

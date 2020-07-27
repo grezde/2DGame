@@ -31,12 +31,15 @@
     <Filter Include="Source Files\Actions">
       <UniqueIdentifier>{671b9b50-310d-4903-b41a-6df8d843bb27}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Saving">
+      <UniqueIdentifier>{972a7608-c463-4c63-8861-be146b8236a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Saving">
+      <UniqueIdentifier>{f3485dfc-09be-44dd-b828-3e7aa3f15f52}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CircleScene.cpp">
@@ -64,13 +67,25 @@
       <Filter>Source Files\Scenes</Filter>
     </ClCompile>
     <ClCompile Include="TeleportAction.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Save.cpp">
+      <Filter>Source Files\Saving</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Source Files\Saving</Filter>
+    </ClCompile>
+    <ClCompile Include="Globals.cpp">
+      <Filter>Source Files\Saving</Filter>
+    </ClCompile>
+    <ClCompile Include="StartAction.cpp">
+      <Filter>Source Files\Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Action.cpp">
+      <Filter>Source Files\Actions</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Game.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="CircleScene.h">
       <Filter>Header Files\Scenes</Filter>
     </ClInclude>
@@ -102,7 +117,19 @@
       <Filter>Header Files\Actions</Filter>
     </ClInclude>
     <ClInclude Include="TeleportAction.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Save.h">
+      <Filter>Header Files\Saving</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Header Files\Saving</Filter>
+    </ClInclude>
+    <ClInclude Include="Globals.h">
+      <Filter>Header Files\Saving</Filter>
+    </ClInclude>
+    <ClInclude Include="StartAction.h">
+      <Filter>Header Files\Actions</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

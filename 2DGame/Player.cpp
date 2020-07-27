@@ -23,7 +23,7 @@ void Player::setTexCoords(int i, int j)
 	spr.setTextureRect(rect);
 }
 
-Player::Player(sf::Vector2i startPos, Room* room)
+Player::Player(Room* room)
 {
 	tex.loadFromFile("Files/global/player.png");
 	spr.setTexture(tex);
@@ -38,7 +38,6 @@ Player::Player(sf::Vector2i startPos, Room* room)
 	emoteSpr.setOrigin(emoteTex.getSize().x / 4, emoteTex.getSize().y / 2);
 
 	this->room = room;
-	this->pos = sf::Vector2f(startPos.x, startPos.y);
 }
 
 void Player::setEmote(int number)

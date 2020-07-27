@@ -159,15 +159,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Action.cpp" />
     <ClCompile Include="CircleScene.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Globals.cpp" />
     <ClCompile Include="InteractAction.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="RenderAction.cpp" />
     <ClCompile Include="Room.cpp" />
+    <ClCompile Include="Save.cpp" />
     <ClCompile Include="SpeechBoxScene.cpp" />
     <ClCompile Include="SquareScene.cpp" />
+    <ClCompile Include="StartAction.cpp" />
     <ClCompile Include="TeleportAction.cpp" />
     <ClCompile Include="WalkingScene.cpp" />
   </ItemGroup>
@@ -175,13 +179,16 @@
     <ClInclude Include="Action.h" />
     <ClInclude Include="CircleScene.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Globals.h" />
     <ClInclude Include="InteractAction.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="RenderAction.h" />
     <ClInclude Include="Room.h" />
+    <ClInclude Include="Save.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SpeechBoxScene.h" />
     <ClInclude Include="SquareScene.h" />
+    <ClInclude Include="StartAction.h" />
     <ClInclude Include="TeleportAction.h" />
     <ClInclude Include="WalkingScene.h" />
   </ItemGroup>

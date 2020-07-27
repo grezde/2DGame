@@ -8,8 +8,7 @@ WalkingScene* WalkingScene::curentWS = nullptr;
 WalkingScene::WalkingScene(std::string roomName)
 {
 	r = new Room(roomName);
-	int spos = r->getUniqueAction('s');
-	p = new Player(sf::Vector2i(spos%r->width(), spos/r->width()), r);
+	p = new Player(r);
 	r->setPlayer(p);
 }
 

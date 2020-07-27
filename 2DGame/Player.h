@@ -32,7 +32,7 @@ private:
 	void setTexCoords(int i, int j);
 
 public:
-	Player(sf::Vector2i startPos, Room* room);
+	Player(Room* room);
 
 	void setEmote(int number);
 	inline sf::Vector2i lookingAt() { return nextCoords; };
