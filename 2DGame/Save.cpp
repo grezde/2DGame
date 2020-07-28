@@ -46,7 +46,7 @@ Save::Save(std::string savename)
 	}
 
 	fin.close();
-	fin.open(filepath + "numbers.data");
+	fin.open(filepath + "number.data");
 	while (!fin.eof()) {
 		std::getline(fin, s);
 		int x = s.find('=');
@@ -58,6 +58,7 @@ Save::Save(std::string savename)
 		std::istringstream(val) >> in;
 		ints.insert(std::pair<std::string, int>(name, in));
 	}
+	;;
 }
 
 void Save::loadToFile()

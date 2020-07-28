@@ -84,15 +84,19 @@ void ConditionAction::onRead(std::ifstream& fin)
 {
 	std::istringstream iss(data[1]+" ");
 	char c;
+	std::string s;
 	while (!iss.eof()) {
 		int x;
 		iss >> x;
 		iss.get(c);
+		if (iss.eof())
+			break;
 		if (c == '-')
 			x = -(3 * Save::MAXINT + x);
 		else if (c == '+')
 			x = 3 * Save::MAXINT + x;
 		Action* a = Action::readFromFile(fin);
+		;;;
 		actions[x] = a;
 	}
 	update(0);

@@ -72,7 +72,7 @@ Este cam la nivelul obrazului unui om.
 1 a
 * Lockerul asta pare putin spart.
 2 b
-first_locker_broken 
+first_locker_broken
 0 1
 2 i
 first_locker_unbroken.png
