@@ -42,7 +42,7 @@ Save::Save(std::string savename)
 			continue;
 		name = s.substr(0, x);
 		val = s.substr(x + 1);
-		strings.insert(std::make_pair(name, val));
+		strings.insert(std::pair<std::string, std::string>(name, val));
 	}
 
 	fin.close();
@@ -56,7 +56,7 @@ Save::Save(std::string savename)
 		val = s.substr(x + 1);
 		int in = 0;
 		std::istringstream(val) >> in;
-		ints.insert(std::make_pair(name, in));
+		ints.insert(std::pair<std::string, int>(name, in));
 	}
 }
 

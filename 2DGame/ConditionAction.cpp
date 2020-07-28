@@ -17,6 +17,69 @@ ConditionAction::~ConditionAction()
 		delete pair.second;
 }
 
+void ConditionAction::setRoom(Room* roomPtr)
+{
+	room = roomPtr;
+	for (auto pair : actions)
+		pair.second->setRoom(roomPtr);
+}
+
+void ConditionAction::setPlayer(Player* playerPtr)
+{
+	player = playerPtr;
+	for (auto pair : actions)
+		pair.second->setPlayer(playerPtr);
+}
+
+void ConditionAction::addLocation(int x, int y)
+{
+	for (auto p : actions)
+		p.second->addLocation(x, y);
+}
+
+void ConditionAction::preinit()
+{
+	for (auto p : actions)
+		p.second->preinit();
+}
+
+void ConditionAction::init()
+{
+	for (auto p : actions)
+		p.second->init();
+}
+
+void ConditionAction::postinit()
+{
+	for (auto p : actions)
+		p.second->postinit();
+}
+
+void ConditionAction::drawBackground(sf::RenderWindow* window)
+{
+	if (curent != nullptr)
+		curent->drawBackground(window);
+}
+
+void ConditionAction::drawForeground(sf::RenderWindow* window)
+{
+	if (curent != nullptr)
+		curent->drawForeground(window);
+}
+
+void ConditionAction::trigger()
+{
+	if (curent != nullptr)
+		curent->trigger();
+}
+
+
+void ConditionAction::hlPointMoved()
+{
+	if (curent != nullptr)
+		curent->hlPointMoved();
+}
+
 void ConditionAction::onRead(std::ifstream& fin)
 {
 	std::istringstream iss(data[1]+" ");
@@ -40,9 +103,11 @@ void ConditionAction::update(float dt)
 	int val = Globals::save->geti(varname);
 	if (val != curentindex) {
 		curentindex = val;
+		std::cout << actions.size();
 		for (auto pair : actions) {
+			std::cout << pair.first << " ";
 			if (pair.first < -2 * Save::MAXINT) {
-				int realx = -pair.first - 3*Save::MAXINT;
+				int realx = - pair.first - 3*Save::MAXINT;
 				if (val <= realx) {
 					curent = pair.second;
 					return;
@@ -63,6 +128,6 @@ void ConditionAction::update(float dt)
 		curent = nullptr;
 	}
 
-	if(curent)
+	if(curent != nullptr)
 		curent->update(dt);
 }

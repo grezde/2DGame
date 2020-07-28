@@ -1,10 +1,12 @@
 #include "Game.h"
+#include "Globals.h"
 
 Game* Game::curentGame = nullptr;
 
 Game::Game()
 {
     window = new sf::RenderWindow(sf::VideoMode(WIDTH, HEIGHT), "Johnson INC");
+    Globals::save = new Save("test");
 }
 
 void Game::run(Scene* initialScene)

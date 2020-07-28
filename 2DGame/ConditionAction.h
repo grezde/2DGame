@@ -1,5 +1,6 @@
 #pragma once
 #include "Action.h"
+#include "Globals.h"
 
 class ConditionAction : public Action
 {
@@ -7,27 +8,28 @@ private:
 	std::map<int, Action*> actions;
 	std::string varname;
 	
-	Action* curent;
-	int curentindex;
+	Action* curent = nullptr;
+	int curentindex = Save::MAXINT+1;
 
 public:
 	ConditionAction(std::vector<std::string> data);
 	~ConditionAction();
 
-	virtual void onRead(std::ifstream& fin);
+	void setRoom(Room* roomPtr);
+	void setPlayer(Player* playerPtr);
 
-	virtual void addLocation(int x, int y) { for (auto p : actions) p.second->addLocation(x, y); }
+	void onRead(std::ifstream& fin);
+	void update(float dt);
 
-	virtual void preinit() { for (auto p : actions) p.second->preinit(); }
-	virtual void init() { for (auto p : actions) p.second->init(); }
-	virtual void postinit() { for (auto p : actions) p.second->postinit(); }
+	void addLocation(int x, int y);
+	void preinit();
+	void init();
+	void postinit();
+	void drawBackground(sf::RenderWindow* window);
+	void drawForeground(sf::RenderWindow* window);
+	void trigger();
+	void hlPointMoved();
 
-	virtual void draw(sf::RenderWindow* window) { if (curent) curent->draw(window); };
-
-	virtual void trigger() { if (curent) curent->trigger(); };
-
-	virtual void hlPointMoved() { if (curent) curent->hlPointMoved(); };
-
-	virtual void update(float dt);
+	
 };
 

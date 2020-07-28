@@ -15,8 +15,8 @@ protected:
 public:
 	Action(std::vector<std::string> data) : data(data) {};
 
-	void setRoom(Room* roomPtr) { room = roomPtr; }
-	void setPlayer(Player* playerPtr) { player = playerPtr; }
+	virtual void setRoom(Room* roomPtr) { room = roomPtr; }
+	virtual void setPlayer(Player* playerPtr) { player = playerPtr; }
 
 	virtual void onRead(std::ifstream& fin) {};
 	virtual void addLocation(int x, int y) {};
@@ -25,7 +25,8 @@ public:
 	virtual void init() {};
 	virtual void postinit() {};
 
-	virtual void draw(sf::RenderWindow* window) {};
+	virtual void drawBackground(sf::RenderWindow* window) {};
+	virtual void drawForeground(sf::RenderWindow* window) {};
 	virtual void update(float dt) {};
 
 	virtual void trigger() {};

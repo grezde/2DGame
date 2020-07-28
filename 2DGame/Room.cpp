@@ -58,13 +58,13 @@ void Room::setPlayer(Player* player)
 			action->setPlayer(player);
 		}
 
-	for (int i = 0; i < rWidth * rHeight; i++)
-		for (auto action : types[data[i]].actions)
-			action->addLocation(i % rWidth, i / rWidth);
-
 	for (auto type : types)
 		for (auto action : type.actions)
 			action->preinit();
+	
+	for (int i = 0; i < rWidth * rHeight; i++)
+		for (auto action : types[data[i]].actions)
+			action->addLocation(i % rWidth, i / rWidth);
 
 	for (auto type : types)
 		for (auto action : type.actions)
@@ -207,13 +207,16 @@ sf::Vector2f Room::getPosOnScreen(sf::Vector2f pos)
 void Room::drawBackground(sf::RenderWindow* window)
 {
 	window->draw(spr);
+	for (auto type : types)
+		for (auto action : type.actions)
+			action->drawBackground(window);
 }
 
 void Room::drawForeground(sf::RenderWindow* window)
 {
 	for (auto type : types)
 		for (auto action : type.actions)
-			action->draw(window);
+			action->drawForeground(window);
 }
 
 void Room::update(float dt)

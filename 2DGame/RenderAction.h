@@ -5,15 +5,20 @@
 class RenderAction : public Action
 {
 private:
-	sf::Texture tex;
+	sf::Texture* tex;
 	std::vector<sf::Sprite> sprites;
 	std::vector<sf::Vector2f> igPos;
 
+	bool loaded = false;
+	bool back;
+
 public:
-	RenderAction(std::vector<std::string> data) : Action(data) {};
+	RenderAction(std::vector<std::string> data);
+	~RenderAction();
 
 	void addLocation(int x, int y);
-	void draw(sf::RenderWindow* window);
+	void drawBackground(sf::RenderWindow* window);
+	void drawForeground(sf::RenderWindow* window);
 	void hlPointMoved();
 
 };
