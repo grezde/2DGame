@@ -4,6 +4,7 @@
 #include "InteractAction.h"
 #include "TeleportAction.h"
 #include "StartAction.h"
+#include "ConditionAction.h"
 
 Action* Action::getActionClass(char code, std::vector<std::string> data)
 {
@@ -15,6 +16,8 @@ Action* Action::getActionClass(char code, std::vector<std::string> data)
 		return new TeleportAction(data);
 	if (code == 's')
 		return new StartAction(data);
+	if (code == 'b')
+		return new ConditionAction(data);
 
 	return new Action(data);
 }

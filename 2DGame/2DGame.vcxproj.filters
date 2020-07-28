@@ -84,6 +84,9 @@
     <ClCompile Include="Action.cpp">
       <Filter>Source Files\Actions</Filter>
     </ClCompile>
+    <ClCompile Include="ConditionAction.cpp">
+      <Filter>Source Files\Actions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CircleScene.h">
@@ -130,6 +133,9 @@
     </ClInclude>
     <ClInclude Include="StartAction.h">
       <Filter>Header Files\Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="ConditionAction.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

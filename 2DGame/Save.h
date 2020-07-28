@@ -10,6 +10,9 @@ private:
 	std::string name, filepath;
 
 public:
+	static const int MAXINT;
+
+public:
 	std::string gets(std::string n);
 	void sets(std::string n, std::string v);
 

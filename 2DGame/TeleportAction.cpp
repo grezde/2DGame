@@ -45,7 +45,7 @@ void TeleportAction::update(float dt)
 {
 	for (auto loc : locations)
 		if (loc.x == int(player->position().x) && loc.y == int(player->position().y)) {
-			if (player->lookingAt() == loc + dloc && player->walking()) {
+			if (player->lookingAtI() == loc + dloc && player->walking()) {
 				countdown += dt;
 				if (countdown >= TIME_INTERVAL) {
 					lastTeleport = room->name();

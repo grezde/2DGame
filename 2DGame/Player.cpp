@@ -99,7 +99,7 @@ void Player::update(float dt)
 	}
 	else {
 		pWalking = true;
-		nextCoords = sf::Vector2i(pos.x + dx/1.5f, pos.y + dy/1.5f);
+		nextCoords = sf::Vector2f(pos.x + dx/1.5f, pos.y + dy/1.5f);
 	}
 
 	float mult = dt * SPEED * Room::SCALE * Room::PIXPM;

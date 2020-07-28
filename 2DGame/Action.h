@@ -28,6 +28,8 @@ public:
 	virtual void draw(sf::RenderWindow* window) {};
 	virtual void update(float dt) {};
 
+	virtual void trigger() {};
+
 	virtual void hlPointMoved() {};
 
 private:

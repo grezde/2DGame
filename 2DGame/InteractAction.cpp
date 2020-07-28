@@ -14,15 +14,16 @@ void InteractAction::addLocation(int x, int y)
 
 void InteractAction::update(float dt)
 {
-	if (std::count(positions.begin(), positions.end(), player->lookingAt())) {
-		player->setEmote(1);
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z) && cooldown < 0) {
-			cooldown = TIME_INTERVAL;
-			Game::curent()->setNextScene(false, new SpeechBoxScene(data));
+	for(auto pos : positions)
+		if (player->lookingAtI() == pos && !room->positionValid(player->lookingAt())) {
+			player->setEmote(1);
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z) && cooldown < 0) {
+				cooldown = TIME_INTERVAL;
+				Game::curent()->setNextScene(false, new SpeechBoxScene(data));
+				return;
+			}
 		}
-	}
-	else
-		player->setEmote(0);
+	player->setEmote(0);
 
 	if (cooldown > 0)
 		cooldown -= dt;

@@ -2,6 +2,8 @@
 #include <fstream>
 #include <sstream>
 
+const int Save::MAXINT = 500;
+
 std::string Save::gets(std::string n)
 {
 	if (strings.find(n) == strings.end())
