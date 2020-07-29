@@ -88,7 +88,7 @@
       <Filter>Source Files\Actions</Filter>
     </ClCompile>
     <ClCompile Include="SpeechManager.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Helpers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -137,14 +137,19 @@
     <ClInclude Include="StartAction.h">
       <Filter>Header Files\Actions</Filter>
     </ClInclude>
-    <ClInclude Include="ConditionAction.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="SpeechContainer.h">
+      <Filter>Header Files\Helpers</Filter>
     </ClInclude>
     <ClInclude Include="SpeechManager.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="ConditionAction.h">
+      <Filter>Header Files\Actions</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram.cd" />
+    <None Include="ClassDiagram.cd">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

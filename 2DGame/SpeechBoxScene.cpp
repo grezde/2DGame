@@ -14,14 +14,8 @@ const int SpeechBoxScene::CHAR_SIZE = 25;
 sf::Font* SpeechBoxScene::font = nullptr;
 
 SpeechBoxScene::SpeechBoxScene(std::vector<std::string> data)
+	: SpeechManager(data)
 {
-	for (auto line : data) {
-		if (line[0] == '*')
-			lines.push_back(std::string(line.begin() + 2, line.end()));
-		else
-			lines.back() += "\n" + line;
-	}
-
 	boxTex.loadFromFile("Files/global/speech_box.png");
 	boxSpr.setTexture(boxTex);
 	boxSpr.setOrigin(boxTex.getSize().x / 2, boxTex.getSize().y);
@@ -54,36 +48,23 @@ void SpeechBoxScene::draw(sf::RenderWindow* window)
 
 void SpeechBoxScene::update(float dt)
 {
-	float interval;
+
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::X))
 		interval = FAST_INTERVAL;
 	else
 		interval = INTERVAL;
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z) || sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
-		if (state == 1) {
-			index++;
-			untilNow.clear();
-			state = 0;
-			if (index == lines.size()) {
-				exit = true;
-				return;
-			}
-		}
+		proceed();
 
-	if (state == 1)
-		return;
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::C))
+		std::cout << state() << " ";
 
-	timeSinceLast += dt;
-	while (timeSinceLast > interval) {
-		timeSinceLast -= interval;
-		
-		if (untilNow.size() == lines[index].size()) {
-			state = 1;
-			break;
-		}
 
-		untilNow += lines[index][untilNow.size()];
-		label.setString(untilNow);
-	}
+	updateState(dt);
+
+	if (state() == Finished)
+		exit = true;
+
+	label.setString(displayText());
 }

@@ -1,40 +1,8 @@
 #pragma once
 #include "Scene.h"
-
-class SpeechContainer 
-{
-public:
-	enum Type
-	{
-		Line,
-		Choice
-	};
-	typedef std::vector<std::string>::iterator iter;
-	static std::vector<SpeechContainer*> parse(iter start, iter end);
-	
-	Type type;
-	SpeechContainer(Type t) 
-		: type(t) {}
-	
-};
-
-class LineSC : public SpeechContainer
-{
-public:
-	std::string text;
-	LineSC() : SpeechContainer(Line) {}
-};
-
-class ChoiceSC : public SpeechContainer
-{
-public:
-	std::string question;
-	std::vector<std::string> choiceTexts;
-	std::vector<std::vector<SpeechContainer*>> choices;
-	
-	ChoiceSC() : SpeechContainer(Choice) {}
-	~ChoiceSC();
-};
+#include "SpeechContainer.h"
+#include <queue>
+#include <stack>
 
 class SpeechManager
 {
@@ -42,25 +10,31 @@ public:
 	enum State
 	{
 		Writing,
-		Finished,
+		Pause,
+		RequestNext,
 		WritingMenuText,
 		WritingMenuOptions,
 		Selecting,
-		Pause
+		Finished
 	};
 
 private:
 	State s;
 	std::string text;
 	int index;
-	std::vector<SpeechContainer*> script;
+	ChainSC* script;
+	std::stack<SpeechContainer*> scque;
+	float accum = 0.0f;
+
+protected:
+	float interval = 0.0f;
 
 public:
 	SpeechManager(std::vector<std::string> lines);
-
-	void update(float dt);
+	void updateState(float dt);
 
 	inline State state() { return s; }
-
+	inline std::string displayText() { return text; }
+	void proceed(int option = -1);
 };
 

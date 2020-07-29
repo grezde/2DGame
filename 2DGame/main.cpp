@@ -25,7 +25,7 @@ int main()
         "* Decizi sa nu deschizi lockerul. Poate",
         "ai facut o alegere buna."
     };
-    std::vector<SpeechContainer*> script = SpeechContainer::parse(text.begin(), text.end());
+    ChainSC* script = SpeechContainer::parse(text.begin(), text.end());
     script;
     Game johnson;
     johnson.run(new WalkingScene("hol_etaj_3"));

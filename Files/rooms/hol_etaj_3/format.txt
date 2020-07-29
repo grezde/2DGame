@@ -71,16 +71,16 @@ Este cam la nivelul obrazului unui om.
 11 5 2
 18 a
 * Lockerul asta are foarte multe fisuri
-in el. Aproape ca ai putea sa il deschizi
-fara sa il spargi.
+in el. Aproape ca ai putea sa il 
+* deschizi fara sa il spargi.
 > Incerci sa il deschizi?
-> 2 9 1
+  2 9 2
 > Da
 > Nu
 * L-ai desfacut cu usurinta. Te uiti
 inauntru si vezi un fular. 
 > Furi fularul?
-> 2 2 1
+  2 2 1
 > Da
 > Nu
 * Ai obtinut fularul! Verifica in inventar.

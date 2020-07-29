@@ -1,23 +1,18 @@
 #pragma once
-#include "Scene.h"
 #include <vector>
+#include "Scene.h"
+#include "SpeechManager.h"
 
-class SpeechBoxScene : public Scene
+class SpeechBoxScene : public Scene, public SpeechManager
 {
 private:
 	sf::Texture boxTex;
 	sf::Sprite boxSpr;
-	std::vector<std::string> lines;
 
 	static sf::Font* font;
 	sf::Text label;
 	sf::Text choice1;
 	sf::Text choice2;
-
-	int index = 0;
-	std::string untilNow;
-	float timeSinceLast = 0.0f;
-	int state = 0;
 
 public:
 	static const float SCALE;
