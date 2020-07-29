@@ -171,10 +171,12 @@
     <ClCompile Include="Room.cpp" />
     <ClCompile Include="Save.cpp" />
     <ClCompile Include="SpeechBoxScene.cpp" />
+    <ClCompile Include="SpeechContainer.cpp" />
     <ClCompile Include="SpeechManager.cpp" />
     <ClCompile Include="SquareScene.cpp" />
     <ClCompile Include="StartAction.cpp" />
     <ClCompile Include="TeleportAction.cpp" />
+    <ClCompile Include="VariableAction.cpp" />
     <ClCompile Include="WalkingScene.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -195,6 +197,7 @@
     <ClInclude Include="SquareScene.h" />
     <ClInclude Include="StartAction.h" />
     <ClInclude Include="TeleportAction.h" />
+    <ClInclude Include="VariableAction.h" />
     <ClInclude Include="WalkingScene.h" />
   </ItemGroup>
   <ItemGroup>

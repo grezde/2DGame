@@ -1,4 +1,5 @@
 #include "SpeechManager.h"
+#include "Action.h"
 #include <sstream>
 #include <iostream>
 
@@ -17,6 +18,7 @@ void SpeechManager::updateState(float dt)
 	accum += dt;
 	while (accum > interval) {
 		accum -= interval;
+
 		if (s == Writing) {
 			LineSC* line = ((LineSC*)(scque.top()));
 			if (line->index == line->text.size()) {
@@ -52,11 +54,17 @@ void SpeechManager::updateState(float dt)
 			text += ch->choiceTexts[optionIndex][ch->index];
 			ch->index++;
 		}
+		if (s == Executing) {
+			ExecuteSC* exc = ((ExecuteSC*)(scque.top()));
+			exc->action->trigger();
+			s = RequestNext;
+		}
 		if (s == RequestNext) {
 			text.clear();
-		
-			while (!scque.empty() && scque.top()->type() != SpeechContainer::Chain)
+			while (!scque.empty() && scque.top()->type() != SpeechContainer::Chain) {
+				scque.top()->index = 0;
 				scque.pop();
+			}
 			while (!scque.empty() && scque.top()->type() == SpeechContainer::Chain) {
 				ChainSC* chain = ((ChainSC*)(scque.top()));
 				if (chain->index < chain->chain.size()) {
@@ -64,8 +72,10 @@ void SpeechManager::updateState(float dt)
 					scque.push(chain->chain[chain->index-1]);
 					break;
 				} 
-				else
+				else {
+					scque.top()->index = 0;
 					scque.pop();
+				}
 			}
 			//at the end of the queue there must be a non chain element
 			//or an empty queue
@@ -77,6 +87,8 @@ void SpeechManager::updateState(float dt)
 				s = Writing;
 			else if (scque.top()->type() == SpeechContainer::Choice)
 				s = WritingMenuText;
+			else if (scque.top()->type() == SpeechContainer::Execute)
+				s = Executing;
 		}
 	}
 }
@@ -105,51 +117,4 @@ int SpeechManager::curentOptionWriten()
 	if (s == WritingMenuOptions)
 		return optionIndex;
 	return -1;
-}
-
-ChainSC* SpeechContainer::parse(iter start, iter end)
-{
-	std::vector<SpeechContainer*> script;
-	for (iter i = start; i < end;) {
-		if (i->at(0) == '*') {
-			LineSC* lsc = new LineSC();
-			lsc->text = i->substr(2);
-			i++;
-			while (i < end && i->at(0) != '*' && i->at(0) != '>') {
-				lsc->text += "\n" + *i;
-				i++;
-			}
-			script.push_back(lsc);
-		}
-		else if (i->at(0) == '>') {
-			ChoiceSC* csc = new ChoiceSC();
-			int nr, a;
-			csc->question = i->substr(2);
-			i++;
-			std::istringstream iss(*i);
-			iss >> nr;
-			iter now=i+nr+1;
-			for (int k = 1; k <= nr; k++) {
-				iss >> a;
-				csc->choiceTexts.push_back((i + k)->substr(2));
-				csc->choices.push_back(parse(now, now + a));
-				now = now + a;
-			}
-			script.push_back(csc);
-			i = now;
-		}
-	}
-	return new ChainSC(script);
-}
-
-ChoiceSC::~ChoiceSC()
-{
-	for (ChainSC* c : choices)
-		delete c;
-}
-
-ChainSC::~ChainSC()
-{
-	for (SpeechContainer* sc : chain)
-		delete sc;
 }

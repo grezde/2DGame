@@ -26,7 +26,7 @@ void Room::parseFile()
 		fin >> typeNum;
 		fin >> types[typeNum].solid >> nrActions;
 		for (int j = 0; j < nrActions; j++)
-			types[typeNum].actions.push_back(Action::readFromFile(fin));
+			types[typeNum].actions.push_back(Action::readFromStream(fin));
 	}
 }
 
@@ -224,4 +224,11 @@ void Room::update(float dt)
 	for (auto type : types)
 		for (auto action : type.actions)
 			action->update(dt);
+}
+
+void Room::reinitScene()
+{
+	for (Type& t : types)
+		for (Action* a : t.actions)
+			a->reinitScene();
 }

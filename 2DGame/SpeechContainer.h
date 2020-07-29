@@ -11,7 +11,8 @@ public:
 	{
 		Line,
 		Choice,
-		Chain
+		Chain,
+		Execute
 	};
 	typedef std::vector<std::string>::iterator iter;
 	static ChainSC* parse(iter start, iter end);
@@ -55,4 +56,15 @@ public:
 
 	ChoiceSC() : SpeechContainer(Choice) {}
 	~ChoiceSC();
+};
+
+class Action;
+
+class ExecuteSC : public SpeechContainer
+{
+public:
+	Action* action;
+	
+	ExecuteSC() : SpeechContainer(Execute) {};
+	~ExecuteSC();
 };

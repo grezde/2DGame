@@ -36,3 +36,8 @@ void WalkingScene::update(float dt)
 	r->update(dt);
 	p->update(dt);
 }
+
+void WalkingScene::reinit()
+{
+	r->reinitScene();
+}

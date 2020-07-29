@@ -69,30 +69,73 @@ parca vezi ramasitele unei shaorme.
 Este cam la nivelul obrazului unui om.
 
 11 5 2
-19 a
+
+2 b
+first_locker_broken
+0 1 2 5 3+
+
+25 a
 * Lockerul asta are foarte multe fisuri
 in el. Aproape ca ai putea sa il 
 * deschizi fara sa il spargi.
 > Incerci sa il deschizi?
-  2 10 2
+  2 16 2
 > Da
 > Nu
+/ 2 v
+first_locker_broken
+= 1
 * L-ai desfacut cu usurinta. Te uiti
-inauntru si vezi un fular. 
+inauntru si vezi un fular.
 > Furi fularul?
-  2 3 1
+  2 6 1
 > Da
 > Nu
-* Ai obtinut itemul fularul! Verifica
+/ 2 v
+first_locker_broken
+= 2
+* Ai obtinut itemul fular! Verifica
 inventarul.
 * Golanule.
 * Lasi fularul acolo.
 * Decizi sa nu deschizi lockerul. Poate
 ai facut o alegere buna.
 
+13 a
+* Lockerul e deja desfacut. Te uiti
+inauntru si vezi un fular.
+> Furi fularul?
+  2 6 1
+> Da
+> Nu
+/ 2 v
+first_locker_broken
+= 2
+* Ai obtinut itemul fular! Verifica
+inventarul.
+* Golanule.
+* Lasi fularul acolo.
+
+5 a
+* Nu mai e nimic in interior.
+Lockerul este complet gol.
+/ 2 v
+first_locker_broken
++= 1
+
+1 a
+* AICI NU E NIMIC.
+
+5 a
+* Serios, chiar nu mai e nimic aici.
+Cred ca insisti prea mult.
+/ 2 v
+first_locker_broken
++= 1
+
 2 b
 first_locker_broken
-0 1
+0 1+
 2 i
 first_locker_unbroken.png
 background

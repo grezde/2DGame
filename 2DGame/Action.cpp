@@ -5,6 +5,7 @@
 #include "TeleportAction.h"
 #include "StartAction.h"
 #include "ConditionAction.h"
+#include "VariableAction.h"
 
 Action* Action::getActionClass(char code, std::vector<std::string> data)
 {
@@ -18,11 +19,13 @@ Action* Action::getActionClass(char code, std::vector<std::string> data)
 		return new StartAction(data);
 	if (code == 'b')
 		return new ConditionAction(data);
+	if (code == 'v')
+		return new VariableAction(data);
 
 	return new Action(data);
 }
 
-Action* Action::readFromFile(std::ifstream& fin)
+Action* Action::readFromStream(std::istream& fin)
 {
 	std::string s;
 	std::vector<std::string> text;

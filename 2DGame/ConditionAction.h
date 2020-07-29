@@ -18,7 +18,7 @@ public:
 	void setRoom(Room* roomPtr);
 	void setPlayer(Player* playerPtr);
 
-	void onRead(std::ifstream& fin);
+	void onRead(std::istream& fin);
 	void update(float dt);
 
 	void addLocation(int x, int y);
@@ -29,7 +29,7 @@ public:
 	void drawForeground(sf::RenderWindow* window);
 	void trigger();
 	void hlPointMoved();
-
+	void reinitScene();
 	
 };
 

@@ -14,11 +14,12 @@ protected:
 
 public:
 	Action(std::vector<std::string> data) : data(data) {};
+	Action() {};
 
 	virtual void setRoom(Room* roomPtr) { room = roomPtr; }
 	virtual void setPlayer(Player* playerPtr) { player = playerPtr; }
 
-	virtual void onRead(std::ifstream& fin) {};
+	virtual void onRead(std::istream& fin) {};
 	virtual void addLocation(int x, int y) {};
 
 	virtual void preinit() {};
@@ -32,11 +33,12 @@ public:
 	virtual void trigger() {};
 
 	virtual void hlPointMoved() {};
+	virtual void reinitScene() {};
 
 private:
 	static Action* getActionClass(char code, std::vector<std::string> data);
 
 public:
-	static Action* readFromFile(std::ifstream& fin);
+	static Action* readFromStream(std::istream& fin);
 };
 

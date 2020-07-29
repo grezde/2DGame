@@ -51,6 +51,8 @@ public:
 	void drawForeground(sf::RenderWindow* window);
 	void update(float dt);
 
+	void reinitScene();
+
 	inline int width()  { return rWidth;  };
 	inline int height() { return rHeight; };
 	inline std::string filepath() { return roomPath; }

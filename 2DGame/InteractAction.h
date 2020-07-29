@@ -5,7 +5,8 @@ class InteractAction : public Action
 {
 private:
 	std::vector<sf::Vector2i> positions;
-	float cooldown = -1.0f;
+	static float cooldown;
+	static bool inProgress;
 
 public:
 	static const float TIME_INTERVAL;
@@ -15,5 +16,8 @@ public:
 
 	void addLocation(int x, int y);
 	void update(float dt);
+	void reinitScene();
+	void trigger();
+
 };
 

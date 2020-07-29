@@ -21,5 +21,6 @@ public:
 	static void setNextScene(bool shouldExit, Scene* nextScene);
 	virtual void draw(sf::RenderWindow* window);
 	virtual void update(float dt);
+	virtual void reinit();
 };
 

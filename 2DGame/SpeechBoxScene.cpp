@@ -53,7 +53,6 @@ void SpeechBoxScene::draw(sf::RenderWindow* window)
 
 void SpeechBoxScene::update(float dt)
 {
-
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::X))
 		interval = FAST_INTERVAL;
 	else

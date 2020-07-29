@@ -30,13 +30,21 @@ void Game::run(Scene* initialScene)
         }
         
         sf::Time current = clock.getElapsedTime();
-        scenes.back()->update(float((current-previous).asMicroseconds()) / 1e6);
+        float dt = float((current - previous).asMicroseconds()) / 1e6;
         previous = current;
+
+        int i = scenes.size()-1; 
+        scenes[i]->update(dt);
+        while (scenes[i]->updateBeneath() && i > 0) {
+            i--;
+            scenes[i]->update(dt);
+        }
 
         Scene* nextScene = scenes.back()->nextScene();
         if (scenes.back()->shouldQuit() || exit) {
             delete scenes.back();
             scenes.pop_back();
+            scenes.back()->reinit();
             exit = false;
         }
         if (nextScene != nullptr) {

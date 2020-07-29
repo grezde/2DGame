@@ -80,7 +80,13 @@ void ConditionAction::hlPointMoved()
 		curent->hlPointMoved();
 }
 
-void ConditionAction::onRead(std::ifstream& fin)
+void ConditionAction::reinitScene()
+{
+	for (auto p : actions)
+		p.second->reinitScene();
+}
+
+void ConditionAction::onRead(std::istream& fin)
 {
 	std::istringstream iss(data[1]+" ");
 	char c;
@@ -95,7 +101,7 @@ void ConditionAction::onRead(std::ifstream& fin)
 			x = -(3 * Save::MAXINT + x);
 		else if (c == '+')
 			x = 3 * Save::MAXINT + x;
-		Action* a = Action::readFromFile(fin);
+		Action* a = Action::readFromStream(fin);
 		;;;
 		actions[x] = a;
 	}
@@ -107,9 +113,7 @@ void ConditionAction::update(float dt)
 	int val = Globals::save->geti(varname);
 	if (val != curentindex) {
 		curentindex = val;
-		std::cout << actions.size();
 		for (auto pair : actions) {
-			std::cout << pair.first << " ";
 			if (pair.first < -2 * Save::MAXINT) {
 				int realx = - pair.first - 3*Save::MAXINT;
 				if (val <= realx) {

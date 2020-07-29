@@ -15,7 +15,8 @@ public:
 		WritingMenuText,
 		WritingMenuOptions,
 		Selecting,
-		Finished
+		Finished,
+		Executing
 	};
 
 private:
