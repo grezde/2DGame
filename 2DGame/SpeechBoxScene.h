@@ -11,11 +11,13 @@ private:
 
 	static sf::Font* font;
 	sf::Text label;
+	sf::Text choice1;
+	sf::Text choice2;
 
 	int index = 0;
 	std::string untilNow;
 	float timeSinceLast = 0.0f;
-	bool finished = false;
+	int state = 0;
 
 public:
 	static const float SCALE;

@@ -171,6 +171,7 @@
     <ClCompile Include="Room.cpp" />
     <ClCompile Include="Save.cpp" />
     <ClCompile Include="SpeechBoxScene.cpp" />
+    <ClCompile Include="SpeechManager.cpp" />
     <ClCompile Include="SquareScene.cpp" />
     <ClCompile Include="StartAction.cpp" />
     <ClCompile Include="TeleportAction.cpp" />
@@ -189,10 +190,14 @@
     <ClInclude Include="Save.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SpeechBoxScene.h" />
+    <ClInclude Include="SpeechManager.h" />
     <ClInclude Include="SquareScene.h" />
     <ClInclude Include="StartAction.h" />
     <ClInclude Include="TeleportAction.h" />
     <ClInclude Include="WalkingScene.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

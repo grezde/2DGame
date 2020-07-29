@@ -61,17 +61,17 @@ void SpeechBoxScene::update(float dt)
 		interval = INTERVAL;
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z) || sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
-		if (finished) {
+		if (state == 1) {
 			index++;
 			untilNow.clear();
-			finished = false;
+			state = 0;
 			if (index == lines.size()) {
 				exit = true;
 				return;
 			}
 		}
 
-	if (finished)
+	if (state == 1)
 		return;
 
 	timeSinceLast += dt;
@@ -79,7 +79,7 @@ void SpeechBoxScene::update(float dt)
 		timeSinceLast -= interval;
 		
 		if (untilNow.size() == lines[index].size()) {
-			finished = true;
+			state = 1;
 			break;
 		}
 

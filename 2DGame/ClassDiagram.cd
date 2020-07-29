@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ConditionAction">
+    <Position X="0.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEgAAICCAAAAACCAAAAAQAQYAAAQAAggGAAA=</HashCode>
+      <FileName>ConditionAction.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SpeechManager">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="SpeechManager::State" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>SpeechManager.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>CCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAIAAAAAFAAA=</HashCode>
+      <FileName>SpeechManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CircleScene">
+    <Position X="16.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAIAAAAAAAAAAAIAAAAAAAAEBAA=</HashCode>
+      <FileName>CircleScene.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IGameElement">
+    <Position X="19" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Scene.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Scene">
+    <Position X="20.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAABEAAAAAAAAAAAAAAACIAAAAAACIAAAA=</HashCode>
+      <FileName>Scene.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SpeechBoxScene">
+    <Position X="21.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAJIAAAAAAAAABEAAAKAABgAAAIiAABEAIAAAhAFAAA=</HashCode>
+      <FileName>SpeechBoxScene.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SquareScene">
+    <Position X="23.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAIAIAAAAAAAAAIAAAAAAAAEAAA=</HashCode>
+      <FileName>SquareScene.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WalkingScene">
+    <Position X="19" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAAAAAAAAKAAAAAAAAACAAAAEABAAIEAAQ=</HashCode>
+      <FileName>WalkingScene.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Player">
+    <Position X="14.25" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AgACgAAgAAACAEABAIKgIIASAAMMAAAAQAAAgQQEAgA=</HashCode>
+      <FileName>Player.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Room">
+    <Position X="12" Y="4.75" Width="1.5" />
+    <NestedTypes>
+      <Struct Name="Room::Type" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Room.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>EAAAAAQAEEAAMAQAQJCCAAAAAQAFAEQAEAQQgAIFAAA=</HashCode>
+      <FileName>Room.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Action">
+    <Position X="5.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABEAAAIACAAAAACCAQAAAAAQYBAAQQAAAEAAY=</HashCode>
+      <FileName>Action.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InteractAction">
+    <Position X="10" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAACAAAAAAAAQAAgAEAAI=</HashCode>
+      <FileName>InteractAction.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RenderAction">
+    <Position X="2.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAIQABAIAAAAAAAAAAAQQAAAQAEACAAAE=</HashCode>
+      <FileName>RenderAction.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StartAction">
+    <Position X="5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAAAAAIAAAQAAAAAAAA=</HashCode>
+      <FileName>StartAction.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeleportAction">
+    <Position X="7.25" Y="6" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIgAAABAAAAQQACACAAAACAIAAwQAAgAEAAA=</HashCode>
+      <FileName>TeleportAction.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Game">
+    <Position X="9.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEgAAAAAAAAAAAAAAAIAAAAyAAAAIAAAAAiJAAAA=</HashCode>
+      <FileName>Game.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Globals">
+    <Position X="7.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Globals.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Save">
+    <Position X="11.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAACAACAAAIAAAAAAAAAAIGBAAAAIAgAAAEAAA=</HashCode>
+      <FileName>Save.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="SpeechContainer">
+    <Position X="2" Y="0.5" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="SpeechContainer::Type" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>SpeechManager.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Typedef Name="SpeechContainer::iter" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>SpeechManager.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Typedef>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAACAAIAA=</HashCode>
+      <FileName>SpeechManager.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="LineSC" Collapsed="true">
+    <Position X="0.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAACAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>SpeechManager.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="ChoiceSC">
+    <Position X="3" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAEAAAACAAAAAAAAAQAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SpeechManager.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

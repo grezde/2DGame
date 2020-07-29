@@ -87,6 +87,9 @@
     <ClCompile Include="ConditionAction.cpp">
       <Filter>Source Files\Actions</Filter>
     </ClCompile>
+    <ClCompile Include="SpeechManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CircleScene.h">
@@ -137,5 +140,11 @@
     <ClInclude Include="ConditionAction.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="SpeechManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>

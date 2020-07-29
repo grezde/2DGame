@@ -14,7 +14,7 @@
 00 04 00 00 00 00 00 00 00 01 06 01 01 07 01 01 10 01 01 01 01 01 09 01 01 01 01 01 08 01 01 01 01 01 01 01 01 01 01 01 01 01 01 01 01 01 01 01
 00 04 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 03 03 03 00 00 00 03 03 03 00 00 00 03 03 03 00 02 00 03 11 03 03 03 03 03 03 03 00 00 01
 00 04 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01
-00 04 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01
+00 04 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 12 00 00 00 00 00 00 00 00 00 00 00 00 01
 00 04 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01
 00 04 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01
 00 01 01 01 01 01 01 01 01 01 01 01 01 01 01 01 01 01 01 01 01 01 01 01 01 01 01 01 01 01 01 01 01 01 01 01 01 01 01 01 01 01 01 01 01 01 01 01
@@ -69,8 +69,26 @@ parca vezi ramasitele unei shaorme.
 Este cam la nivelul obrazului unui om.
 
 11 5 2
-1 a
-* Lockerul asta pare putin spart.
+18 a
+* Lockerul asta are foarte multe fisuri
+in el. Aproape ca ai putea sa il deschizi
+fara sa il spargi.
+> Incerci sa il deschizi?
+> 2 9 1
+> Da
+> Nu
+* L-ai desfacut cu usurinta. Te uiti
+inauntru si vezi un fular. 
+> Furi fularul?
+> 2 2 1
+> Da
+> Nu
+* Ai obtinut fularul! Verifica in inventar.
+* Golanule.
+* Lasi fularul acolo.
+* Decizi sa nu deschizi lockerul. Poate
+ai facut o alegere buna.
+
 2 b
 first_locker_broken
 0 1
@@ -80,3 +98,7 @@ background
 2 i
 first_locker_broken.png
 background
+
+12 0 1
+0 s
+
