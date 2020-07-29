@@ -25,6 +25,7 @@ private:
 	ChainSC* script;
 	std::stack<SpeechContainer*> scque;
 	float accum = 0.0f;
+	int optionIndex = 0;
 
 protected:
 	float interval = 0.0f;
@@ -36,5 +37,7 @@ public:
 	inline State state() { return s; }
 	inline std::string displayText() { return text; }
 	void proceed(int option = -1);
+	int numberOfOptions();
+	int curentOptionWriten();
 };
 

@@ -6,7 +6,6 @@ SpeechManager::SpeechManager(std::vector<std::string> lines)
 {
 	script = SpeechContainer::parse(lines.begin(), lines.end());
 	scque.push(script);
-	std::cout << "\nINITIAL " << (scque.top()->type() == SpeechContainer::Chain ? "CHAIN" : scque.top()->type() == SpeechContainer::Line ? "LINE" : "CHOICE") << "\n";
 	s = RequestNext;
 }
 
@@ -20,21 +19,38 @@ void SpeechManager::updateState(float dt)
 		accum -= interval;
 		if (s == Writing) {
 			LineSC* line = ((LineSC*)(scque.top()));
-			text += line->text[line->index];
-			line->index++;
 			if (line->index == line->text.size()) {
 				s = Pause;
 				return;
 			}
+			text += line->text[line->index];
+			line->index++;
 		}
 		if (s == WritingMenuText) {
 			ChoiceSC* ch = ((ChoiceSC*)(scque.top()));
-			text += ch->question[ch->index];
-			ch->index++;
 			if (ch->index == ch->question.size()) {
-				s = Pause;
+				s = WritingMenuOptions;
+				ch->index = 0;
+				optionIndex = 0;
+				text.clear();
 				return;
 			}
+			text += ch->question[ch->index];
+			ch->index++;
+		}
+		if (s == WritingMenuOptions) {
+			ChoiceSC* ch = ((ChoiceSC*)(scque.top()));
+			if (ch->index == ch->choiceTexts[optionIndex].size()) {
+				optionIndex++;
+				text.clear();
+				ch->index = 0;
+				if (optionIndex == ch->choices.size()) {
+					s = Selecting;
+					return;
+				}
+			}
+			text += ch->choiceTexts[optionIndex][ch->index];
+			ch->index++;
 		}
 		if (s == RequestNext) {
 			text.clear();
@@ -46,13 +62,10 @@ void SpeechManager::updateState(float dt)
 				if (chain->index < chain->chain.size()) {
 					chain->index++;
 					scque.push(chain->chain[chain->index-1]);
-					std::cout << "ADD " << (scque.top()->type() == SpeechContainer::Chain ? "CHAIN" : scque.top()->type() == SpeechContainer::Line ? "LINE" : "CHOICE") << "\n";
 					break;
 				} 
-				else {
-					std::cout << "POP " << (scque.top()->type() == SpeechContainer::Chain ? "CHAIN" : scque.top()->type() == SpeechContainer::Line ? "LINE" : "CHOICE") << "\n";
+				else
 					scque.pop();
-				}
 			}
 			//at the end of the queue there must be a non chain element
 			//or an empty queue
@@ -72,6 +85,26 @@ void SpeechManager::proceed(int option)
 {
 	if(s == Pause)
 		s = RequestNext;
+	if (s == Selecting) {
+		ChoiceSC* ch = ((ChoiceSC*)(scque.top()));
+		scque.pop();
+		scque.push(ch->choices[option]);
+		s = RequestNext;
+	}
+}
+
+int SpeechManager::numberOfOptions()
+{
+	if (s == WritingMenuText || s == WritingMenuOptions || s == Selecting)
+		return ((ChoiceSC*)(scque.top()))->choices.size();
+	return 0;
+}
+
+int SpeechManager::curentOptionWriten()
+{
+	if (s == WritingMenuOptions)
+		return optionIndex;
+	return -1;
 }
 
 ChainSC* SpeechContainer::parse(iter start, iter end)

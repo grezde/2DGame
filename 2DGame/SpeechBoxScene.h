@@ -11,17 +11,20 @@ private:
 
 	static sf::Font* font;
 	sf::Text label;
-	sf::Text choice1;
-	sf::Text choice2;
+	std::vector<sf::Text> optlabs;
+	int selectedOptionIndex;
+	float sinceLastPress;
 
 public:
 	static const float SCALE;
 	static const float INTERVAL;
 	static const float FAST_INTERVAL;
+	static const float SELECTION_INTERVAL;
 
 	static const float LINE_SPACING;
 	static const float PADDING_X;
 	static const float PADDING_Y;
+	static const float CHOICE_PADDING_X;
 	static const int CHAR_SIZE;
 
 public:

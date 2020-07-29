@@ -63,27 +63,28 @@ Nu ar trebui sa intru.
 parca vezi ramasitele unei shaorme.
 
 10 1 1
-4 a
+3 a
 * Clasa Deliei.
 * O luminita rosie clipeste in interior. 
 Este cam la nivelul obrazului unui om.
 
 11 5 2
-18 a
+19 a
 * Lockerul asta are foarte multe fisuri
 in el. Aproape ca ai putea sa il 
 * deschizi fara sa il spargi.
 > Incerci sa il deschizi?
-  2 9 2
+  2 10 2
 > Da
 > Nu
 * L-ai desfacut cu usurinta. Te uiti
 inauntru si vezi un fular. 
 > Furi fularul?
-  2 2 1
+  2 3 1
 > Da
 > Nu
-* Ai obtinut fularul! Verifica in inventar.
+* Ai obtinut itemul fularul! Verifica
+inventarul.
 * Golanule.
 * Lasi fularul acolo.
 * Decizi sa nu deschizi lockerul. Poate

@@ -5,9 +5,11 @@
 const float SpeechBoxScene::SCALE = 0.8f;
 const float SpeechBoxScene::INTERVAL = 0.05f;
 const float SpeechBoxScene::FAST_INTERVAL = 0.015f;
+const float SpeechBoxScene::SELECTION_INTERVAL = 0.1f;
 
 const float SpeechBoxScene::LINE_SPACING = 1.5f;
 const float SpeechBoxScene::PADDING_X = 25;
+const float SpeechBoxScene::CHOICE_PADDING_X = 15;
 const float SpeechBoxScene::PADDING_Y = 35;
 const int SpeechBoxScene::CHAR_SIZE = 25;
 
@@ -44,6 +46,9 @@ void SpeechBoxScene::draw(sf::RenderWindow* window)
 {
 	window->draw(boxSpr);
 	window->draw(label);
+	if (state() == WritingMenuOptions || state() == Selecting)
+		for (sf::Text& optlab : optlabs)
+			window->draw(optlab);
 }
 
 void SpeechBoxScene::update(float dt)
@@ -53,18 +58,69 @@ void SpeechBoxScene::update(float dt)
 		interval = FAST_INTERVAL;
 	else
 		interval = INTERVAL;
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z) || sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
+	if (state() == Pause && sf::Keyboard::isKeyPressed(sf::Keyboard::Z) || sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
 		proceed();
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::C))
-		std::cout << state() << " ";
-
-
+	
 	updateState(dt);
 
-	if (state() == Finished)
+	if (state() == Finished) {
 		exit = true;
+		return;
+	}
 
-	label.setString(displayText());
+	if (state() == WritingMenuText) {
+		int n = numberOfOptions();
+		if (n != optlabs.size()) {
+			selectedOptionIndex = -1;
+			sinceLastPress = 0;
+			for (int i = 0; i < n; i++) {
+				sf::Text t;
+				t.setFont(*font);
+				t.setPosition(
+					label.getPosition() + sf::Vector2f(
+						CHOICE_PADDING_X + float(i) / float(n) * label.getLocalBounds().width,
+						label.getLocalBounds().height
+					));
+				t.setLineSpacing(LINE_SPACING);
+				t.setCharacterSize(CHAR_SIZE);
+				t.setFillColor(sf::Color::Black);
+				optlabs.push_back(t);
+			}
+		}
+	}
+
+	if (state() == Selecting) {
+		for (sf::Text& t : optlabs)
+			t.setFillColor(sf::Color::Black);
+		if (selectedOptionIndex != -1) {
+			optlabs[selectedOptionIndex].setFillColor(sf::Color(128, 0, 0));
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z) || sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
+				proceed(selectedOptionIndex);
+				return;
+			}
+		}
+		if ((sf::Keyboard::isKeyPressed(sf::Keyboard::A) || sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+			&& sinceLastPress > SELECTION_INTERVAL) {
+			sinceLastPress = 0;
+			if (selectedOptionIndex == -1)
+				selectedOptionIndex = 0;
+			else if (selectedOptionIndex != 0)
+				selectedOptionIndex--;
+		}
+		if ((sf::Keyboard::isKeyPressed(sf::Keyboard::D) || sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+			&& sinceLastPress > SELECTION_INTERVAL) {
+			sinceLastPress = 0;
+			if (selectedOptionIndex == -1)
+				selectedOptionIndex = numberOfOptions()-1;
+			else if (selectedOptionIndex != numberOfOptions()-1)
+				selectedOptionIndex++;
+		}
+		sinceLastPress += dt;
+	}
+
+	if (state() == WritingMenuOptions)
+		optlabs[curentOptionWriten()].setString(displayText());
+
+	if(state() == Writing || state() == WritingMenuText)
+		label.setString(displayText());
 }
