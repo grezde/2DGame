@@ -10,8 +10,9 @@ private:
 	std::vector<Scene*> scenes;
 	static Game* curentGame;
 
-	bool exit;
-	Scene* next;
+	bool exit = false;
+	Scene* next = nullptr;
+	bool updateAll = false;
 
 public: 
 	static const int HEIGHT = 600;
@@ -21,6 +22,7 @@ public:
 	Game();
 	void run(Scene* initialScene);
 	void setNextScene(bool shouldExit, Scene* nextScene = nullptr);
+	inline void updateAllScenes() { updateAll = true; };
 	inline static Game* curent() { return curentGame; }
 	~Game();
 };

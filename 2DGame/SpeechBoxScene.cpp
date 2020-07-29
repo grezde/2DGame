@@ -10,6 +10,7 @@ const float SpeechBoxScene::SELECTION_INTERVAL = 0.1f;
 const float SpeechBoxScene::LINE_SPACING = 1.5f;
 const float SpeechBoxScene::PADDING_X = 25;
 const float SpeechBoxScene::CHOICE_PADDING_X = 15;
+const float SpeechBoxScene::CHOICE_PADDING_Y = 10;
 const float SpeechBoxScene::PADDING_Y = 35;
 const int SpeechBoxScene::CHAR_SIZE = 25;
 
@@ -78,7 +79,7 @@ void SpeechBoxScene::update(float dt)
 				t.setPosition(
 					label.getPosition() + sf::Vector2f(
 						CHOICE_PADDING_X + float(i) / float(n) * label.getLocalBounds().width,
-						label.getLocalBounds().height
+						CHOICE_PADDING_Y + float(label.getCharacterSize()) * label.getLineSpacing()
 					));
 				t.setLineSpacing(LINE_SPACING);
 				t.setCharacterSize(CHAR_SIZE);

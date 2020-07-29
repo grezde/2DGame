@@ -25,6 +25,7 @@ public:
 	static const float PADDING_X;
 	static const float PADDING_Y;
 	static const float CHOICE_PADDING_X;
+	static const float CHOICE_PADDING_Y;
 	static const int CHAR_SIZE;
 
 public:

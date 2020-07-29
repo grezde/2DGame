@@ -1,5 +1,6 @@
 #include "SpeechManager.h"
 #include "Action.h"
+#include "Game.h"
 #include <sstream>
 #include <iostream>
 
@@ -57,6 +58,7 @@ void SpeechManager::updateState(float dt)
 		if (s == Executing) {
 			ExecuteSC* exc = ((ExecuteSC*)(scque.top()));
 			exc->action->trigger();
+			Game::curent()->updateAllScenes();
 			s = RequestNext;
 		}
 		if (s == RequestNext) {
