@@ -1,5 +1,6 @@
 #include "SpeechBoxScene.h"
 #include "Game.h"
+#include "Globals.h"
 #include <iostream>
 
 const float SpeechBoxScene::SCALE = 0.8f;
@@ -14,8 +15,6 @@ const float SpeechBoxScene::CHOICE_PADDING_Y = 10;
 const float SpeechBoxScene::PADDING_Y = 35;
 const int SpeechBoxScene::CHAR_SIZE = 25;
 
-sf::Font* SpeechBoxScene::font = nullptr;
-
 SpeechBoxScene::SpeechBoxScene(std::vector<std::string> data)
 	: SpeechManager(data)
 {
@@ -25,11 +24,8 @@ SpeechBoxScene::SpeechBoxScene(std::vector<std::string> data)
 	boxSpr.setScale(SCALE, SCALE);
 	boxSpr.setPosition(Game::WIDTH / 2, Game::HEIGHT);
 
-	if (font == nullptr) {
-		font = new sf::Font();
-		font->loadFromFile("Files/other/FFFForward.TTF");
-	}
-	label.setFont(*font);
+	
+	label.setFont(*Globals::font);
 	float x = Game::WIDTH / 2;
 	x -= float(boxTex.getSize().x) * SCALE / 2;
 	x += PADDING_X;
@@ -75,7 +71,7 @@ void SpeechBoxScene::update(float dt)
 			sinceLastPress = 0;
 			for (int i = 0; i < n; i++) {
 				sf::Text t;
-				t.setFont(*font);
+				t.setFont(*Globals::font);
 				t.setPosition(
 					label.getPosition() + sf::Vector2f(
 						CHOICE_PADDING_X + float(i) / float(n) * label.getLocalBounds().width,

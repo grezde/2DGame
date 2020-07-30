@@ -9,7 +9,6 @@ private:
 	sf::Texture boxTex;
 	sf::Sprite boxSpr;
 
-	static sf::Font* font;
 	sf::Text label;
 	std::vector<sf::Text> optlabs;
 	int selectedOptionIndex;

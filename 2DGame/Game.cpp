@@ -7,6 +7,8 @@ Game::Game()
 {
     window = new sf::RenderWindow(sf::VideoMode(WIDTH, HEIGHT), "Johnson INC");
     Globals::save = new Save("test");
+    Globals::font = new sf::Font();
+    Globals::font->loadFromFile("Files/other/FFFForward.TTF");
 }
 
 void Game::run(Scene* initialScene)
@@ -37,8 +39,8 @@ void Game::run(Scene* initialScene)
             for (int i = scenes.size() - 1; i >= 0; i--)
                 scenes[i]->update(dt);
         }
-        else {
-            int i = scenes.size()-1; 
+        else if(!scenes.empty()) {
+            int i = scenes.size()-1;
             scenes[i]->update(dt);
             while (scenes[i]->updateBeneath() && i > 0) {
                 i--;
@@ -50,7 +52,8 @@ void Game::run(Scene* initialScene)
         if (scenes.back()->shouldQuit() || exit) {
             delete scenes.back();
             scenes.pop_back();
-            scenes.back()->reinit();
+            if(!scenes.empty())
+                scenes.back()->reinit();
             exit = false;
         }
         if (nextScene != nullptr) {

@@ -160,12 +160,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Action.cpp" />
-    <ClCompile Include="CircleScene.cpp" />
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="ConditionAction.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Globals.cpp" />
     <ClCompile Include="InteractAction.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MenuScene.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="RenderAction.cpp" />
     <ClCompile Include="Room.cpp" />
@@ -173,7 +174,6 @@
     <ClCompile Include="SpeechBoxScene.cpp" />
     <ClCompile Include="SpeechContainer.cpp" />
     <ClCompile Include="SpeechManager.cpp" />
-    <ClCompile Include="SquareScene.cpp" />
     <ClCompile Include="StartAction.cpp" />
     <ClCompile Include="TeleportAction.cpp" />
     <ClCompile Include="VariableAction.cpp" />
@@ -181,10 +181,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Action.h" />
-    <ClInclude Include="CircleScene.h" />
+    <ClInclude Include="Button.h" />
     <ClInclude Include="ConditionAction.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Globals.h" />
+    <ClInclude Include="MenuScene.h" />
     <ClInclude Include="SpeechContainer.h" />
     <ClInclude Include="InteractAction.h" />
     <ClInclude Include="Player.h" />
@@ -194,7 +195,6 @@
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SpeechBoxScene.h" />
     <ClInclude Include="SpeechManager.h" />
-    <ClInclude Include="SquareScene.h" />
     <ClInclude Include="StartAction.h" />
     <ClInclude Include="TeleportAction.h" />
     <ClInclude Include="VariableAction.h" />
