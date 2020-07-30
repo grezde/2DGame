@@ -1,9 +1,10 @@
 #include "MenuScene.h"
 #include "Game.h"
 #include <iostream>
+#include "WalkingScene.h"
 
 MenuScene::MenuScene()
-	: ButtonSetScene({ "Continue", "New Game", "Quit" }, sf::FloatRect(200, 100, 400, 400))
+	: bs(this)
 {
 	backTex.loadFromFile("Files/global/mech_board.png");
 	backSpr.setTexture(backTex);
@@ -18,15 +19,28 @@ MenuScene::~MenuScene()
 void MenuScene::draw(sf::RenderWindow* window)
 {
 	window->draw(backSpr);
-	ButtonSet::draw(window);
+	bs.draw(window);
 }
 
 void MenuScene::update(float dt)
 {
-	ButtonSet::update(dt);
+	bs.update(dt);
 }
 
-void MenuScene::finsihedSelection(int selected)
+MainMenuButtonSet::MainMenuButtonSet(MenuScene* parent)
+	: parent(parent), ButtonSet({ "Continue", "New Game", "Quit" }, sf::FloatRect(200, 100, 400, 400))
 {
-	std::cout << "YES!";
+	buttons[0].setEnabled(false);
+	select(1);
+}
+
+void MainMenuButtonSet::finsihedSelection(int selected)
+{
+	parent->exit = true;
+	if (selected == 2)
+		return;
+	if (selected == 1)
+		parent->next = new WalkingScene("johnson_classroom");
+	if (selected == 0)
+		parent->next = new WalkingScene("johnson_classroom");
 }

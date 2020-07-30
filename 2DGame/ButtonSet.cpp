@@ -2,6 +2,13 @@
 
 const float ButtonSet::PRESS_INTERVAL = 0.3f;
 
+void ButtonSet::select(int index)
+{
+	buttons[selindex].setSelected(false);
+	buttons[index].setSelected(true);
+	selindex = index;
+}
+
 ButtonSet::ButtonSet(std::vector<std::string> options, sf::FloatRect bounds)
 {
 	float btnh = bounds.height / float(options.size() + (options.size()-1) * buttonSpace);
@@ -26,7 +33,10 @@ void ButtonSet::update(float dt)
 		return;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) || sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-		if (sincePress > PRESS_INTERVAL && selindex>0) {
+		int secindex = selindex-1;
+		while (secindex >= 0 && !buttons[secindex].isEnabled())
+			secindex--;
+		if (secindex >= 0 && sincePress > PRESS_INTERVAL) {
 			buttons[selindex].setSelected(false);
 			buttons[selindex - 1].setSelected(true);
 			selindex--;
@@ -34,7 +44,10 @@ void ButtonSet::update(float dt)
 		sincePress = 0;
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) || sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
-		if (sincePress > PRESS_INTERVAL && selindex < buttons.size()-1) {
+		int secindex = selindex + 1;
+		while (secindex <= buttons.size()-1 && !buttons[secindex].isEnabled())
+			secindex++;
+		if (sincePress > PRESS_INTERVAL && secindex <= buttons.size() - 1) {
 			buttons[selindex].setSelected(false);
 			buttons[selindex + 1].setSelected(true);
 			selindex++;

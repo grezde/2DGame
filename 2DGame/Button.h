@@ -9,6 +9,8 @@ private:
 
 	sf::FloatRect position;
 	bool selected;
+	bool enabled;
+
 	sf::Sprite left;
 	sf::Sprite right;
 	sf::Sprite center;
@@ -24,8 +26,10 @@ public:
 	void draw(sf::RenderWindow* window);
 
 	void setSelected(bool selected);
+	void setEnabled(bool enabled);
 	void setRect(sf::FloatRect position);
 	void setText(std::string text);
 
+	inline bool isEnabled() { return enabled; }
 };
 

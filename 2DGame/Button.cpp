@@ -51,6 +51,7 @@ Button::Button()
 	left.setTexture(*texture);
 	center.setTexture(*texture);
 	right.setTexture(*texture);
+	enabled = true;
 }
 
 Button::Button(std::string text, sf::FloatRect position)
@@ -77,6 +78,15 @@ void Button::setSelected(bool selected)
 
 	this->selected = selected;
 	remake();
+}
+
+void Button::setEnabled(bool enabled)
+{
+	this->enabled = enabled;
+	if (enabled)
+		label.setFillColor(sf::Color::Black);
+	else
+		label.setFillColor(sf::Color(120, 120, 120));
 }
 
 void Button::setRect(sf::FloatRect position)
