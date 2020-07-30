@@ -1,12 +1,13 @@
 #include "MenuScene.h"
 #include "Game.h"
+#include <iostream>
 
 MenuScene::MenuScene()
+	: ButtonSetScene({ "Continue", "New Game", "Quit" }, sf::FloatRect(200, 100, 400, 400))
 {
 	backTex.loadFromFile("Files/global/mech_board.png");
 	backSpr.setTexture(backTex);
 	backSpr.setScale(float(Game::WIDTH) / float(backTex.getSize().x), float(Game::HEIGHT) / float(backTex.getSize().y));
-	buttons.push_back(Button("Continue", sf::FloatRect(100, 100, 300, 100)));
 }
 
 MenuScene::~MenuScene()
@@ -17,14 +18,15 @@ MenuScene::~MenuScene()
 void MenuScene::draw(sf::RenderWindow* window)
 {
 	window->draw(backSpr);
-	for (Button& b : buttons)
-		b.draw(window);
+	ButtonSet::draw(window);
 }
 
 void MenuScene::update(float dt)
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-		buttons.back().setSelected(true);
-	else
-		buttons.back().setSelected(false);
+	ButtonSet::update(dt);
+}
+
+void MenuScene::finsihedSelection(int selected)
+{
+	std::cout << "YES!";
 }
