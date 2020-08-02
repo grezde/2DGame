@@ -2,7 +2,6 @@
 #include "Scene.h"
 #include "SpeechContainer.h"
 #include <queue>
-#include <stack>
 
 class SpeechManager
 {
@@ -33,7 +32,7 @@ private:
 	std::string text;
 	int index;
 	ChainSC* script;
-	std::stack<SpeechContainer*> scque;
+	std::vector<SpeechContainer*> stack;
 	float accum = 0.0f;
 	int optionIndex = 0;
 

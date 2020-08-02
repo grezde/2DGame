@@ -70,3 +70,7 @@ void SpeechBoxScene::styleOptionsText(int i, sf::Text& t)
 void SpeechBoxScene::stylePromptText(sf::Text& t)
 {
 }
+
+void SpeechBoxScene::styleFace(Face& face)
+{
+}

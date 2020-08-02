@@ -60,3 +60,9 @@ void SpeechCutScene::stylePromptText(sf::Text& t)
 	t.setCharacterSize(26);
 	t.setFillColor(textColor);
 }
+
+void SpeechCutScene::styleFace(Face& face)
+{
+	face.setPosition(400, 225);
+	face.setScale(3);
+}

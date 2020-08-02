@@ -49,6 +49,7 @@ Save::Save(std::string savename, bool exists)
 
 	if (!exists) {
 		sets("save_name", savename);
+		/*
 		std::filesystem::create_directory("Files/saves/" + savename);
 		loadToFile();
 		Save::getSaves();
@@ -57,6 +58,7 @@ Save::Save(std::string savename, bool exists)
 		fout << saves.size() << "\n";
 		for (std::string s : saves)
 			fout << s << "\n";
+		//*/
 		return;
 	}
 

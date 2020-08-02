@@ -6,8 +6,6 @@ Game* Game::curentGame = nullptr;
 Game::Game()
 {
     window = new sf::RenderWindow(sf::VideoMode(WIDTH, HEIGHT), "Johnson INC");
-    Globals::save = new Save("test");
-    Save::getSaves();
     Globals::font = new sf::Font();
     Globals::font->loadFromFile("Files/other/FFFForward.TTF");
 }

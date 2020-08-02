@@ -23,7 +23,7 @@ std::string SpeechManager::parseString(std::string s)
 SpeechManager::SpeechManager(std::vector<std::string> lines)
 {
 	script = SpeechContainer::parse(lines.begin(), lines.end());
-	scque.push(script);
+	stack.push_back(script);
 	s = RequestNext;
 }
 
@@ -37,7 +37,7 @@ SpeechManager::SpeechManager(std::string filename)
 		vs.push_back(s);
 	}
 	script = SpeechContainer::parse(vs.begin(), vs.end());
-	scque.push(script);
+	stack.push_back(script);
 	s = RequestNext;
 
 }
@@ -48,11 +48,11 @@ void SpeechManager::updateState(float dt)
 		return;
 
 	accum += dt;
-	while (accum > interval) {
+	if (accum > interval) {
 		accum -= interval;
 
 		if (s == Writing) {
-			LineSC* line = ((LineSC*)(scque.top()));
+			LineSC* line = ((LineSC*)(stack.back()));
 			if (line->index == line->text.size()) {
 				s = Pause;
 				return;
@@ -64,7 +64,7 @@ void SpeechManager::updateState(float dt)
 			line->index++;
 		}
 		else if (s == WritingMenuText) {
-			ChoiceSC* ch = ((ChoiceSC*)(scque.top()));
+			ChoiceSC* ch = ((ChoiceSC*)(stack.back()));
 			if (ch->index == ch->question.size()) {
 				s = WritingMenuOptions;
 				ch->index = 0;
@@ -76,7 +76,7 @@ void SpeechManager::updateState(float dt)
 			ch->index++;
 		}
 		else if (s == WritingMenuOptions) {
-			ChoiceSC* ch = ((ChoiceSC*)(scque.top()));
+			ChoiceSC* ch = ((ChoiceSC*)(stack.back()));
 			if (ch->index == ch->choiceTexts[optionIndex].size()) {
 				optionIndex++;
 				text.clear();
@@ -90,7 +90,7 @@ void SpeechManager::updateState(float dt)
 			ch->index++;
 		}
 		else if (s == Executing) {
-			ExecuteSC* exc = ((ExecuteSC*)(scque.top()));
+			ExecuteSC* exc = ((ExecuteSC*)(stack.back()));
 			exc->action->trigger();
 			Game::curent()->updateAllScenes();
 			s = RequestNext;
@@ -99,10 +99,10 @@ void SpeechManager::updateState(float dt)
 			s = RequestNext;
 		}
 		else if (s == WritingPromptText) {
-			PromptSC* psc = ((PromptSC*)(scque.top()));
+			PromptSC* psc = ((PromptSC*)(stack.back()));
 			if (psc->index == psc->question.size()) {
-				submitted = "";
-				text = " _";
+				submitted.clear();
+				text = "_";
 				s = ReadingPrompt;
 				return;
 			}
@@ -117,37 +117,37 @@ void SpeechManager::updateState(float dt)
 		}
 		else if (s == RequestNext) {
 			text.clear();
-			while (!scque.empty() && scque.top()->type() != SpeechContainer::Chain) {
-				scque.top()->index = 0;
-				scque.pop();
+			while (!stack.empty() && stack.back()->type() != SpeechContainer::Chain) {
+				stack.back()->index = 0;
+				stack.pop_back();
 			}
-			while (!scque.empty() && scque.top()->type() == SpeechContainer::Chain) {
-				ChainSC* chain = ((ChainSC*)(scque.top()));
+			while (!stack.empty() && stack.back()->type() == SpeechContainer::Chain) {
+				ChainSC* chain = ((ChainSC*)(stack.back()));
 				if (chain->index < chain->chain.size()) {
 					chain->index++;
-					scque.push(chain->chain[chain->index-1]);
+					stack.push_back(chain->chain[chain->index-1]);
 					break;
 				} 
 				else {
-					scque.top()->index = 0;
-					scque.pop();
+					stack.back()->index = 0;
+					stack.pop_back();
 				}
 			}
 			//at the top of the stack there must be a non chain element
 			//or an empty stack
-			if (scque.empty()) {
+			if (stack.empty()) {
 				s = Finished;
 				return;
 			}
-			if (scque.top()->type() == SpeechContainer::Line)
+			if (stack.back()->type() == SpeechContainer::Line)
 				s = Writing;
-			else if (scque.top()->type() == SpeechContainer::Choice)
+			else if (stack.back()->type() == SpeechContainer::Choice)
 				s = WritingMenuText;
-			else if (scque.top()->type() == SpeechContainer::Execute)
+			else if (stack.back()->type() == SpeechContainer::Execute)
 				s = Executing;
-			else if (scque.top()->type() == SpeechContainer::Metadata)
+			else if (stack.back()->type() == SpeechContainer::Metadata)
 				s = ProcessMetadata;
-			else if (scque.top()->type() == SpeechContainer::Prompt)
+			else if (stack.back()->type() == SpeechContainer::Prompt)
 				s = WritingPromptText;
 		}
 	}
@@ -158,9 +158,9 @@ void SpeechManager::proceed(int option)
 	if(s == Pause)
 		s = RequestNext;
 	if (s == Selecting) {
-		ChoiceSC* ch = ((ChoiceSC*)(scque.top()));
-		scque.pop();
-		scque.push(ch->choices[option]);
+		ChoiceSC* ch = ((ChoiceSC*)(stack.back()));
+		stack.pop_back();
+		stack.push_back(ch->choices[option]);
 		s = RequestNext;
 	}
 }
@@ -168,14 +168,14 @@ void SpeechManager::proceed(int option)
 std::string SpeechManager::displayText()
 {
 	if(s == ReadingPrompt)
-		return submitted + text;
+		return ">  " + submitted + text;
 	return text;
 }
 
 int SpeechManager::numberOfOptions()
 {
 	if (s == WritingMenuText || s == WritingMenuOptions || s == Selecting)
-		return ((ChoiceSC*)(scque.top()))->choiceTexts.size();
+		return ((ChoiceSC*)(stack.back()))->choiceTexts.size();
 	return 0;
 }
 
@@ -189,7 +189,7 @@ int SpeechManager::curentOptionWriten()
 std::string SpeechManager::getMetadata()
 {
 	if (s == ProcessMetadata)
-		return ((MetadataSC*)(scque.top()))->metadata;
+		return ((MetadataSC*)(stack.back()))->metadata;
 	return "";
 }
 
@@ -203,7 +203,7 @@ void SpeechManager::submitChar(char c)
 			submitted.pop_back();
 	}
 	else if (c == 13) {
-		std::string varname = ((PromptSC*)(scque.top()))->varname;
+		std::string varname = ((PromptSC*)(stack.back()))->varname;
 		if (varname == "save_name") {
 			if (Globals::save != nullptr)
 				delete Globals::save;

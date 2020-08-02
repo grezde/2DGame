@@ -22,6 +22,10 @@ exemplu.
 * $save_name .
 # PAUSE 1.5
 # FACE johnson
+# PAUSE 1.5
+# FACE johnson
+# PAUSE 1.5
+# FACE johnson
 * Bine ai venit la ICHB!
 * Sunt doamna Ionescu.
 * Am 73 de ani.

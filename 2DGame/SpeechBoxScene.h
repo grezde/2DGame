@@ -22,11 +22,12 @@ public:
 public:
 	SpeechBoxScene(std::vector<std::string> data);
 	
-	void draw(sf::RenderWindow* window);
-	void update(float dt);
+	void draw(sf::RenderWindow* window) override;
+	void update(float dt) override;
 
-	virtual void styleDisplayText(sf::Text& t);
-	virtual void styleOptionsText(int i, sf::Text& t);
-	virtual void stylePromptText(sf::Text& t);
+	virtual void styleDisplayText(sf::Text& t) override;
+	virtual void styleOptionsText(int i, sf::Text& t) override;
+	virtual void stylePromptText(sf::Text& t) override;
+	virtual void styleFace(Face& face) override;
 };
 

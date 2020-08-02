@@ -1,6 +1,7 @@
 #pragma once
 #include "Scene.h"
 #include "SpeechManager.h"
+#include "Face.h"
 
 class BasicSpeechScene
 	: public Scene, public SpeechManager
@@ -21,6 +22,8 @@ protected:
 	int selectedOptionIndex;
 	float sinceLastPress;
 
+	Face* face = nullptr;
+
 public:
 	BasicSpeechScene(std::vector<std::string> lines);
 	BasicSpeechScene(std::string sequenceFilename);
@@ -31,6 +34,7 @@ public:
 	virtual void styleDisplayText(sf::Text& t) = 0;
 	virtual void styleOptionsText(int i, sf::Text& t) = 0;
 	virtual void stylePromptText(sf::Text& t) = 0;
+	virtual void styleFace(Face& face) = 0;
 
 	virtual void onTextEntered(char character) override;
 };

@@ -23,6 +23,8 @@ void BasicSpeechScene::draw(sf::RenderWindow* window)
 			window->draw(optlab);
 	if (state() == ReadingPrompt)
 		window->draw(submitlabel);
+	if (face != nullptr)
+		face->draw(window);
 }
 
 void BasicSpeechScene::update(float dt)
@@ -89,11 +91,34 @@ void BasicSpeechScene::update(float dt)
 		sinceLastPress += dt;
 	}
 
+	if (state() == ProcessMetadata) {
+		std::string md = getMetadata();
+		if (md.find("FACE") == 0) {
+			std::string facename = md.substr(5);
+			if (face != nullptr)
+				delete face;
+			if (facename == "NONE")
+				face = nullptr;
+			else {
+				face = new Face(facename);
+				styleFace(*face);
+			}
+		}
+	}
+
 	if (state() == WritingMenuOptions)
 		optlabs[curentOptionWriten()].setString(displayText());
 
 	if (state() == Writing || state() == WritingMenuText || state() == WritingPromptText)
 		label.setString(displayText());
+
+	if (face != nullptr) {
+		if (state() == Writing)
+			face->setActive(true);
+		else
+			face->setActive(false);
+		face->update(dt);
+	}
 }
 
 void BasicSpeechScene::onTextEntered(char character)

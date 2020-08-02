@@ -17,6 +17,7 @@ public:
 	virtual void styleDisplayText(sf::Text& t) override;
 	virtual void styleOptionsText(int i, sf::Text& t) override;
 	virtual void stylePromptText(sf::Text& t) override;
+	virtual void styleFace(Face& face) override;
 
 };
 
