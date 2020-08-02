@@ -11,6 +11,10 @@ ChainSC* SpeechContainer::parse(iter start, iter end)
 {
 	std::vector<SpeechContainer*> script;
 	for (iter i = start; i < end;) {
+		if (i->size() == 0) {
+			i++;
+			continue;
+		}
 		if (i->at(0) == '*') {
 			LineSC* lsc = new LineSC();
 			lsc->text = i->substr(2);
@@ -26,7 +30,7 @@ ChainSC* SpeechContainer::parse(iter start, iter end)
 			int nr, a;
 			csc->question = i->substr(2);
 			i++;
-			std::istringstream iss(*i);
+			std::istringstream iss(i->substr(2));
 			iss >> nr;
 			iter now = i + nr + 1;
 			for (int k = 1; k <= nr; k++) {
@@ -60,6 +64,7 @@ ChainSC* SpeechContainer::parse(iter start, iter end)
 			PromptSC* psc = new PromptSC();
 			psc->question = i->substr(2);
 			psc->varname = (i + 1)->substr(2);
+			script.push_back(psc);
 			i += 2;
 		}
 	}

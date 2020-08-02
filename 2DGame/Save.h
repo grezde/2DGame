@@ -24,6 +24,8 @@ public:
 	int geti(std::string n);
 	void seti(std::string n, int v);
 
+	std::string get(std::string n);
+
 public:
 	Save(std::string savename, bool exists = true);
 	

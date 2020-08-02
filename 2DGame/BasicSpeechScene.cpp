@@ -1,4 +1,5 @@
 #include "BasicSpeechScene.h"
+#include <iostream>
 
 BasicSpeechScene::BasicSpeechScene(std::vector<std::string> lines)
 	: SpeechManager(lines)

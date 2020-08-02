@@ -24,6 +24,8 @@ SpeechBoxScene::SpeechBoxScene(std::vector<std::string> data)
 	boxSpr.setScale(SCALE, SCALE);
 	boxSpr.setPosition(Game::WIDTH / 2, Game::HEIGHT);
 
+	textColor = sf::Color::Black;
+	selectedColor = sf::Color(128, 0, 0);
 	styleDisplayText(label);
 }
 

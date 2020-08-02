@@ -39,6 +39,9 @@ private:
 protected:
 	float interval = 0.0f;
 
+private:
+	std::string parseString(std::string s);
+
 public:
 	SpeechManager(std::vector<std::string> lines);
 	SpeechManager(std::string sequenceFilename);
@@ -53,6 +56,6 @@ public:
 
 	std::string getMetadata();
 
-	void proceed(std::string s);
+	void submitString(std::string s);
 };
 

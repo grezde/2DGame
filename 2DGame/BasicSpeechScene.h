@@ -11,8 +11,8 @@ public:
 	static const float SELECTION_INTERVAL;
 
 protected:
-	sf::Color textColor = sf::Color::Black;
-	sf::Color selectedColor = sf::Color(128, 0, 0); 
+	sf::Color textColor;
+	sf::Color selectedColor; 
 
 	sf::Text label;
 	std::vector<sf::Text> optlabs;

@@ -31,13 +31,29 @@ void Save::seti(std::string n, int v)
 	ints[n] = v;
 }
 
+std::string Save::get(std::string n)
+{
+	if (strings.find(n) == strings.end() && ints.find(n) == ints.end())
+		return "";
+	if (strings.find(n) != strings.end())
+		return strings[n];
+	return (std::ostringstream() << ints[n]).str();
+}
+
 Save::Save(std::string savename, bool exists)
 {
 	name = savename;
 	filepath = "Files/saves/" + savename + "/";
 
 	if (!exists) {
+		sets("save_name", savename);
 		loadToFile();
+		Save::getSaves();
+		saves.push_back(savename);
+		std::ofstream fout("Files/saves/saves.txt");
+		fout << saves.size() << "\n";
+		for (std::string s : saves)
+			fout << s << "\n";
 		return;
 	}
 
