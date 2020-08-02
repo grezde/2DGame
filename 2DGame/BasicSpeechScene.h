@@ -27,15 +27,16 @@ protected:
 public:
 	BasicSpeechScene(std::vector<std::string> lines);
 	BasicSpeechScene(std::string sequenceFilename);
+	~BasicSpeechScene();
 
 	virtual void draw(sf::RenderWindow* window) override;
 	virtual void update(float dt) override;
+	virtual void onTextEntered(char character) override;
 
 	virtual void styleDisplayText(sf::Text& t) = 0;
 	virtual void styleOptionsText(int i, sf::Text& t) = 0;
 	virtual void stylePromptText(sf::Text& t) = 0;
 	virtual void styleFace(Face& face) = 0;
-
-	virtual void onTextEntered(char character) override;
+	virtual void onFinished() = 0;
 };
 

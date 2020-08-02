@@ -208,6 +208,7 @@
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SpeechBoxScene.h" />
     <ClInclude Include="SpeechCutScene.h" />
+    <ClInclude Include="SpeechCutScenes.h" />
     <ClInclude Include="SpeechManager.h" />
     <ClInclude Include="StartAction.h" />
     <ClInclude Include="TeleportAction.h" />

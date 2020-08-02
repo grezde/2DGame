@@ -48,7 +48,7 @@ void SpeechManager::updateState(float dt)
 		return;
 
 	accum += dt;
-	if (accum > interval) {
+	while (accum > interval) {
 		accum -= interval;
 
 		if (s == Writing) {
@@ -149,6 +149,7 @@ void SpeechManager::updateState(float dt)
 				s = ProcessMetadata;
 			else if (stack.back()->type() == SpeechContainer::Prompt)
 				s = WritingPromptText;
+			return;
 		}
 	}
 }

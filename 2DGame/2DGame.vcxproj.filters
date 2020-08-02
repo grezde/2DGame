@@ -115,7 +115,7 @@
       <Filter>Source Files\Scenes</Filter>
     </ClCompile>
     <ClCompile Include="Face.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\GUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -189,7 +189,10 @@
       <Filter>Header Files\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="Face.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="SpeechCutScenes.h">
+      <Filter>Header Files\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

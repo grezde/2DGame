@@ -4,6 +4,7 @@
 #include "WalkingScene.h"
 #include "SaveSelectionScene.h"
 #include "Save.h"
+#include "SpeechCutScenes.h"
 
 MenuScene::MenuScene()
 	: bs(this)
@@ -44,7 +45,7 @@ void MainMenuButtonSet::finsihedSelection(int selected)
 	if (selected == 2)
 		return;
 	if (selected == 1)
-		parent->next = new WalkingScene("johnson_classroom");
+		parent->next = new WelcomeSCS();
 	if (selected == 0)
 		parent->next = new SaveSelectionScene();
 }

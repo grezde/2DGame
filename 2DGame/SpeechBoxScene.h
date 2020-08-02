@@ -29,5 +29,6 @@ public:
 	virtual void styleOptionsText(int i, sf::Text& t) override;
 	virtual void stylePromptText(sf::Text& t) override;
 	virtual void styleFace(Face& face) override;
+	virtual void onFinished() override {}
 };
 

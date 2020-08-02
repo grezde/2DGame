@@ -15,6 +15,12 @@ BasicSpeechScene::BasicSpeechScene(std::string sequenceFilename)
 {
 }
 
+BasicSpeechScene::~BasicSpeechScene()
+{
+	if (face != nullptr)
+		delete face;
+}
+
 void BasicSpeechScene::draw(sf::RenderWindow* window)
 {
 	window->draw(label);
@@ -42,6 +48,7 @@ void BasicSpeechScene::update(float dt)
 
 	if (state() == Finished) {
 		exit = true;
+		onFinished();
 		return;
 	}
 

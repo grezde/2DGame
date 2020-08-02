@@ -1,54 +1,50 @@
 * Apasa Z sau Enter pentru a trece 
-la urmatoarea linie.
-* . . . . . . . . . . . . . . . . 
+la urmatoarea linie. 
 * Apasa X pentru a face textul sa 
 mearga mai rapid.
-* . . . . . . . . . . . . . . . .
 * Daca ajungi la o intrebare poti sa
 schimbi intre optiuni cu sagetile
-* sau cu A si D.
-> Vrei o muie?
+* sau cu A si D. Apasa Enter sau Z
+pentru a selecta optiunea.
+> Ce iti place mai mult?
 > 2 0 0
-> yes please
-> nu wtf
-* Ok, Okay .....
-* Daca ajungi la un cursor care clipeste
-trebuie sa tastezi ceva
-* si dupa apesi Enter. Uite un
-exemplu.
+> Vanilia
+> Ciocolata
+* Ok. Nu o sa judec.
+* O sa ajungi la un moment dat la
+un cursor care clipeste.
+* Atunci trebuie sa tastezi ceva
+si dupa apesi Enter.
 ? (Cum vrei sa iti numesti save-ul?)
 ? save_name
-* Ok.
-* $save_name .
-# PAUSE 1.5
-# FACE johnson
-# PAUSE 1.5
-# FACE johnson
+* OK. OK. Ok. Ok. ok. ok. o k.
+* Save-ul tau va fi $save_name .
 # PAUSE 1.5
 # FACE johnson
 * Bine ai venit la ICHB!
 * Sunt doamna Ionescu.
-* Am 73 de ani.
-* O sa te invat fizica
-in urmatorii 2 ani.
+* Rodica Ionescu.
+* Am 73 de ani si sunt foarte batrana.
+* O sa te invat fizica in urmatorii
+doi ani de liceu la ICHB.
 * Mai intai as vrea sa te cunosc.
 * Cum te cheama?
 ? (Numele pentru Johnson)
 ? off_name
-* Nume foarte frumos.
+* $off_name  este un nume foarte frumos.
 * Si cum iti zis colegii, $off_name ?
 ? (Numele tau / porecla)
 ? nickname
-* Bine, puisor.
+* Bine, puisor. Foarte bine.
 * Hai sa incepem. Esti pregatit?
 > (Vrei sa incepi?)
 > 2 3 4
 > Desigur
 > Nu mersi
-* Desigur ca esti pregatit.
-* Vei deveni un fizician bun.
+* Desigur ca esti pregatit. Vei deveni
+un fizician bun. Sunt sigura.
 * Incepem cu cinematica.
-* Oricum nu ai de ales.
+* Nu ai de ales, puisor.
 * Incepem cu cinematica!
-* HA HA HA HA HA HA HA
+* HA HA HA HA HA HA HA HA HA HA HA
 # LAUGH 0.5
