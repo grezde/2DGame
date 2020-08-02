@@ -160,6 +160,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Action.cpp" />
+    <ClCompile Include="BasicSpeechScene.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="ButtonSet.cpp" />
     <ClCompile Include="ConditionAction.cpp" />
@@ -175,6 +176,7 @@
     <ClCompile Include="SaveSelectionScene.cpp" />
     <ClCompile Include="SpeechBoxScene.cpp" />
     <ClCompile Include="SpeechContainer.cpp" />
+    <ClCompile Include="SpeechCutScene.cpp" />
     <ClCompile Include="SpeechManager.cpp" />
     <ClCompile Include="StartAction.cpp" />
     <ClCompile Include="TeleportAction.cpp" />
@@ -183,6 +185,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Action.h" />
+    <ClInclude Include="BasicSpeechScene.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="ButtonSet.h" />
     <ClInclude Include="ConditionAction.h" />
@@ -198,6 +201,7 @@
     <ClInclude Include="Save.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SpeechBoxScene.h" />
+    <ClInclude Include="SpeechCutScene.h" />
     <ClInclude Include="SpeechManager.h" />
     <ClInclude Include="StartAction.h" />
     <ClInclude Include="TeleportAction.h" />

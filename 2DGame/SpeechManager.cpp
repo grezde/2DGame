@@ -11,6 +11,20 @@ SpeechManager::SpeechManager(std::vector<std::string> lines)
 	s = RequestNext;
 }
 
+SpeechManager::SpeechManager(std::string filename)
+{
+	std::vector<std::string> vs;
+	std::ifstream fin(filename);
+	while (!fin.eof()) {
+		std::string s;
+		std::getline(fin, s);
+		vs.push_back(s);
+	}
+	script = SpeechContainer::parse(vs.begin(), vs.end());
+	scque.push(script);
+	s = RequestNext;
+}
+
 void SpeechManager::updateState(float dt)
 {
 	if (s == Finished)
@@ -79,8 +93,8 @@ void SpeechManager::updateState(float dt)
 					scque.pop();
 				}
 			}
-			//at the end of the queue there must be a non chain element
-			//or an empty queue
+			//at the top of the stack there must be a non chain element
+			//or an empty stack
 			if (scque.empty()) {
 				s = Finished;
 				return;
@@ -119,4 +133,14 @@ int SpeechManager::curentOptionWriten()
 	if (s == WritingMenuOptions)
 		return optionIndex;
 	return -1;
+}
+
+std::string SpeechManager::getMetadata()
+{
+	return std::string();
+}
+
+void SpeechManager::proceed(std::string s)
+{
+
 }

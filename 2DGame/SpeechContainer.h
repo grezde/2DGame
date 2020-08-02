@@ -6,13 +6,18 @@ class ChainSC;
 
 class SpeechContainer
 {
+private:
+	static bool specialCharacter(char c);
+
 public:
 	enum Type
 	{
 		Line,
 		Choice,
 		Chain,
-		Execute
+		Execute,
+		Metadata,
+		Prompt
 	};
 	typedef std::vector<std::string>::iterator iter;
 	static ChainSC* parse(iter start, iter end);
@@ -63,8 +68,25 @@ class Action;
 class ExecuteSC : public SpeechContainer
 {
 public:
-	Action* action;
+	Action* action = nullptr;
 	
-	ExecuteSC() : SpeechContainer(Execute) {};
+	ExecuteSC() : SpeechContainer(Execute) {}
 	~ExecuteSC();
+};
+
+class MetadataSC : public SpeechContainer
+{
+public:
+	std::string metadata;
+
+	MetadataSC() : SpeechContainer(Metadata) {}
+};
+
+class PromptSC : public SpeechContainer
+{
+public:
+	std::string question;
+	std::string varname;
+
+	PromptSC() : SpeechContainer(Prompt) {}
 };

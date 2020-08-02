@@ -1,0 +1,53 @@
+* Apasa Z sau Enter pentru a trece 
+la urmatoarea linie.
+* . . . . . . . . . . . . . . . . 
+* Apasa X pentru a face textul sa 
+mearga mai rapid.
+* . . . . . . . . . . . . . . . .
+* Daca ajungi la o intrebare poti sa
+schimbi intre optiuni cu sagetile
+* sau cu A si D.
+> Vrei o muie?
+> 2 0 0
+> yes please
+> nu wtf
+* Ok.
+* Daca ajungi la un cursor care clipeste
+trebuie sa tastezi ceva
+* si dupa apesi Enter. Uite un
+exemplu.
+? (Cum vrei sa iti numesti save-ul?)
+? save_name
+* Ok.
+# PAUSE 1.5
+* $save_name.
+# FACE BEGIN johnson
+* Bine ai venit la ICHB!
+* Sunt doamna Ionescu.
+* Am 73 de ani.
+* O sa te invat fizica
+in urmatorii 2 ani.
+* Mai intai as vrea sa te cunosc.
+* Cum te cheama?
+? (Numele cu care ti se va adresa Johnson)
+? off_name
+* Nume foarte frumos.
+* Si cum iti zis colegii, $off_name?
+? (Numele cu care ti se vor adresa restul)
+? nickname
+* Bine, puisor.
+* Hai sa incepem.
+Esti pregatit?
+> (Vrei sa incepi?)
+> 2 3 4
+> Desigur
+> Nu mersi
+* Desigur ca esti
+pregatit.
+* Vei deveni un fizician bun.
+* Incepem cu cinematica.
+* Oricum nu ai de ales.
+* Incepem cu cinematica!
+* HA HA HA HA HA HA HA
+# LAUGH 0.5
+# FACE END

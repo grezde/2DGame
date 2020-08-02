@@ -11,12 +11,20 @@ public:
 	{
 		Writing,
 		Pause,
-		RequestNext,
+		
 		WritingMenuText,
 		WritingMenuOptions,
 		Selecting,
+		
+		Executing,
+		
+		WritingPromptText,
+		ReadingPrompt,
+
+		ProcessMetadata,
+
+		RequestNext,
 		Finished,
-		Executing
 	};
 
 private:
@@ -33,12 +41,18 @@ protected:
 
 public:
 	SpeechManager(std::vector<std::string> lines);
+	SpeechManager(std::string sequenceFilename);
 	void updateState(float dt);
 
 	inline State state() { return s; }
 	inline std::string displayText() { return text; }
-	void proceed(int option = -1);
+	
 	int numberOfOptions();
 	int curentOptionWriten();
+	void proceed(int option = -1);
+
+	std::string getMetadata();
+
+	void proceed(std::string s);
 };
 

@@ -3,6 +3,7 @@
 #include <iostream>
 #include "WalkingScene.h"
 #include "SaveSelectionScene.h"
+#include "Save.h"
 
 MenuScene::MenuScene()
 	: bs(this)
@@ -31,8 +32,10 @@ void MenuScene::update(float dt)
 MainMenuButtonSet::MainMenuButtonSet(MenuScene* parent)
 	: parent(parent), ButtonSet({ "Continue", "New Game", "Quit" }, sf::FloatRect(350, 200, 350, 300))
 {
-	//buttons[0].setEnabled(false);
-	//select(1);
+	if (Save::getSaves().size() == 0) {
+		buttons[0].setEnabled(false);
+		select(1);
+	}
 }
 
 void MainMenuButtonSet::finsihedSelection(int selected)

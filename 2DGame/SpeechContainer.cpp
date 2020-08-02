@@ -2,6 +2,11 @@
 #include "Action.h"
 #include <sstream>
 
+bool SpeechContainer::specialCharacter(char c)
+{
+	return c == '*' || c == '>' || c == '/' || c == '#' || c == '?';
+}
+
 ChainSC* SpeechContainer::parse(iter start, iter end)
 {
 	std::vector<SpeechContainer*> script;
@@ -10,7 +15,7 @@ ChainSC* SpeechContainer::parse(iter start, iter end)
 			LineSC* lsc = new LineSC();
 			lsc->text = i->substr(2);
 			i++;
-			while (i < end && i->at(0) != '*' && i->at(0) != '>' && i->at(0) != '/') {
+			while (i < end && !specialCharacter(i->at(0))) {
 				lsc->text += "\n" + *i;
 				i++;
 			}
@@ -44,6 +49,18 @@ ChainSC* SpeechContainer::parse(iter start, iter end)
 			std::istringstream iss(all);
 			exc->action = Action::readFromStream(iss);
 			script.push_back(exc);
+		}
+		else if (i->at(0) == '#') {
+			MetadataSC* met = new MetadataSC();
+			met->metadata = i->substr(2);
+			script.push_back(met);
+			i++;
+		}
+		else if (i->at(0) == '?') {
+			PromptSC* psc = new PromptSC();
+			psc->question = i->substr(2);
+			psc->varname = (i + 1)->substr(2);
+			i += 2;
 		}
 	}
 	return new ChainSC(script);
