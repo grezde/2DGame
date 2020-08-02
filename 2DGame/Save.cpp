@@ -1,6 +1,8 @@
 #include "Save.h"
 #include <fstream>
 #include <sstream>
+#include <direct.h>
+#include <filesystem>
 
 const int Save::MAXINT = 500;
 const int Save::MAXSAVES = 5;
@@ -47,6 +49,7 @@ Save::Save(std::string savename, bool exists)
 
 	if (!exists) {
 		sets("save_name", savename);
+		std::filesystem::create_directory("Files/saves/" + savename);
 		loadToFile();
 		Save::getSaves();
 		saves.push_back(savename);

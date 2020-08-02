@@ -4,8 +4,6 @@
 #include <iostream>
 
 const float SpeechBoxScene::SCALE = 0.8f;
-const float SpeechBoxScene::INTERVAL = 0.05f;
-const float SpeechBoxScene::FAST_INTERVAL = 0.015f;
 const float SpeechBoxScene::SELECTION_INTERVAL = 0.1f;
 
 const float SpeechBoxScene::LINE_SPACING = 1.5f;

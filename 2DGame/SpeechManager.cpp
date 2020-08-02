@@ -101,11 +101,19 @@ void SpeechManager::updateState(float dt)
 		else if (s == WritingPromptText) {
 			PromptSC* psc = ((PromptSC*)(scque.top()));
 			if (psc->index == psc->question.size()) {
+				submitted = "";
+				text = " _";
 				s = ReadingPrompt;
 				return;
 			}
 			text += psc->question[psc->index];
 			psc->index++;
+		}
+		else if (s == ReadingPrompt) {
+			if (text == "_")
+				text = " ";
+			else
+				text = "_";
 		}
 		else if (s == RequestNext) {
 			text.clear();
@@ -157,6 +165,13 @@ void SpeechManager::proceed(int option)
 	}
 }
 
+std::string SpeechManager::displayText()
+{
+	if(s == ReadingPrompt)
+		return submitted + text;
+	return text;
+}
+
 int SpeechManager::numberOfOptions()
 {
 	if (s == WritingMenuText || s == WritingMenuOptions || s == Selecting)
@@ -178,17 +193,27 @@ std::string SpeechManager::getMetadata()
 	return "";
 }
 
-void SpeechManager::submitString(std::string str)
+void SpeechManager::submitChar(char c)
 {
-	if (s == ReadingPrompt) {
+	if (s != ReadingPrompt)
+		return;
+	std::cout << int(c) << " " << c << "\n";
+	if (c == 8) {
+		if (submitted.size() != 0)
+			submitted.pop_back();
+	}
+	else if (c == 13) {
 		std::string varname = ((PromptSC*)(scque.top()))->varname;
 		if (varname == "save_name") {
 			if (Globals::save != nullptr)
 				delete Globals::save;
-			Globals::save = new Save(str, true);
+			Globals::save = new Save(submitted, false);
 		}
 		else
-			Globals::save->sets(varname, str);
+			Globals::save->sets(varname, submitted);
 		s = RequestNext;
 	}
+	else if(c != ' ')
+		submitted += c;
+
 }

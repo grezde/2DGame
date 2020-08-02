@@ -8,6 +8,7 @@ class BasicSpeechScene
 public:
 	static const float INTERVAL;
 	static const float FAST_INTERVAL;
+	static const float LONG_INTERVAL;
 	static const float SELECTION_INTERVAL;
 
 protected:
@@ -15,6 +16,7 @@ protected:
 	sf::Color selectedColor; 
 
 	sf::Text label;
+	sf::Text submitlabel;
 	std::vector<sf::Text> optlabs;
 	int selectedOptionIndex;
 	float sinceLastPress;
@@ -29,5 +31,7 @@ public:
 	virtual void styleDisplayText(sf::Text& t) = 0;
 	virtual void styleOptionsText(int i, sf::Text& t) = 0;
 	virtual void stylePromptText(sf::Text& t) = 0;
+
+	virtual void onTextEntered(char character) override;
 };
 

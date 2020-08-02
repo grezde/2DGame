@@ -29,6 +29,7 @@ public:
 
 private:
 	State s;
+	std::string submitted;
 	std::string text;
 	int index;
 	ChainSC* script;
@@ -48,7 +49,7 @@ public:
 	void updateState(float dt);
 
 	inline State state() { return s; }
-	inline std::string displayText() { return text; }
+	std::string displayText();
 	
 	int numberOfOptions();
 	int curentOptionWriten();
@@ -56,6 +57,6 @@ public:
 
 	std::string getMetadata();
 
-	void submitString(std::string s);
+	void submitChar(char c);
 };
 

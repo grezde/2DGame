@@ -1,6 +1,10 @@
 #include "BasicSpeechScene.h"
 #include <iostream>
 
+const float BasicSpeechScene::INTERVAL = 0.05f;
+const float BasicSpeechScene::FAST_INTERVAL = 0.015f;
+const float BasicSpeechScene::LONG_INTERVAL = 0.5f;
+
 BasicSpeechScene::BasicSpeechScene(std::vector<std::string> lines)
 	: SpeechManager(lines)
 {
@@ -17,11 +21,15 @@ void BasicSpeechScene::draw(sf::RenderWindow* window)
 	if (state() == WritingMenuOptions || state() == Selecting)
 		for (sf::Text& optlab : optlabs)
 			window->draw(optlab);
+	if (state() == ReadingPrompt)
+		window->draw(submitlabel);
 }
 
 void BasicSpeechScene::update(float dt)
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::X))
+	if (state() == ReadingPrompt)
+		interval = LONG_INTERVAL;
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::X))
 		interval = FAST_INTERVAL;
 	else
 		interval = INTERVAL;
@@ -34,6 +42,9 @@ void BasicSpeechScene::update(float dt)
 		exit = true;
 		return;
 	}
+
+	if (state() == ReadingPrompt) 
+		submitlabel.setString(displayText());
 
 	if (state() == WritingMenuText) {
 		int n = numberOfOptions();
@@ -54,6 +65,7 @@ void BasicSpeechScene::update(float dt)
 		if (selectedOptionIndex != -1) {
 			optlabs[selectedOptionIndex].setFillColor(selectedColor);
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z) || sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
+				optlabs.clear();
 				proceed(selectedOptionIndex);
 				return;
 			}
@@ -80,6 +92,12 @@ void BasicSpeechScene::update(float dt)
 	if (state() == WritingMenuOptions)
 		optlabs[curentOptionWriten()].setString(displayText());
 
-	if (state() == Writing || state() == WritingMenuText)
+	if (state() == Writing || state() == WritingMenuText || state() == WritingPromptText)
 		label.setString(displayText());
+}
+
+void BasicSpeechScene::onTextEntered(char character)
+{
+	if (state() == ReadingPrompt)
+		submitChar(character);
 }

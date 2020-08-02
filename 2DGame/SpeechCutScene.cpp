@@ -8,6 +8,7 @@ SpeechCutScene::SpeechCutScene(std::vector<std::string> data)
 	textColor = sf::Color(200, 200, 200);
 	selectedColor = sf::Color(255, 0, 0);
 	styleDisplayText(label);
+	stylePromptText(submitlabel);
 }
 
 SpeechCutScene::SpeechCutScene(std::string filename)
@@ -16,6 +17,7 @@ SpeechCutScene::SpeechCutScene(std::string filename)
 	textColor = sf::Color(200, 200, 200);
 	selectedColor = sf::Color(255, 0, 0);
 	styleDisplayText(label);
+	stylePromptText(submitlabel);
 }
 
 void SpeechCutScene::draw(sf::RenderWindow* window)
@@ -34,7 +36,7 @@ void SpeechCutScene::styleDisplayText(sf::Text& t)
 	label.setPosition(100, 350);
 	label.setString("");
 	label.setLineSpacing(1.6f);
-	label.setCharacterSize(25);
+	label.setCharacterSize(26);
 	label.setFillColor(textColor);
 }
 
@@ -42,14 +44,19 @@ void SpeechCutScene::styleOptionsText(int i, sf::Text& t)
 {
 	t.setFont(*Globals::font);
 	t.setPosition(
-		100.0f + (Game::WIDTH-200.0f)/float(numberOfOptions())*float(i),
+		100.0f + (Game::WIDTH-200.0f)/float(numberOfOptions())*float(i) + 25,
 		460
 	);
 	t.setLineSpacing(1.6f);
-	t.setCharacterSize(25);
+	t.setCharacterSize(26);
 	t.setFillColor(textColor);
 }
 
 void SpeechCutScene::stylePromptText(sf::Text& t)
 {
+	t.setFont(*Globals::font);
+	t.setPosition(150, 460);
+	t.setLineSpacing(1.6f);
+	t.setCharacterSize(26);
+	t.setFillColor(textColor);
 }

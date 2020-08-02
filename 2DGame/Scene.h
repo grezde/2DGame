@@ -19,6 +19,7 @@ public:
 	virtual void reinit() {}
 	virtual void onKeyPress(sf::Keyboard::Key key) {}
 	virtual void onMousePress(sf::Mouse::Button button) {}
+	virtual void onTextEntered(char character) {}
 	
 	inline bool shouldQuit() { return exit; }
 	inline Scene* nextScene() { return next; }

@@ -30,6 +30,8 @@ void Game::run(Scene* initialScene)
                 window->close();
             if (event.type == sf::Event::KeyPressed)
                 scenes.back()->onKeyPress(event.key.code);
+            if (event.type == sf::Event::TextEntered)
+                scenes.back()->onTextEntered(event.text.unicode);
         }
         
         sf::Time current = clock.getElapsedTime();
