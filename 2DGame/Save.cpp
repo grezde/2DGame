@@ -3,6 +3,9 @@
 #include <sstream>
 
 const int Save::MAXINT = 500;
+const int Save::MAXSAVES = 5;
+bool Save::loadedSaves = false;
+std::vector<std::string> Save::saves = std::vector<std::string>();
 
 std::string Save::gets(std::string n)
 {
@@ -28,10 +31,15 @@ void Save::seti(std::string n, int v)
 	ints[n] = v;
 }
 
-Save::Save(std::string savename)
+Save::Save(std::string savename, bool exists)
 {
 	name = savename;
 	filepath = "Files/saves/" + savename + "/";
+
+	if (!exists) {
+		loadToFile();
+		return;
+	}
 
 	std::ifstream fin(filepath+"text.data");
 	std::string s, name, val;
@@ -58,7 +66,21 @@ Save::Save(std::string savename)
 		std::istringstream(val) >> in;
 		ints.insert(std::pair<std::string, int>(name, in));
 	}
-	;;
+}
+
+std::vector<std::string>& Save::getSaves()
+{
+	if (!loadedSaves) {
+		loadedSaves = true;
+		std::ifstream fin("Files/saves/saves.txt");
+		int n; std::string s;
+		fin >> n;
+		for (int i = 0; i < n; i++) {
+			fin >> s;
+			saves.push_back(s);
+		}
+	}
+	return saves;
 }
 
 void Save::loadToFile()

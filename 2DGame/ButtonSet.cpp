@@ -1,11 +1,15 @@
 #include "ButtonSet.h"
+#include <iostream>
 
-const float ButtonSet::PRESS_INTERVAL = 0.3f;
+const float ButtonSet::PRESS_INTERVAL = 1.0f;
+float ButtonSet::sincePress = 2.0f;
 
 void ButtonSet::select(int index)
 {
-	buttons[selindex].setSelected(false);
-	buttons[index].setSelected(true);
+	if(selindex != -1)
+		buttons[selindex].setSelected(false);
+	if(index != -1)
+		buttons[index].setSelected(true);
 	selindex = index;
 }
 
@@ -28,6 +32,9 @@ void ButtonSet::draw(sf::RenderWindow* window)
 
 void ButtonSet::update(float dt)
 {
+	if (selindex == -1)
+		return;
+
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z) || sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
 		finsihedSelection(selindex);
 		return;

@@ -172,6 +172,7 @@
     <ClCompile Include="RenderAction.cpp" />
     <ClCompile Include="Room.cpp" />
     <ClCompile Include="Save.cpp" />
+    <ClCompile Include="SaveSelectionScene.cpp" />
     <ClCompile Include="SpeechBoxScene.cpp" />
     <ClCompile Include="SpeechContainer.cpp" />
     <ClCompile Include="SpeechManager.cpp" />
@@ -188,6 +189,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="MenuScene.h" />
+    <ClInclude Include="SaveSelectionScene.h" />
     <ClInclude Include="SpeechContainer.h" />
     <ClInclude Include="InteractAction.h" />
     <ClInclude Include="Player.h" />

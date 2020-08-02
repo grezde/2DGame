@@ -16,6 +16,9 @@ private:
 	sf::Sprite center;
 	sf::Text label;
 
+	float textPercent = 0.3f;
+	float paddingTop = 5;
+
 private:
 	void remake();
 
@@ -29,6 +32,7 @@ public:
 	void setEnabled(bool enabled);
 	void setRect(sf::FloatRect position);
 	void setText(std::string text);
+	void setPaddingTop(float pt);
 
 	inline bool isEnabled() { return enabled; }
 };

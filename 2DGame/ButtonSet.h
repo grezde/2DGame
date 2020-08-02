@@ -7,7 +7,7 @@ class ButtonSet : public IGameElement
 private:
 	
 	static const float PRESS_INTERVAL;
-	float sincePress;
+	static float sincePress;
 	int selindex;
 
 protected:

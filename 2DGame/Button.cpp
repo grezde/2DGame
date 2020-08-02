@@ -32,11 +32,12 @@ void Button::remake()
 	right.setPosition(position.left + position.width - float(OFFSETS[offin + 1]) * yscale, position.top);
 	center.setPosition(position.left + float(OFFSETS[offin]) * yscale, position.top);
 
+	label.setCharacterSize(textPercent * position.height);
 	sf::FloatRect labelb = label.getGlobalBounds();
 	sf::FloatRect centerb = center.getGlobalBounds();
 	label.setPosition(
 		centerb.left + (centerb.width - labelb.width) / 2,
-		centerb.top + (centerb.height - labelb.height) / 2 + 10
+		centerb.top + (centerb.height - labelb.height) / 2 + paddingTop
 	);
 }
 
@@ -97,6 +98,13 @@ void Button::setRect(sf::FloatRect position)
 
 void Button::setText(std::string text)
 {
+	label.setCharacterSize(0);
 	label.setString(text);
+	remake();
+}
+
+void Button::setPaddingTop(float pt)
+{
+	paddingTop = pt;
 	remake();
 }

@@ -102,7 +102,7 @@ inventarul.
 ai facut o alegere buna.
 
 13 a
-* Lockerul e deja desfacut. Te uiti
+* Lockerul e deja deschis. Te uiti
 inauntru si vezi un fular.
 > Furi fularul?
   2 6 1
