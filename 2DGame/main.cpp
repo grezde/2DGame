@@ -2,6 +2,7 @@
 #include "WalkingScene.h"
 #include "MenuScene.h"
 #include "SpeechCutScene.h"
+#include <iostream>
 
 int main()
 {

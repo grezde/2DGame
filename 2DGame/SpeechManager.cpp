@@ -198,7 +198,7 @@ void SpeechManager::submitChar(char c)
 {
 	if (s != ReadingPrompt)
 		return;
-	std::cout << int(c) << " " << c << "\n";
+
 	if (c == 8) {
 		if (submitted.size() != 0)
 			submitted.pop_back();
