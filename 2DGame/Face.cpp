@@ -37,10 +37,6 @@ void Face::setActive(bool a)
 	active = a;
 }
 
-void Face::draw(sf::RenderWindow* window)
-{
-}
-
 void Face::update(float dt)
 {
 	if (!active)

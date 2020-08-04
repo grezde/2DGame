@@ -25,10 +25,6 @@ MenuScene::~MenuScene()
 
 }
 
-void MenuScene::draw(sf::RenderWindow* window)
-{
-}
-
 void MenuScene::update(float dt)
 {
 	bs.update(dt);

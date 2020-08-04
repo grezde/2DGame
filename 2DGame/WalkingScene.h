@@ -23,7 +23,6 @@ public:
 
 	static void setNextScene(bool shouldExit, Scene* nextScene);
 
-	virtual void draw(sf::RenderWindow* window) override;
 	virtual void update(float dt) override;
 	virtual void reinit() override;
 	virtual void onKeyPress(sf::Keyboard::Key key) override;

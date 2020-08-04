@@ -5,7 +5,6 @@
 class ButtonSet : public IGameElement
 {
 private:
-	
 	static const float PRESS_INTERVAL;
 	static float sincePress;
 	int selindex;
@@ -16,11 +15,12 @@ protected:
 	inline int selectedIndex() { return selindex; }
 	void select(int index);
 
+private:
+	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
+
 public:
 	ButtonSet(std::vector<std::string> options, sf::FloatRect bounds);
 
 	virtual void finsihedSelection(int selected) = 0;
-	virtual void draw(sf::RenderWindow* window) override;
-	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 	virtual void update(float dt) override;
 };

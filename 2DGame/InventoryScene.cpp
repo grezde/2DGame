@@ -42,9 +42,7 @@ void InventoryScene::setSelected(int newsel)
 
 void InventoryScene::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
-	target.draw(temp, states);
-	target.draw(outline, states);
-	target.draw(inside, states);
+	target.draw(backspr, states);
 	target.draw(description, states);
 	for (int i = 0; i < labels.size(); i++)
 		if (labels[i].getString()[4] != '-' || i == selected)
@@ -57,38 +55,15 @@ void InventoryScene::draw(sf::RenderTarget& target, sf::RenderStates states) con
 
 InventoryScene::InventoryScene()
 {
-	temp.setFillColor(sf::Color::White);
-	temp.setSize({ 600, 480 });
-	temp.setPosition({ 100, 60 });
-	outline.setSize({ 75, 75 });
-	outline.setPosition({ 425, 175 });
-	outline.setFillColor(sf::Color::Black);
-	inside.setSize({ 175, 175 });
-	inside.setPosition({ 100 + 600 - 190, 75 });
-	inside.setFillColor(sf::Color::Black);
+	backtex.loadFromFile("Files/items/menu.png");
+	backspr.setTexture(backtex);
 	std::vector<std::string> strings = Inventory::getFormatedInventory();
 	for (int i = 0; i < strings.size(); i++) {
 		labels.push_back(createLabel(false));
 		labels[i].setPosition(120, 140 + 40 * i);
 		labels[i].setString(strings[i]);
 	}
-	labels[0].setFillColor(SELECTED);
-	for (int i = 0; i < 3; i++)
-		decoration.push_back(createLabel(i < 2));
-	decoration[0].setString("Inventar");
-	decoration[0].setPosition(120, 80);
-	decoration[1].setString("Stats");
-	decoration[1].setPosition(400, 80);
-	decoration[2].setPosition(425, 145);
-	decoration[2].setString("Type");
-	description = createLabel(false);
-	description.setPosition(400, 265);
 	setSelected(0);
-}
-
-void InventoryScene::draw(sf::RenderWindow* window)
-{
-	
 }
 
 void InventoryScene::update(float dt)

@@ -33,10 +33,6 @@ void BasicSpeechScene::draw(sf::RenderTarget& target, sf::RenderStates states) c
 		target.draw(*face, states);
 }
 
-void BasicSpeechScene::draw(sf::RenderWindow* window)
-{
-}
-
 void BasicSpeechScene::update(float dt)
 {
 	if (state() == ReadingPrompt)

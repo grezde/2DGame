@@ -31,7 +31,6 @@ public:
 	MenuScene();
 	~MenuScene();
 
-	virtual void draw(sf::RenderWindow* window) override;
 	virtual void update(float dt) override;
 
 	friend class MainMenuButtonSet;

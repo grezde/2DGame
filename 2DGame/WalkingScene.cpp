@@ -31,11 +31,6 @@ void WalkingScene::setNextScene(bool shouldExit, Scene* nextScene)
 	curentWS->exit = shouldExit;
 }
 
-void WalkingScene::draw(sf::RenderWindow* window)
-{
-	
-}
-
 void WalkingScene::update(float dt)
 {
 	p->update(dt);

@@ -33,10 +33,6 @@ void SpeechBoxScene::draw(sf::RenderTarget& target, sf::RenderStates states) con
 	BasicSpeechScene::draw(target, states);
 }
 
-void SpeechBoxScene::draw(sf::RenderWindow* window)
-{
-}
-
 void SpeechBoxScene::update(float dt)
 {
 	BasicSpeechScene::update(dt);

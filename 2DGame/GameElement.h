@@ -3,7 +3,6 @@
 
 class IGameElement : public sf::Drawable {
 public:
-	virtual void draw(sf::RenderWindow* window) = 0;
 	virtual void update(float dt) = 0;
 };
 

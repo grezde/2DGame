@@ -54,11 +54,6 @@ void Player::setEmote(int number)
 	));
 }
 
-void Player::draw(sf::RenderWindow* window)
-{
-	
-}
-
 void Player::update(float dt)
 {
 	emoteNumber = 0;

@@ -16,6 +16,8 @@ public:
 	static const float INTERVAL;
 
 private:
+	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
+
 	void setDrawing(int i);
 
 public:
@@ -25,9 +27,6 @@ public:
 	void setScale(float s);
 	void setActive(bool a);
 
-	virtual void draw(sf::RenderWindow* window) override;
-	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 	virtual void update(float dt) override;
-
 };
 

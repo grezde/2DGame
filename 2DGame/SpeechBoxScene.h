@@ -25,7 +25,6 @@ private:
 public:
 	SpeechBoxScene(std::vector<std::string> data);
 	
-	void draw(sf::RenderWindow* window) override;
 	void update(float dt) override;
 
 	virtual void styleDisplayText(sf::Text& t) override;

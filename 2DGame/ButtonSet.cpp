@@ -24,10 +24,6 @@ ButtonSet::ButtonSet(std::vector<std::string> options, sf::FloatRect bounds)
 	selindex = 0;
 }
 
-void ButtonSet::draw(sf::RenderWindow* window)
-{
-}
-
 void ButtonSet::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	for (const Button& b : buttons)
