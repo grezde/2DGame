@@ -104,8 +104,8 @@ std::vector<std::string> Inventory::getFormatedStats(int slot)
 		return vs;
 	Item* it = getItemAt(slot);
 	for (int i = 0; i < it->stats.size(); i++)
-		vs.push_back(it->type->statNames[i] + " " + std::to_string(it->stats[i]));
+		vs.push_back(" >  " + it->type->statNames[i] + " " + std::to_string(it->stats[i]));
 	for (int i = 0; i < it->type->metaNames.size(); i++)
-		vs.push_back(it->type->metaNames[i] + " " + std::to_string(getMetadata(slot, i)));
+		vs.push_back(">> " + it->type->metaNames[i] + " " + std::to_string(getMetadata(slot, i)));
 	return vs;
 }

@@ -173,6 +173,7 @@
     <ClCompile Include="Globals.cpp" />
     <ClCompile Include="InteractAction.cpp" />
     <ClCompile Include="Inventory.cpp" />
+    <ClCompile Include="InventoryAction.cpp" />
     <ClCompile Include="InventoryScene.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="main.cpp" />
@@ -201,6 +202,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="Inventory.h" />
+    <ClInclude Include="InventoryAction.h" />
     <ClInclude Include="InventoryScene.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="MenuScene.h" />

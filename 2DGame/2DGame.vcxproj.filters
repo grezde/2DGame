@@ -144,11 +144,11 @@
     <ClCompile Include="Item.cpp">
       <Filter>Source Files\Saving\Inventory</Filter>
     </ClCompile>
+    <ClCompile Include="InventoryAction.cpp">
+      <Filter>Source Files\Walking\Actions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Action.h">
-      <Filter>Header Files\Walking\Actions</Filter>
-    </ClInclude>
     <ClInclude Include="RenderAction.h">
       <Filter>Header Files\Walking\Actions</Filter>
     </ClInclude>
@@ -229,6 +229,12 @@
     </ClInclude>
     <ClInclude Include="Item.h">
       <Filter>Header Files\Saving\Inventory</Filter>
+    </ClInclude>
+    <ClInclude Include="Action.h">
+      <Filter>Header Files\Walking</Filter>
+    </ClInclude>
+    <ClInclude Include="InventoryAction.h">
+      <Filter>Header Files\Walking\Actions</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

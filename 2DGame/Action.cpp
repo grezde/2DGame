@@ -6,6 +6,7 @@
 #include "StartAction.h"
 #include "ConditionAction.h"
 #include "VariableAction.h"
+#include "InventoryAction.h"
 
 Action* Action::getActionClass(char code, std::vector<std::string> data)
 {
@@ -21,6 +22,8 @@ Action* Action::getActionClass(char code, std::vector<std::string> data)
 		return new ConditionAction(data);
 	if (code == 'v')
 		return new VariableAction(data);
+	if (code == 'g')
+		return new InventoryAction(data);
 
 	return new Action(data);
 }
