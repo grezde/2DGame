@@ -15,15 +15,17 @@ public:
 public:
 	static void readFiles();
 
-	void setMetadata(int slot, int metaSlot, int value);
-	int getMetadata(int slot, int metaSlot);
+	static void setMetadata(int slot, int metaSlot, int value);
+	static int getMetadata(int slot, int metaSlot);
 	
-	int getCount(int slot);
-	void setCount(int slot, int count);
+	static int getCount(int slot);
+	static void setCount(int slot, int count);
 
-	Item* getItemAt(int slot);
+	static Item* getItemAt(int slot);
 
-	static bool addToInventory(std::string item, int count = 0);	
 	static std::vector<std::string> getFormatedInventory();
+	static std::vector<std::string> getFormatedStats(int slot);
+
+	static bool addToInventory(std::string item, int count = 0);
 };
 

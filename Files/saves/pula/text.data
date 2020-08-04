@@ -1,5 +1,8 @@
 name=Cristian
 surname=Ardeleanu
 nickname=Cristi
-inventory_slot_0=pack_malboro_red
-inventory_slot_1=lighter_bic
+inventory_slot_0=lighter_bic
+inventory_slot_1=pack_dunhil_blue
+inventory_slot_2=lighter_cheap
+inventory_slot_3=pack_malboro_red
+inventory_slot_4=worn_scarf

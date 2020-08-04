@@ -42,6 +42,7 @@ public:
 public:
 	static Item readItem(std::istream& stream, typemap& types);
 	static std::map<std::string, Item> readItemFile(typemap& types);
+	
 };
 
 
