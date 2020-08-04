@@ -22,6 +22,9 @@ InventoryScene::InventoryScene()
 	temp.setFillColor(sf::Color::White);
 	temp.setSize({ 600, 480 });
 	temp.setPosition({ 100, 60 });
+	outline.setSize({ 75, 75 });
+	outline.setPosition({ 425, 175 });
+	outline.setFillColor(sf::Color::Black);
 	inside.setSize({ 175, 175 });
 	inside.setPosition({ 100 + 600 - 190, 75 });
 	inside.setFillColor(sf::Color::Black);
@@ -32,12 +35,14 @@ InventoryScene::InventoryScene()
 		labels[i].setString(strings[i]);
 	}
 	labels[0].setFillColor(SELECTED);
-	for (int i = 0; i < 2; i++)
-		decoration.push_back(getLabel(true));
+	for (int i = 0; i < 3; i++)
+		decoration.push_back(getLabel(i < 2));
 	decoration[0].setString("Inventar");
 	decoration[0].setPosition(120, 80);
 	decoration[1].setString("Stats");
 	decoration[1].setPosition(400, 80);
+	decoration[2].setPosition(425, 145);
+	decoration[2].setString("Type");
 }
 
 void InventoryScene::draw(sf::RenderWindow* window)

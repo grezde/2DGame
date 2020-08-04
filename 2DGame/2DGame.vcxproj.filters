@@ -25,9 +25,6 @@
     <Filter Include="Header Files\Menus">
       <UniqueIdentifier>{3e3dc7c9-5b18-47d9-bb57-27b39779b4cf}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Other">
-      <UniqueIdentifier>{972a7608-c463-4c63-8861-be146b8236a5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Walking\Actions">
       <UniqueIdentifier>{67849270-5ec6-4305-ac33-1a0a7a839863}</UniqueIdentifier>
     </Filter>
@@ -40,14 +37,32 @@
     <Filter Include="Source Files\Menus">
       <UniqueIdentifier>{1c2c6870-1e0e-4088-9ff4-df8d3ddf422a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Other">
+    <Filter Include="Header Files\Saving">
+      <UniqueIdentifier>{ac26509e-86a6-4b3a-a301-69d092b5569b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Saving\Save">
+      <UniqueIdentifier>{aa68f5d3-a55d-4b3c-9e56-9b3a876caca2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Saving\Inventory">
+      <UniqueIdentifier>{b693b82d-0c06-400e-8d01-3dd16691e82b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Base">
+      <UniqueIdentifier>{972a7608-c463-4c63-8861-be146b8236a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Saving">
+      <UniqueIdentifier>{16c3f67e-3916-4d0f-8565-38385bf086ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Saving\Save">
+      <UniqueIdentifier>{52bb27d8-34e2-4c83-bbdf-de580814ead6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Saving\Inventory">
+      <UniqueIdentifier>{5c1dcd90-eeab-4706-8439-f03664ff331f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Base">
       <UniqueIdentifier>{f3485dfc-09be-44dd-b828-3e7aa3f15f52}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="RenderAction.cpp">
       <Filter>Source Files\Walking\Actions</Filter>
     </ClCompile>
@@ -57,19 +72,10 @@
     <ClCompile Include="TeleportAction.cpp">
       <Filter>Source Files\Walking\Actions</Filter>
     </ClCompile>
-    <ClCompile Include="Save.cpp">
-      <Filter>Source Files\Other</Filter>
-    </ClCompile>
     <ClCompile Include="Game.cpp">
-      <Filter>Source Files\Other</Filter>
-    </ClCompile>
-    <ClCompile Include="Globals.cpp">
-      <Filter>Source Files\Other</Filter>
+      <Filter>Source Files\Base</Filter>
     </ClCompile>
     <ClCompile Include="StartAction.cpp">
-      <Filter>Source Files\Walking\Actions</Filter>
-    </ClCompile>
-    <ClCompile Include="Action.cpp">
       <Filter>Source Files\Walking\Actions</Filter>
     </ClCompile>
     <ClCompile Include="ConditionAction.cpp">
@@ -117,11 +123,26 @@
     <ClCompile Include="Button.cpp">
       <Filter>Source Files\Menus</Filter>
     </ClCompile>
+    <ClCompile Include="Inventory.cpp">
+      <Filter>Source Files\Saving\Inventory</Filter>
+    </ClCompile>
     <ClCompile Include="InventoryScene.cpp">
+      <Filter>Source Files\Saving\Inventory</Filter>
+    </ClCompile>
+    <ClCompile Include="Save.cpp">
+      <Filter>Source Files\Saving\Save</Filter>
+    </ClCompile>
+    <ClCompile Include="Globals.cpp">
+      <Filter>Source Files\Saving\Save</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Action.cpp">
       <Filter>Source Files\Walking</Filter>
     </ClCompile>
-    <ClCompile Include="Inventory.cpp">
-      <Filter>Source Files\Other</Filter>
+    <ClCompile Include="Item.cpp">
+      <Filter>Source Files\Saving\Inventory</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -137,14 +158,8 @@
     <ClInclude Include="TeleportAction.h">
       <Filter>Header Files\Walking\Actions</Filter>
     </ClInclude>
-    <ClInclude Include="Save.h">
-      <Filter>Header Files\Other</Filter>
-    </ClInclude>
     <ClInclude Include="Game.h">
-      <Filter>Header Files\Other</Filter>
-    </ClInclude>
-    <ClInclude Include="Globals.h">
-      <Filter>Header Files\Other</Filter>
+      <Filter>Header Files\Base</Filter>
     </ClInclude>
     <ClInclude Include="StartAction.h">
       <Filter>Header Files\Walking\Actions</Filter>
@@ -192,7 +207,7 @@
       <Filter>Header Files\Menus</Filter>
     </ClInclude>
     <ClInclude Include="Scene.h">
-      <Filter>Header Files\Other</Filter>
+      <Filter>Header Files\Base</Filter>
     </ClInclude>
     <ClInclude Include="ButtonSet.h">
       <Filter>Header Files\Menus</Filter>
@@ -200,11 +215,20 @@
     <ClInclude Include="Button.h">
       <Filter>Header Files\Menus</Filter>
     </ClInclude>
-    <ClInclude Include="InventoryScene.h">
-      <Filter>Header Files\Walking</Filter>
-    </ClInclude>
     <ClInclude Include="Inventory.h">
-      <Filter>Header Files\Other</Filter>
+      <Filter>Header Files\Saving\Inventory</Filter>
+    </ClInclude>
+    <ClInclude Include="InventoryScene.h">
+      <Filter>Header Files\Saving\Inventory</Filter>
+    </ClInclude>
+    <ClInclude Include="Globals.h">
+      <Filter>Header Files\Saving\Save</Filter>
+    </ClInclude>
+    <ClInclude Include="Save.h">
+      <Filter>Header Files\Saving\Save</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>Header Files\Saving\Inventory</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

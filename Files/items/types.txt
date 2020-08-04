@@ -1,0 +1,23 @@
+3
+
+ARMOR
+stack
+2 0 1
+Defense
+Stil
+Echipeaza
+
+CIGAR
+one
+2 1 1
+Nicotina
+Tractorist
+Tigari
+Fumeaza
+
+LIGHTER
+one
+1 1 1
+Durability
+Left uses
+Arde item

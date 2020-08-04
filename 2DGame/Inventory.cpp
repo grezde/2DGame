@@ -4,37 +4,55 @@
 #include <iomanip>
 
 std::map<std::string, Item> Inventory::items = std::map<std::string, Item>();
+std::map<std::string, ItemType*> Inventory::types = std::map<std::string, ItemType*>();
 const int Inventory::SLOTS = 10;
+bool Inventory::read = false;
 
 void Inventory::readFiles()
 {
-	if (!items.empty())
+	if (read)
 		return;
-	std::ifstream fin("Files/lookup/items.txt");
-	int n;
-	fin >> n;
-	std::string name, s;
-	std::getline(fin, s);
-	for (int i = 0; i < n; i++) {
-		Item t;
-		std::getline(fin, name);
-		std::getline(fin, t.displayName);
-		std::getline(fin, s);
-		std::istringstream iss(s);
-		iss >> t.type;
-		while (!iss.eof()) {
-			int x;
-			iss >> x;
-			t.stats.push_back(x);
-		}
-		std::getline(fin, t.info);
-		std::getline(fin, s);
-		while (!s.empty()) {
-			t.info += "\n" + s;
-			std::getline(fin, s);
-		}
-		items[name] = t;
+	read = true;
+
+	types = ItemType::readTypeFile();
+	items = Item::readItemFile(types);
+	
+}
+
+void Inventory::setMetadata(int slot, int metaSlot, int value)
+{
+	Globals::save->seti("inventory_meta_" + std::to_string(metaSlot) + "_" + std::to_string(slot), value);
+}
+
+int Inventory::getMetadata(int slot, int metaSlot)
+{
+	return Globals::save->geti("inventory_meta_" + std::to_string(metaSlot) + "_" + std::to_string(slot));
+}
+
+int Inventory::getCount(int slot)
+{
+	return Globals::save->geti("inventory_count_" + std::to_string(slot));
+}
+
+void Inventory::setCount(int slot, int count)
+{
+	if (count == 0) {
+		std::string fin = "_" + std::to_string(slot);
+		Globals::save->rems("inventory_slot" + fin);
+		Globals::save->remi("inventory_count" + fin);
+		for (int i = 0; Globals::save->hasi("inventory_meta_" + std::to_string(i) + fin); i++)
+			Globals::save->remi("inventory_meta_" + std::to_string(i) + fin);
 	}
+	else
+		Globals::save->seti("inventory_count_" + std::to_string(slot), count);
+}
+
+Item* Inventory::getItemAt(int slot)
+{
+	std::string a = Globals::save->gets("inventory_slot_" + std::to_string(slot));
+	if (a.empty()) 
+		return nullptr;
+	return &items[a];
 }
 
 bool Inventory::addToInventory(std::string item, int count)
