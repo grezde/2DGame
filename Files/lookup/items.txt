@@ -1,0 +1,37 @@
+5
+worn_scarf
+Fular furat
+ARMOR 3 -5
+Fularul asta este rupt
+in mai multe locuri. 
+Este foarte vechi.
+
+pack_malboro_red
+Malboro Rosu
+CIGAR 10 8
+Asta este pachetul 
+legendar de Malboro 
+rosu scurt.
+
+pack_dunhil_blue
+Dunhil Albastru
+CIGAR 8 3
+Cumva pachetul asta 
+imi aduce aminte
+de un profesor de 
+matematica....
+
+lighter_bic
+Bricheta BIC
+LIGHTER 100
+Brichetele Bic mereu
+tin foarte mult
+si sunt foarte bune.
+
+lighter_cheap
+Bricheta Ieftina
+LIGHTER 40
+Am dat un leu pe 
+bricheta asta.
+Mai are putin si se
+descompune.

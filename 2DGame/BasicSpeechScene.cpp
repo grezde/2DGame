@@ -41,7 +41,7 @@ void BasicSpeechScene::update(float dt)
 		interval = FAST_INTERVAL;
 	else
 		interval = INTERVAL;
-	if (state() == Pause && sf::Keyboard::isKeyPressed(sf::Keyboard::Z) || sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
+	if (state() == Pause && (sf::Keyboard::isKeyPressed(sf::Keyboard::Z) || sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)))
 		proceed();
 
 	updateState(dt);

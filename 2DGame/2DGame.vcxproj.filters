@@ -13,186 +13,198 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\Scenes">
-      <UniqueIdentifier>{efed7319-3400-4833-82da-30b73ffcaa90}</UniqueIdentifier>
+    <Filter Include="Header Files\Speech">
+      <UniqueIdentifier>{834b66ba-5047-4400-8e65-ef190088713f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Scenes">
-      <UniqueIdentifier>{601513f9-553d-4ca0-8c4b-ab722c50bada}</UniqueIdentifier>
+    <Filter Include="Source Files\Speech">
+      <UniqueIdentifier>{b90b73d5-6866-452d-94d5-670e89596399}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Helpers">
-      <UniqueIdentifier>{dec5e585-a6c5-48bb-ba9c-424f6aecf914}</UniqueIdentifier>
+    <Filter Include="Header Files\Walking">
+      <UniqueIdentifier>{f45a1870-d6de-44e8-ac64-ceddf4e48448}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Helpers">
-      <UniqueIdentifier>{b734166c-d95b-4f2e-82d1-8d3cab52a87c}</UniqueIdentifier>
+    <Filter Include="Header Files\Menus">
+      <UniqueIdentifier>{3e3dc7c9-5b18-47d9-bb57-27b39779b4cf}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Actions">
-      <UniqueIdentifier>{67849270-5ec6-4305-ac33-1a0a7a839863}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Actions">
-      <UniqueIdentifier>{671b9b50-310d-4903-b41a-6df8d843bb27}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Saving">
+    <Filter Include="Header Files\Other">
       <UniqueIdentifier>{972a7608-c463-4c63-8861-be146b8236a5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Saving">
+    <Filter Include="Header Files\Walking\Actions">
+      <UniqueIdentifier>{67849270-5ec6-4305-ac33-1a0a7a839863}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Walking">
+      <UniqueIdentifier>{43eb5f12-88d2-494c-a5c3-069cf2522e0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Walking\Actions">
+      <UniqueIdentifier>{671b9b50-310d-4903-b41a-6df8d843bb27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Menus">
+      <UniqueIdentifier>{1c2c6870-1e0e-4088-9ff4-df8d3ddf422a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Other">
       <UniqueIdentifier>{f3485dfc-09be-44dd-b828-3e7aa3f15f52}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\GUI">
-      <UniqueIdentifier>{53199672-fb93-4661-a458-421db719bce5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\GUI">
-      <UniqueIdentifier>{4adb586c-e414-4853-b26b-3746867fb1bd}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="WalkingScene.cpp">
-      <Filter>Source Files\Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Source Files\Helpers</Filter>
-    </ClCompile>
-    <ClCompile Include="Room.cpp">
-      <Filter>Source Files\Helpers</Filter>
-    </ClCompile>
     <ClCompile Include="RenderAction.cpp">
-      <Filter>Source Files\Actions</Filter>
+      <Filter>Source Files\Walking\Actions</Filter>
     </ClCompile>
     <ClCompile Include="InteractAction.cpp">
-      <Filter>Source Files\Actions</Filter>
-    </ClCompile>
-    <ClCompile Include="SpeechBoxScene.cpp">
-      <Filter>Source Files\Scenes</Filter>
+      <Filter>Source Files\Walking\Actions</Filter>
     </ClCompile>
     <ClCompile Include="TeleportAction.cpp">
-      <Filter>Source Files\Actions</Filter>
+      <Filter>Source Files\Walking\Actions</Filter>
     </ClCompile>
     <ClCompile Include="Save.cpp">
-      <Filter>Source Files\Saving</Filter>
+      <Filter>Source Files\Other</Filter>
     </ClCompile>
     <ClCompile Include="Game.cpp">
-      <Filter>Source Files\Saving</Filter>
+      <Filter>Source Files\Other</Filter>
     </ClCompile>
     <ClCompile Include="Globals.cpp">
-      <Filter>Source Files\Saving</Filter>
+      <Filter>Source Files\Other</Filter>
     </ClCompile>
     <ClCompile Include="StartAction.cpp">
-      <Filter>Source Files\Actions</Filter>
+      <Filter>Source Files\Walking\Actions</Filter>
     </ClCompile>
     <ClCompile Include="Action.cpp">
-      <Filter>Source Files\Actions</Filter>
+      <Filter>Source Files\Walking\Actions</Filter>
     </ClCompile>
     <ClCompile Include="ConditionAction.cpp">
-      <Filter>Source Files\Actions</Filter>
-    </ClCompile>
-    <ClCompile Include="SpeechManager.cpp">
-      <Filter>Source Files\Helpers</Filter>
+      <Filter>Source Files\Walking\Actions</Filter>
     </ClCompile>
     <ClCompile Include="VariableAction.cpp">
-      <Filter>Source Files\Actions</Filter>
-    </ClCompile>
-    <ClCompile Include="SpeechContainer.cpp">
-      <Filter>Source Files\Helpers</Filter>
-    </ClCompile>
-    <ClCompile Include="MenuScene.cpp">
-      <Filter>Source Files\Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="Button.cpp">
-      <Filter>Source Files\GUI</Filter>
-    </ClCompile>
-    <ClCompile Include="ButtonSet.cpp">
-      <Filter>Source Files\GUI</Filter>
-    </ClCompile>
-    <ClCompile Include="SaveSelectionScene.cpp">
-      <Filter>Source Files\Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="SpeechCutScene.cpp">
-      <Filter>Source Files\Scenes</Filter>
+      <Filter>Source Files\Walking\Actions</Filter>
     </ClCompile>
     <ClCompile Include="BasicSpeechScene.cpp">
-      <Filter>Source Files\Scenes</Filter>
+      <Filter>Source Files\Speech</Filter>
+    </ClCompile>
+    <ClCompile Include="SpeechBoxScene.cpp">
+      <Filter>Source Files\Speech</Filter>
+    </ClCompile>
+    <ClCompile Include="SpeechCutScene.cpp">
+      <Filter>Source Files\Speech</Filter>
+    </ClCompile>
+    <ClCompile Include="SpeechContainer.cpp">
+      <Filter>Source Files\Speech</Filter>
+    </ClCompile>
+    <ClCompile Include="SpeechManager.cpp">
+      <Filter>Source Files\Speech</Filter>
     </ClCompile>
     <ClCompile Include="Face.cpp">
-      <Filter>Source Files\GUI</Filter>
+      <Filter>Source Files\Speech</Filter>
+    </ClCompile>
+    <ClCompile Include="WalkingScene.cpp">
+      <Filter>Source Files\Walking</Filter>
+    </ClCompile>
+    <ClCompile Include="Room.cpp">
+      <Filter>Source Files\Walking</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Source Files\Walking</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuScene.cpp">
+      <Filter>Source Files\Menus</Filter>
+    </ClCompile>
+    <ClCompile Include="SaveSelectionScene.cpp">
+      <Filter>Source Files\Menus</Filter>
+    </ClCompile>
+    <ClCompile Include="ButtonSet.cpp">
+      <Filter>Source Files\Menus</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Source Files\Menus</Filter>
+    </ClCompile>
+    <ClCompile Include="InventoryScene.cpp">
+      <Filter>Source Files\Walking</Filter>
+    </ClCompile>
+    <ClCompile Include="Inventory.cpp">
+      <Filter>Source Files\Other</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Scene.h">
-      <Filter>Header Files\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="WalkingScene.h">
-      <Filter>Header Files\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>Header Files\Helpers</Filter>
-    </ClInclude>
-    <ClInclude Include="Room.h">
-      <Filter>Header Files\Helpers</Filter>
-    </ClInclude>
     <ClInclude Include="Action.h">
-      <Filter>Header Files\Actions</Filter>
+      <Filter>Header Files\Walking\Actions</Filter>
     </ClInclude>
     <ClInclude Include="RenderAction.h">
-      <Filter>Header Files\Actions</Filter>
-    </ClInclude>
-    <ClInclude Include="SpeechBoxScene.h">
-      <Filter>Header Files\Scenes</Filter>
+      <Filter>Header Files\Walking\Actions</Filter>
     </ClInclude>
     <ClInclude Include="InteractAction.h">
-      <Filter>Header Files\Actions</Filter>
+      <Filter>Header Files\Walking\Actions</Filter>
     </ClInclude>
     <ClInclude Include="TeleportAction.h">
-      <Filter>Header Files\Actions</Filter>
+      <Filter>Header Files\Walking\Actions</Filter>
     </ClInclude>
     <ClInclude Include="Save.h">
-      <Filter>Header Files\Saving</Filter>
+      <Filter>Header Files\Other</Filter>
     </ClInclude>
     <ClInclude Include="Game.h">
-      <Filter>Header Files\Saving</Filter>
+      <Filter>Header Files\Other</Filter>
     </ClInclude>
     <ClInclude Include="Globals.h">
-      <Filter>Header Files\Saving</Filter>
+      <Filter>Header Files\Other</Filter>
     </ClInclude>
     <ClInclude Include="StartAction.h">
-      <Filter>Header Files\Actions</Filter>
-    </ClInclude>
-    <ClInclude Include="SpeechContainer.h">
-      <Filter>Header Files\Helpers</Filter>
-    </ClInclude>
-    <ClInclude Include="SpeechManager.h">
-      <Filter>Header Files\Helpers</Filter>
+      <Filter>Header Files\Walking\Actions</Filter>
     </ClInclude>
     <ClInclude Include="ConditionAction.h">
-      <Filter>Header Files\Actions</Filter>
+      <Filter>Header Files\Walking\Actions</Filter>
     </ClInclude>
     <ClInclude Include="VariableAction.h">
-      <Filter>Header Files\Actions</Filter>
+      <Filter>Header Files\Walking\Actions</Filter>
     </ClInclude>
-    <ClInclude Include="MenuScene.h">
-      <Filter>Header Files\Scenes</Filter>
+    <ClInclude Include="SpeechContainer.h">
+      <Filter>Header Files\Speech</Filter>
     </ClInclude>
-    <ClInclude Include="Button.h">
-      <Filter>Header Files\GUI</Filter>
-    </ClInclude>
-    <ClInclude Include="ButtonSet.h">
-      <Filter>Header Files\GUI</Filter>
-    </ClInclude>
-    <ClInclude Include="SaveSelectionScene.h">
-      <Filter>Header Files\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="SpeechCutScene.h">
-      <Filter>Header Files\Scenes</Filter>
+    <ClInclude Include="SpeechManager.h">
+      <Filter>Header Files\Speech</Filter>
     </ClInclude>
     <ClInclude Include="BasicSpeechScene.h">
-      <Filter>Header Files\Scenes</Filter>
+      <Filter>Header Files\Speech</Filter>
     </ClInclude>
-    <ClInclude Include="Face.h">
-      <Filter>Header Files\GUI</Filter>
+    <ClInclude Include="SpeechBoxScene.h">
+      <Filter>Header Files\Speech</Filter>
+    </ClInclude>
+    <ClInclude Include="SpeechCutScene.h">
+      <Filter>Header Files\Speech</Filter>
     </ClInclude>
     <ClInclude Include="SpeechCutScenes.h">
-      <Filter>Header Files\Scenes</Filter>
+      <Filter>Header Files\Speech</Filter>
+    </ClInclude>
+    <ClInclude Include="Face.h">
+      <Filter>Header Files\Speech</Filter>
+    </ClInclude>
+    <ClInclude Include="WalkingScene.h">
+      <Filter>Header Files\Walking</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Header Files\Walking</Filter>
+    </ClInclude>
+    <ClInclude Include="Room.h">
+      <Filter>Header Files\Walking</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuScene.h">
+      <Filter>Header Files\Menus</Filter>
+    </ClInclude>
+    <ClInclude Include="SaveSelectionScene.h">
+      <Filter>Header Files\Menus</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Header Files\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="ButtonSet.h">
+      <Filter>Header Files\Menus</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Header Files\Menus</Filter>
+    </ClInclude>
+    <ClInclude Include="InventoryScene.h">
+      <Filter>Header Files\Walking</Filter>
+    </ClInclude>
+    <ClInclude Include="Inventory.h">
+      <Filter>Header Files\Other</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

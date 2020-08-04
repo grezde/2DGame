@@ -1,6 +1,6 @@
 #include "WalkingScene.h"
 #include <fstream>
-#include <iostream>
+#include "InventoryScene.h"
 
 const float WalkingScene::SCALE = 5.0f;
 WalkingScene* WalkingScene::curentWS = nullptr;
@@ -40,4 +40,11 @@ void WalkingScene::update(float dt)
 void WalkingScene::reinit()
 {
 	r->reinitScene();
+}
+
+void WalkingScene::onKeyPress(sf::Keyboard::Key key)
+{
+	if (key == sf::Keyboard::C) {
+		next = new InventoryScene();
+	}
 }

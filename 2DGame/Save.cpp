@@ -12,7 +12,7 @@ std::vector<std::string> Save::saves = std::vector<std::string>();
 std::string Save::gets(std::string n)
 {
 	if (strings.find(n) == strings.end())
-		strings[n] = "";
+		return "";
 	return strings[n];
 }
 
@@ -21,16 +21,40 @@ void Save::sets(std::string n, std::string v)
 	strings[n] = v;
 }
 
+bool Save::hass(std::string n)
+{
+	return !(strings.find(n) == strings.end());
+}
+
+void Save::rems(std::string n)
+{
+	if (strings.find(n) == strings.end())
+		return;
+	strings.erase(n);
+}
+
 int Save::geti(std::string n)
 {
 	if (ints.find(n) == ints.end())
-		ints[n] = 0;
+		return 0;
 	return ints[n];
 }
 
 void Save::seti(std::string n, int v)
 {
 	ints[n] = v;
+}
+
+bool Save::hasi(std::string n)
+{
+	return !(ints.find(n) == ints.end());
+}
+
+void Save::remi(std::string n)
+{
+	if (ints.find(n) == ints.end())
+		return;
+	ints.erase(n);
 }
 
 std::string Save::get(std::string n)

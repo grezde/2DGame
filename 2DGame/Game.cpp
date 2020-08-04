@@ -30,6 +30,9 @@ void Game::run(Scene* initialScene)
                 scenes.back()->onKeyPress(event.key.code);
             if (event.type == sf::Event::TextEntered)
                 scenes.back()->onTextEntered(event.text.unicode);
+            if (event.type == sf::Event::MouseButtonPressed) {
+                scenes.back()->onMousePress(event.mouseButton);
+            }
         }
         
         sf::Time current = clock.getElapsedTime();
@@ -58,6 +61,8 @@ void Game::run(Scene* initialScene)
             exit = false;
         }
         if (nextScene != nullptr) {
+            if (!scenes.empty())
+                scenes.back()->nextScene(nullptr);
             scenes.push_back(nextScene);
             nextScene->init();
         }

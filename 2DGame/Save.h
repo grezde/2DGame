@@ -20,9 +20,13 @@ public:
 public:
 	std::string gets(std::string n);
 	void sets(std::string n, std::string v);
+	bool hass(std::string n);
+	void rems(std::string n);
 
 	int geti(std::string n);
 	void seti(std::string n, int v);
+	bool hasi(std::string n);
+	void remi(std::string n);
 
 	std::string get(std::string n);
 
