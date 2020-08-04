@@ -5,6 +5,13 @@
 const float WalkingScene::SCALE = 5.0f;
 WalkingScene* WalkingScene::curentWS = nullptr;
 
+void WalkingScene::draw(sf::RenderTarget& target, sf::RenderStates states) const
+{
+	r->drawBackground(target, states);
+	target.draw(*p, states);
+	r->drawForeground(target, states);
+}
+
 WalkingScene::WalkingScene(std::string roomName)
 {
 	r = new Room(roomName);
@@ -26,15 +33,13 @@ void WalkingScene::setNextScene(bool shouldExit, Scene* nextScene)
 
 void WalkingScene::draw(sf::RenderWindow* window)
 {
-	r->drawBackground(window);
-	p->draw(window);
-	r->drawForeground(window);
+	
 }
 
 void WalkingScene::update(float dt)
 {
-	r->update(dt);
 	p->update(dt);
+	r->update(dt);
 }
 
 void WalkingScene::reinit()

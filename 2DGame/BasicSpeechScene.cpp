@@ -21,16 +21,20 @@ BasicSpeechScene::~BasicSpeechScene()
 		delete face;
 }
 
+void BasicSpeechScene::draw(sf::RenderTarget& target, sf::RenderStates states) const
+{
+	target.draw(label, states);
+	if (state() == WritingMenuOptions || state() == Selecting)
+		for (const sf::Text& optlab : optlabs)
+			target.draw(optlab, states);
+	if (state() == ReadingPrompt)
+		target.draw(submitlabel, states);
+	if (face != nullptr)
+		target.draw(*face, states);
+}
+
 void BasicSpeechScene::draw(sf::RenderWindow* window)
 {
-	window->draw(label);
-	if (state() == WritingMenuOptions || state() == Selecting)
-		for (sf::Text& optlab : optlabs)
-			window->draw(optlab);
-	if (state() == ReadingPrompt)
-		window->draw(submitlabel);
-	if (face != nullptr)
-		face->draw(window);
 }
 
 void BasicSpeechScene::update(float dt)

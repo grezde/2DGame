@@ -19,6 +19,9 @@ public:
 	static const float CHOICE_PADDING_Y;
 	static const int CHAR_SIZE;
 
+private:
+	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
+
 public:
 	SpeechBoxScene(std::vector<std::string> data);
 	

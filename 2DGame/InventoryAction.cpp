@@ -9,10 +9,8 @@ InventoryAction::InventoryAction(std::vector<std::string> data)
 
 void InventoryAction::trigger()
 {
-	;;;
 	int count = 1;
 	if (data.size() == 2)
 		std::istringstream(data[1]) >> count;
 	Inventory::addToInventory(data[0], count);
-	;;;
 }

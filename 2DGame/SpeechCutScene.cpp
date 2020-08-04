@@ -20,16 +20,6 @@ SpeechCutScene::SpeechCutScene(std::string filename)
 	stylePromptText(submitlabel);
 }
 
-void SpeechCutScene::draw(sf::RenderWindow* window)
-{
-	BasicSpeechScene::draw(window);
-}
-
-void SpeechCutScene::update(float dt)
-{
-	BasicSpeechScene::update(dt);
-}
-
 void SpeechCutScene::styleDisplayText(sf::Text& t)
 {
 	label.setFont(*Globals::font);

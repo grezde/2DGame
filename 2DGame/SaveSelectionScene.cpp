@@ -4,6 +4,12 @@
 #include "Globals.h"
 #include "WalkingScene.h"
 
+void SaveSelectionScene::draw(sf::RenderTarget& target, sf::RenderStates states) const
+{
+	target.draw(backSpr, states);
+	target.draw(bs, states);
+}
+
 SaveSelectionScene::SaveSelectionScene()
 	: bs(this)
 {
@@ -14,8 +20,6 @@ SaveSelectionScene::SaveSelectionScene()
 
 void SaveSelectionScene::draw(sf::RenderWindow* window)
 {
-	window->draw(backSpr);
-	bs.draw(window);
 }
 
 void SaveSelectionScene::update(float dt)

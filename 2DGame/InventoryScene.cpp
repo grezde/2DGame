@@ -40,6 +40,21 @@ void InventoryScene::setSelected(int newsel)
 	}
 }
 
+void InventoryScene::draw(sf::RenderTarget& target, sf::RenderStates states) const
+{
+	target.draw(temp, states);
+	target.draw(outline, states);
+	target.draw(inside, states);
+	target.draw(description, states);
+	for (int i = 0; i < labels.size(); i++)
+		if (labels[i].getString()[4] != '-' || i == selected)
+			target.draw(labels[i], states);
+	for (const sf::Text& label : decoration)
+		target.draw(label, states);
+	for (const sf::Text& label : stats)
+		target.draw(label, states);
+}
+
 InventoryScene::InventoryScene()
 {
 	temp.setFillColor(sf::Color::White);
@@ -73,17 +88,7 @@ InventoryScene::InventoryScene()
 
 void InventoryScene::draw(sf::RenderWindow* window)
 {
-	window->draw(temp);
-	window->draw(outline);
-	window->draw(inside);
-	window->draw(description);
-	for (int i = 0; i < labels.size(); i++)
-		if(labels[i].getString()[4] != '-' || i == selected)
-			window->draw(labels[i]);
-	for (sf::Text& label : decoration)
-		window->draw(label);
-	for (sf::Text& label : stats)
-		window->draw(label);
+	
 }
 
 void InventoryScene::update(float dt)

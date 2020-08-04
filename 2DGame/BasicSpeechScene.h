@@ -24,11 +24,14 @@ protected:
 
 	Face* face = nullptr;
 
+protected:
+	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
+
 public:
 	BasicSpeechScene(std::vector<std::string> lines);
 	BasicSpeechScene(std::string sequenceFilename);
 	~BasicSpeechScene();
-
+	
 	virtual void draw(sf::RenderWindow* window) override;
 	virtual void update(float dt) override;
 	virtual void onTextEntered(char character) override;
@@ -38,5 +41,6 @@ public:
 	virtual void stylePromptText(sf::Text& t) = 0;
 	virtual void styleFace(Face& face) = 0;
 	virtual void onFinished() = 0;
+
 };
 

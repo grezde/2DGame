@@ -24,6 +24,9 @@ private:
 	sf::Sprite backSpr;
 	MainMenuButtonSet bs;
 
+private:
+	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
+
 public:
 	MenuScene();
 	~MenuScene();

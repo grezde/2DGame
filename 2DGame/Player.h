@@ -29,6 +29,7 @@ public:
 	static const float EMOTE_SCALE;
 
 private:
+	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 	void setTexCoords(int i, int j);
 
 public:

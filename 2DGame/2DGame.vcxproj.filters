@@ -236,5 +236,8 @@
     <ClInclude Include="InventoryAction.h">
       <Filter>Header Files\Walking\Actions</Filter>
     </ClInclude>
+    <ClInclude Include="GameElement.h">
+      <Filter>Header Files\Base</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

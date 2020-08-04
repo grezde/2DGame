@@ -14,6 +14,9 @@ private:
 	Player* p;
 	Room* r;
 
+private:
+	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
+
 public:
 	WalkingScene(std::string roomName);
 	~WalkingScene();

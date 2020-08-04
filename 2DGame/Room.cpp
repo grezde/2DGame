@@ -204,19 +204,19 @@ sf::Vector2f Room::getPosOnScreen(sf::Vector2f pos)
 	return screen;
 }
 
-void Room::drawBackground(sf::RenderWindow* window)
+void Room::drawBackground(sf::RenderTarget& target, sf::RenderStates states) const
 {
-	window->draw(spr);
+	target.draw(spr, states);
 	for (auto type : types)
 		for (auto action : type.actions)
-			action->drawBackground(window);
+			action->drawBackground(target, states);
 }
 
-void Room::drawForeground(sf::RenderWindow* window)
+void Room::drawForeground(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	for (auto type : types)
 		for (auto action : type.actions)
-			action->drawForeground(window);
+			action->drawForeground(target, states);
 }
 
 void Room::update(float dt)

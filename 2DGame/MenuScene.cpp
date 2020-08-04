@@ -6,6 +6,12 @@
 #include "Save.h"
 #include "SpeechCutScenes.h"
 
+void MenuScene::draw(sf::RenderTarget& target, sf::RenderStates states) const
+{
+	target.draw(backSpr, states);
+	target.draw(bs, states);
+}
+
 MenuScene::MenuScene()
 	: bs(this)
 {
@@ -21,8 +27,6 @@ MenuScene::~MenuScene()
 
 void MenuScene::draw(sf::RenderWindow* window)
 {
-	window->draw(backSpr);
-	bs.draw(window);
 }
 
 void MenuScene::update(float dt)

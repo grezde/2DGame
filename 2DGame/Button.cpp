@@ -64,12 +64,16 @@ Button::Button(std::string text, sf::FloatRect position)
 	remake();
 }
 
+void Button::draw(sf::RenderTarget& target, sf::RenderStates states) const
+{
+	target.draw(center, states);
+	target.draw(left, states);
+	target.draw(right, states);
+	target.draw(label, states);
+}
+
 void Button::draw(sf::RenderWindow* window)
 {
-	window->draw(center);
-	window->draw(left);
-	window->draw(right);
-	window->draw(label);
 }
 
 void Button::setSelected(bool selected)

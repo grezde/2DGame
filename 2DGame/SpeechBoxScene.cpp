@@ -27,10 +27,14 @@ SpeechBoxScene::SpeechBoxScene(std::vector<std::string> data)
 	styleDisplayText(label);
 }
 
+void SpeechBoxScene::draw(sf::RenderTarget& target, sf::RenderStates states) const
+{
+	target.draw(boxSpr, states);
+	BasicSpeechScene::draw(target, states);
+}
+
 void SpeechBoxScene::draw(sf::RenderWindow* window)
 {
-	window->draw(boxSpr);
-	BasicSpeechScene::draw(window);
 }
 
 void SpeechBoxScene::update(float dt)

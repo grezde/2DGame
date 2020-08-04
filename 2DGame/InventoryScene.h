@@ -23,6 +23,8 @@ private:
 	sf::Text createLabel(bool big);
 	void setSelected(int newsel);
 
+	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
+
 public:
 	InventoryScene();
 

@@ -1,11 +1,12 @@
 #pragma once
-#include <SFML/Graphics.hpp>
 #include <fstream>
+#include "GameElement.h"
 
 class Room;
 class Player;
 
 class Action
+	: public TwoStateGameElement
 {
 protected:
 	Room* room;
@@ -26,9 +27,9 @@ public:
 	virtual void init() {};
 	virtual void postinit() {};
 
-	virtual void drawBackground(sf::RenderWindow* window) {};
-	virtual void drawForeground(sf::RenderWindow* window) {};
-	virtual void update(float dt) {};
+	virtual void drawBackground(sf::RenderTarget& target, sf::RenderStates states) const {}
+	virtual void drawForeground(sf::RenderTarget& target, sf::RenderStates states) const {}
+	virtual void update(float dt) {}
 
 	virtual void trigger() {};
 

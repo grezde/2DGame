@@ -77,8 +77,10 @@ void Game::run(Scene* initialScene)
         }
 
         window->clear();
-        for (auto scene : scenes)
+        for (auto scene : scenes) {
             scene->draw(window);
+            window->draw(*scene);
+        }
         window->display();
     }
 }

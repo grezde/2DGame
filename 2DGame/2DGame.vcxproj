@@ -200,6 +200,7 @@
     <ClInclude Include="ConditionAction.h" />
     <ClInclude Include="Face.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GameElement.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="Inventory.h" />
     <ClInclude Include="InventoryAction.h" />

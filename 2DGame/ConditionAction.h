@@ -25,8 +25,8 @@ public:
 	void preinit();
 	void init();
 	void postinit();
-	void drawBackground(sf::RenderWindow* window);
-	void drawForeground(sf::RenderWindow* window);
+	virtual void drawBackground(sf::RenderTarget& target, sf::RenderStates states) const;
+	virtual void drawForeground(sf::RenderTarget& target, sf::RenderStates states) const;
 	void trigger();
 	void hlPointMoved();
 	void reinitScene();

@@ -39,7 +39,6 @@ void Face::setActive(bool a)
 
 void Face::draw(sf::RenderWindow* window)
 {
-	window->draw(spr);
 }
 
 void Face::update(float dt)
@@ -54,4 +53,9 @@ void Face::update(float dt)
 			i = 0;
 		setDrawing(i);
 	}
+}
+
+void Face::draw(sf::RenderTarget& target, sf::RenderStates states) const
+{
+	target.draw(spr, states);
 }

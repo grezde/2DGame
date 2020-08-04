@@ -26,8 +26,12 @@ ButtonSet::ButtonSet(std::vector<std::string> options, sf::FloatRect bounds)
 
 void ButtonSet::draw(sf::RenderWindow* window)
 {
-	for (Button& b : buttons)
-		b.draw(window);
+}
+
+void ButtonSet::draw(sf::RenderTarget& target, sf::RenderStates states) const
+{
+	for (const Button& b : buttons)
+		target.draw(b, states);
 }
 
 void ButtonSet::update(float dt)

@@ -7,7 +7,8 @@
 
 class Player;
 
-class Room
+class Room 
+	: public TwoStateGameElement
 {
 public:
 
@@ -58,5 +59,7 @@ public:
 	inline std::string filepath() { return roomPath; }
 	inline std::string name() { return roomName; }
 
+	virtual void drawForeground(sf::RenderTarget& target, sf::RenderStates states) const override;
+	virtual void drawBackground(sf::RenderTarget& target, sf::RenderStates states) const override;
 };
 

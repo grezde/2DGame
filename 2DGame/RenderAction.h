@@ -17,8 +17,8 @@ public:
 	~RenderAction();
 
 	void addLocation(int x, int y);
-	void drawBackground(sf::RenderWindow* window);
-	void drawForeground(sf::RenderWindow* window);
+	virtual void drawBackground(sf::RenderTarget& target, sf::RenderStates states) const;
+	virtual void drawForeground(sf::RenderTarget& target, sf::RenderStates states) const;
 	void hlPointMoved();
 
 };

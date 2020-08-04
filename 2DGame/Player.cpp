@@ -44,27 +44,24 @@ void Player::setEmote(int number)
 {
 	if(number != 0)
 		emoteNumber = number;
+	int x = (emoteNumber - 1) % 2;
+	int y = (emoteNumber - 1) / 2;
+	emoteSpr.setTextureRect(sf::IntRect(
+		x * emoteTex.getSize().x / 2,
+		y * emoteTex.getSize().y / 2,
+		emoteTex.getSize().x / 2,
+		emoteTex.getSize().y / 2
+	));
 }
 
 void Player::draw(sf::RenderWindow* window)
 {
-	window->draw(spr);
-	if (emoteNumber != 0) {
-		int x = (emoteNumber - 1) % 2;
-		int y = (emoteNumber - 1) / 2;
-		emoteSpr.setTextureRect(sf::IntRect(
-			x * emoteTex.getSize().x / 2,
-			y * emoteTex.getSize().y / 2,
-			emoteTex.getSize().x / 2,
-			emoteTex.getSize().y / 2
-		));
-		window->draw(emoteSpr);
-		emoteNumber = 0;
-	}
+	
 }
 
 void Player::update(float dt)
 {
+	emoteNumber = 0;
 	float dx = 0, dy = 0;
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) || sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 		dx -= 1.0f;
@@ -114,6 +111,14 @@ void Player::update(float dt)
 	room->setCenterPosition(pos);
 	spr.setPosition(room->getPosOnScreen(pos));
 	emoteSpr.setPosition(spr.getPosition() + sf::Vector2f(0, - float(tex.getSize().y) * SCALE / 4));
+}
+
+void Player::draw(sf::RenderTarget& target, sf::RenderStates states) const
+{
+	target.draw(spr, states);
+	if (emoteNumber != 0) {
+		target.draw(emoteSpr, states);
+	}
 }
 
 

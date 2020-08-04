@@ -47,7 +47,7 @@ public:
 	SpeechManager(std::string sequenceFilename);
 	void updateState(float dt);
 
-	inline State state() { return s; }
+	inline State state() const { return s; }
 	std::string displayText();
 	
 	int numberOfOptions();

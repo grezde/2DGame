@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 
 class Button
+	: public sf::Drawable
 {
 private:
 	static sf::Texture* texture;
@@ -26,6 +27,7 @@ public:
 	Button();
 	Button(std::string text, sf::FloatRect position);
 
+	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 	void draw(sf::RenderWindow* window);
 
 	void setSelected(bool selected);

@@ -30,20 +30,20 @@ void RenderAction::addLocation(int x, int y)
 	igPos.push_back(sf::Vector2f(x, y+1));
 }
 
-void RenderAction::drawBackground(sf::RenderWindow* window)
+void RenderAction::drawBackground(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	if (!back)
 		return;
-	for (auto& sp : sprites)
-		window->draw(sp);
+	for (const sf::Sprite& sp : sprites)
+		target.draw(sp, states);
 }
 
-void RenderAction::drawForeground(sf::RenderWindow* window)
+void RenderAction::drawForeground(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	if (back)
 		return;
-	for (auto& sp : sprites)
-		window->draw(sp);
+	for (const sf::Sprite& sp : sprites)
+		target.draw(sp, states);
 }
 
 void RenderAction::hlPointMoved()

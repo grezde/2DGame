@@ -55,16 +55,16 @@ void ConditionAction::postinit()
 		p.second->postinit();
 }
 
-void ConditionAction::drawBackground(sf::RenderWindow* window)
+void ConditionAction::drawBackground(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	if (curent != nullptr)
-		curent->drawBackground(window);
+		curent->drawBackground(target, states);
 }
 
-void ConditionAction::drawForeground(sf::RenderWindow* window)
+void ConditionAction::drawForeground(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	if (curent != nullptr)
-		curent->drawForeground(window);
+		curent->drawForeground(target, states);
 }
 
 void ConditionAction::trigger()
