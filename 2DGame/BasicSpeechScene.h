@@ -1,10 +1,10 @@
 #pragma once
-#include "Scene.h"
+#include "SceneScaling.h"
 #include "SpeechManager.h"
 #include "Face.h"
 
 class BasicSpeechScene
-	: public Scene, public SpeechManager
+	: public VideoLikeScene, public SpeechManager
 {
 public:
 	static const float INTERVAL;

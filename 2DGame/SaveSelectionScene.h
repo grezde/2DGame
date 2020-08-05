@@ -1,5 +1,5 @@
 #pragma once
-#include "Scene.h"
+#include "SceneScaling.h"
 #include "ButtonSet.h"
 
 class SaveSelectionScene;
@@ -22,8 +22,8 @@ public:
 	virtual void finsihedSelection(int selected);
 };
 
-class SaveSelectionScene :
-	public Scene
+class SaveSelectionScene 
+	: public VideoLikeScene
 {
 private:
 	bool stoppedPressing = false;

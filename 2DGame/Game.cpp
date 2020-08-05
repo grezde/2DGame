@@ -1,5 +1,6 @@
 #include "Game.h"
 #include "Globals.h"
+#include <iostream>
 
 Game* Game::curentGame = nullptr;
 
@@ -17,6 +18,8 @@ void Game::run(Scene* initialScene)
     scenes.push_back(initialScene);
     initialScene->init();
 
+    float t = 0, n=0;
+
     sf::Clock clock;
     sf::Time previous = clock.getElapsedTime();
     while (window->isOpen())
@@ -30,14 +33,23 @@ void Game::run(Scene* initialScene)
                 scenes.back()->onKeyPress(event.key.code);
             if (event.type == sf::Event::TextEntered)
                 scenes.back()->onTextEntered(event.text.unicode);
-            if (event.type == sf::Event::MouseButtonPressed) {
-                scenes.back()->onMousePress(event.mouseButton);
-            }
+            if (event.type == sf::Event::MouseButtonPressed)
+                scenes.back()->onMousePress(event.mouseButton.button, { event.mouseButton.x, event.mouseButton.y });
+            if (event.type == sf::Event::Resized)
+                scenes.back()->onWindowResize(sf::Vector2i(event.size.width, event.size.height));
         }
         
         sf::Time current = clock.getElapsedTime();
         float dt = float((current - previous).asMicroseconds()) / 1e6;
         previous = current;
+        t += dt;
+        n++;
+        if (t > 1.0f) {
+            t -= 1.0f;
+            std::cout << n << "FPS\n";
+            n = 0;
+        }
+
         if (updateAll) {
             updateAll = false;
             for (int i = scenes.size() - 1; i >= 0; i--)
@@ -53,22 +65,23 @@ void Game::run(Scene* initialScene)
         }
 
         Scene* nextScene = scenes.back()->nextScene();
+        if (nextScene == nullptr)
+            nextScene = next;
         if (scenes.back()->shouldQuit() || exit) {
             delete scenes.back();
             scenes.pop_back();
-            if(!scenes.empty())
+            if (!scenes.empty()) {
                 scenes.back()->reinit();
+                scenes.back()->onWindowResize(sf::Vector2i(window->getSize().x, window->getSize().y));
+            }
             exit = false;
         }
         if (nextScene != nullptr) {
             if (!scenes.empty())
                 scenes.back()->nextScene(nullptr);
             scenes.push_back(nextScene);
+            nextScene->onWindowResize(sf::Vector2i(window->getSize().x, window->getSize().y));
             nextScene->init();
-        }
-        if (next != nullptr) {
-            scenes.push_back(next);
-            next->init();
             next = nullptr;
         }
         if (scenes.size() == 0) {
@@ -78,7 +91,7 @@ void Game::run(Scene* initialScene)
 
         window->clear();
         for (auto scene : scenes)
-            window->draw(*scene);
+            window->draw(*scene, scene->getTransform());
         window->display();
     }
 }

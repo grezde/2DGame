@@ -147,6 +147,9 @@
     <ClCompile Include="InventoryAction.cpp">
       <Filter>Source Files\Walking\Actions</Filter>
     </ClCompile>
+    <ClCompile Include="SceneScaling.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="RenderAction.h">
@@ -238,6 +241,9 @@
     </ClInclude>
     <ClInclude Include="GameElement.h">
       <Filter>Header Files\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneScaling.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

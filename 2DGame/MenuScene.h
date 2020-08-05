@@ -1,5 +1,5 @@
 #pragma once
-#include "Scene.h"
+#include "SceneScaling.h"
 #include "ButtonSet.h"
 
 class MenuScene;
@@ -17,7 +17,7 @@ public:
 };
 
 class MenuScene
-	: public Scene
+	: public VideoLikeScene
 {
 private:
 	sf::Texture backTex;

@@ -1,10 +1,10 @@
 #pragma once
-#include "Scene.h"
+#include "SceneScaling.h"
 #include <string>
 #include "Player.h"
 #include "Room.h"
 
-class WalkingScene : public Scene
+class WalkingScene : public VideoLikeScene
 {
 public:
 	static const float SCALE;

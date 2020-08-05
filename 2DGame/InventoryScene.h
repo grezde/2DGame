@@ -1,8 +1,8 @@
 #pragma once
-#include "Scene.h"
+#include "SceneScaling.h"
 
-class InventoryScene :
-	public Scene
+class InventoryScene 
+	: public VideoLikeScene
 {
 private:
 	sf::Texture backtex;
@@ -29,6 +29,6 @@ public:
 
 	virtual void update(float dt) override;
 	virtual void onKeyPress(sf::Keyboard::Key key) override;
-	virtual void onMousePress(sf::Event::MouseButtonEvent mev) override;
+
 };
 

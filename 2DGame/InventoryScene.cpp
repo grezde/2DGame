@@ -63,6 +63,8 @@ InventoryScene::InventoryScene()
 		labels[i].setPosition(120, 140 + 40 * i);
 		labels[i].setString(strings[i]);
 	}
+	description = createLabel(false);
+	description.setPosition(400, 265);
 	setSelected(0);
 }
 
@@ -87,9 +89,4 @@ void InventoryScene::onKeyPress(sf::Keyboard::Key key)
 		exit = true;
 		next = nullptr;
 	}
-}
-
-void InventoryScene::onMousePress(sf::Event::MouseButtonEvent mev)
-{
-	std::cout << mev.x << " " << mev.y << "\n";
 }
