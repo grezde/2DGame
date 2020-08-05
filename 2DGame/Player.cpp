@@ -1,5 +1,6 @@
 #include "Player.h"
 #include "Room.h"
+#include "Globals.h"
 
 const float Player::SCALE = 1.6f;
 const float Player::STEPSPS = 5.0f;
@@ -21,6 +22,8 @@ void Player::setTexCoords(int i, int j)
 	rect.height = tex.getSize().y / 4;
 	rect.width = tex.getSize().x / 4;
 	spr.setTextureRect(rect);
+	if(i != -1)
+		Globals::save->seti("current_player_rot", i);
 }
 
 Player::Player(Room* room)
@@ -29,13 +32,22 @@ Player::Player(Room* room)
 	spr.setTexture(tex);
 	spr.setScale(SCALE, SCALE);
 	spr.setOrigin(tex.getSize().x / 8, tex.getSize().y / 4);
-	setTexCoords(0, 0);
-
+	
 	emoteTex.loadFromFile("Files/global/emotes.png");
 	emoteSpr.setTexture(emoteTex);
 	setEmote(4);
 	emoteSpr.setScale(EMOTE_SCALE, EMOTE_SCALE);
 	emoteSpr.setOrigin(emoteTex.getSize().x / 4, emoteTex.getSize().y / 2);
+
+	int toLoad = Globals::save->geti("coords_from_save");
+	if (toLoad) {
+		Globals::save->remi("coords_from_save");
+		float ix = Globals::save->geti("current_player_x");
+		float iy = Globals::save->geti("current_player_y");
+		int ii = Globals::save->geti("current_player_rot");
+		pos = sf::Vector2f(ix / 100.0f, iy / 100.0f);
+		setTexCoords(ii, 0);
+	}
 
 	this->room = room;
 }
@@ -106,6 +118,9 @@ void Player::update(float dt)
 	room->setCenterPosition(pos);
 	spr.setPosition(room->getPosOnScreen(pos));
 	emoteSpr.setPosition(spr.getPosition() + sf::Vector2f(0, - float(tex.getSize().y) * SCALE / 4));
+
+	Globals::save->seti("current_player_x", pos.x * 100.0f);
+	Globals::save->seti("current_player_y", pos.y * 100.0f);
 }
 
 void Player::draw(sf::RenderTarget& target, sf::RenderStates states) const

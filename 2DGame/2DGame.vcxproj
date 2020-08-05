@@ -191,7 +191,6 @@
     <ClCompile Include="SpeechContainer.cpp" />
     <ClCompile Include="SpeechCutScene.cpp" />
     <ClCompile Include="SpeechManager.cpp" />
-    <ClCompile Include="StartAction.cpp" />
     <ClCompile Include="TeleportAction.cpp" />
     <ClCompile Include="VariableAction.cpp" />
     <ClCompile Include="WalkingScene.cpp" />
@@ -227,7 +226,6 @@
     <ClInclude Include="SpeechCutScene.h" />
     <ClInclude Include="SpeechCutScenes.h" />
     <ClInclude Include="SpeechManager.h" />
-    <ClInclude Include="StartAction.h" />
     <ClInclude Include="TeleportAction.h" />
     <ClInclude Include="VariableAction.h" />
     <ClInclude Include="WalkingScene.h" />

@@ -36,7 +36,7 @@ void MenuScene::onKeyPress(sf::Keyboard::Key key)
 }
 
 MainMenuButtonSet::MainMenuButtonSet(MenuScene* parent)
-	: parent(parent), ButtonSet({ "Continue", "New Game", "Quit" }, sf::FloatRect(350, 200, 350, 300))
+	: parent(parent), ButtonSet({ "Continue", "New Game", "Quit" }, sf::FloatRect(225, 175, 350, 300))
 {
 	if (Save::getSaves().size() == 0) {
 		buttons[0].setEnabled(false);

@@ -7,7 +7,7 @@ SavePopupScene::SavePopupScene(std::string name)
 	
 	text2.setFont(*Globals::font);
 	text2.setCharacterSize(30);
-	text2.setPosition(20, 70);
+	text2.setPosition(20, 80);
 	text2.setFillColor(sf::Color::Black);
 	text2.setString("saved.");
 	highlighted.setFont(*Globals::font);

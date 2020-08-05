@@ -16,8 +16,6 @@ Action* Action::getActionClass(char code, std::vector<std::string> data)
 		return new InteractAction(data);
 	if (code == 't')
 		return new TeleportAction(data);
-	if (code == 's')
-		return new StartAction(data);
 	if (code == 'b')
 		return new ConditionAction(data);
 	if (code == 'v')

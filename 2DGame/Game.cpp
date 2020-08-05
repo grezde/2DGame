@@ -52,6 +52,10 @@ void Game::run(Scene* initialScene)
             for (int j = scenes.size()-1; j >= 0; j--)
                 scenes[j]->update(dt);
         }
+        else
+            scenes.back()->update(dt);
+        for (Scene* sc : weakscenes)
+            sc->update(dt);
         
         Scene* nextScene = scenes.back()->nextScene();
         if (nextScene == nullptr)
@@ -77,8 +81,8 @@ void Game::run(Scene* initialScene)
             }
             for (int i = 0; i < weakscenes.size(); i++)
                 if (weakscenes[i]->shouldQuit()) {
-                    delete scenes[i];
-                    scenes.erase(scenes.begin() + i);
+                    delete weakscenes[i];
+                    weakscenes.erase(weakscenes.begin() + i);
                     i = 0;
                 }
         }

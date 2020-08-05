@@ -138,6 +138,7 @@ void Save::loadToFile()
 	modifications = false;
 	Game::curent()->setNextScene(false, new SavePopupScene(name));
 
+
 	std::ofstream fout(filepath + "text.data");
 	for (auto ps : strings)
 		fout << ps.first << "=" << ps.second << "\n";

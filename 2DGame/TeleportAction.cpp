@@ -3,10 +3,9 @@
 #include "Game.h"
 #include "WalkingScene.h"
 
-const float TeleportAction::TIME_INTERVAL = 0.1f;
+const float TeleportAction::TIME_INTERVAL = 0.2f;
 const sf::Vector2f TeleportAction::OFFSET_ON_TELEPORT = sf::Vector2f(0.5f, 0.8f);
 std::string TeleportAction::lastTeleport = "";
-bool TeleportAction::teleported = false;
 
 TeleportAction::TeleportAction(std::vector<std::string> data)
 	: Action(data)
@@ -20,9 +19,9 @@ TeleportAction::TeleportAction(std::vector<std::string> data)
 		dloc *= -1;
 }
 
-void TeleportAction::preinit()
+TeleportAction::~TeleportAction()
 {
-	teleported = false;
+	lastTeleport = "";
 }
 
 void TeleportAction::init()
@@ -31,8 +30,8 @@ void TeleportAction::init()
 		return;
 
 	if (lastTeleport == nextRoom) {
+		//StartAction::stopActing();
 		player->setPosition(sf::Vector2f(locations.back().x, locations.back().y) + OFFSET_ON_TELEPORT);
-		teleported = true;
 	}
 }
 

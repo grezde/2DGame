@@ -1,3 +1,4 @@
+current_room=hol_etaj_3
 inventory_slot_0=lighter_bic
 inventory_slot_1=pack_dunhil_blue
 inventory_slot_2=lighter_cheap
@@ -5,4 +6,3 @@ inventory_slot_3=pack_malboro_red
 inventory_slot_4=worn_scarf
 name=Cristian
 nickname=Cristi
-surname=Ardeleanu

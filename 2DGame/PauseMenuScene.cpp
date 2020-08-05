@@ -55,7 +55,6 @@ void PauseMenuBS::finsihedSelection(int selected)
 	}
 	else if (selected == 1) {
 		Globals::save->loadToFile();
-		//make save popup
 	}
 	else {
 		if (!Globals::save->wasModified()) {

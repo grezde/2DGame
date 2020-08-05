@@ -9,7 +9,6 @@ private:
 	std::string nextRoom;
 
 	static std::string lastTeleport;
-	static bool teleported;
 
 	float countdown = 0;
 	static const float TIME_INTERVAL;
@@ -17,12 +16,8 @@ private:
 
 public:
 	TeleportAction(std::vector<std::string> data);
+	~TeleportAction();
 
-	static bool teleportedThisScene() { return teleported; }
-
-public:
-
-	void preinit();
 	void init();
 	void addLocation(int x, int y);
 	void update(float dt);

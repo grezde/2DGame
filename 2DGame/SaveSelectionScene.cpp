@@ -60,5 +60,7 @@ void SaveSelectionBS::finsihedSelection(int selected)
 	if (Globals::save != nullptr)
 		delete Globals::save;
 	Globals::save = new Save(Save::getSaves().at(selected), true);
-	Game::curent()->setNextScene(true, new WalkingScene("johnson_classroom"));
+	Globals::save->seti("coords_from_save", 1);
+	std::string lastRoom = Globals::save->gets("current_room");
+	Game::curent()->setNextScene(true, new WalkingScene(lastRoom));
 }

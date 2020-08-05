@@ -75,9 +75,6 @@
     <ClCompile Include="Game.cpp">
       <Filter>Source Files\Base</Filter>
     </ClCompile>
-    <ClCompile Include="StartAction.cpp">
-      <Filter>Source Files\Walking\Actions</Filter>
-    </ClCompile>
     <ClCompile Include="ConditionAction.cpp">
       <Filter>Source Files\Walking\Actions</Filter>
     </ClCompile>
@@ -172,9 +169,6 @@
     </ClInclude>
     <ClInclude Include="Game.h">
       <Filter>Header Files\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="StartAction.h">
-      <Filter>Header Files\Walking\Actions</Filter>
     </ClInclude>
     <ClInclude Include="ConditionAction.h">
       <Filter>Header Files\Walking\Actions</Filter>

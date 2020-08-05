@@ -2,6 +2,7 @@
 #include <fstream>
 #include "InventoryScene.h"
 #include "PauseMenuScene.h"
+#include "Globals.h"
 
 const float WalkingScene::SCALE = 5.0f;
 WalkingScene* WalkingScene::curentWS = nullptr;
@@ -15,6 +16,7 @@ void WalkingScene::draw(sf::RenderTarget& target, sf::RenderStates states) const
 
 WalkingScene::WalkingScene(std::string roomName)
 {
+	Globals::save->sets("current_room", roomName);
 	r = new Room(roomName);
 	p = new Player(r);
 	r->setPlayer(p);
