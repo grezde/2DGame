@@ -76,14 +76,20 @@ void ConditionAction::trigger()
 
 void ConditionAction::hlPointMoved()
 {
-	if (curent != nullptr)
-		curent->hlPointMoved();
+	for (auto p : actions)
+		p.second->hlPointMoved();
 }
 
 void ConditionAction::reinitScene()
 {
 	for (auto p : actions)
 		p.second->reinitScene();
+}
+
+void ConditionAction::onKeyPress(sf::Keyboard::Key k)
+{
+	if(curent != nullptr)
+		curent->onKeyPress(k);
 }
 
 void ConditionAction::onRead(std::istream& fin)

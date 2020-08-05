@@ -30,6 +30,7 @@ public:
 	void trigger();
 	void hlPointMoved();
 	void reinitScene();
+	void onKeyPress(sf::Keyboard::Key k);
 	
 };
 

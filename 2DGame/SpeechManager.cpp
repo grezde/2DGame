@@ -48,7 +48,7 @@ void SpeechManager::updateState(float dt)
 		return;
 
 	accum += dt;
-	while (accum > interval) {
+	if (accum > interval) {
 		accum -= interval;
 
 		if (s == Writing) {

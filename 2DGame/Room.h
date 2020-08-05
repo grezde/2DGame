@@ -48,11 +48,9 @@ public:
 	void setCenterPosition(sf::Vector2f pos);
 	sf::Vector2f getPosOnScreen(sf::Vector2f pos);
 
-	void drawBackground(sf::RenderWindow* window);
-	void drawForeground(sf::RenderWindow* window);
 	void update(float dt);
-
 	void reinitScene();
+	void onKeyPress(sf::Keyboard::Key k);
 
 	inline int width()  { return rWidth;  };
 	inline int height() { return rHeight; };

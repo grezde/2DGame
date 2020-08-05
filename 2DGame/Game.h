@@ -13,6 +13,7 @@ private:
 	bool exit = false;
 	Scene* next = nullptr;
 	bool updateAll = false;
+	bool clearAll = false;
 
 public: 
 	static const int HEIGHT = 600;
@@ -23,6 +24,7 @@ public:
 	void run(Scene* initialScene);
 	void setNextScene(bool shouldExit, Scene* nextScene = nullptr);
 	inline void updateAllScenes() { updateAll = true; };
+	inline void clearAllScenes() { clearAll = true; }
 	inline static Game* curent() { return curentGame; }
 	~Game();
 };

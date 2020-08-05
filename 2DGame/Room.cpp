@@ -232,3 +232,10 @@ void Room::reinitScene()
 		for (Action* a : t.actions)
 			a->reinitScene();
 }
+
+void Room::onKeyPress(sf::Keyboard::Key k)
+{
+	for (Type& t : types)
+		for (Action* a : t.actions)
+			a->onKeyPress(k);
+}

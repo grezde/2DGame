@@ -2,7 +2,6 @@
 #include <iostream>
 
 const float ButtonSet::PRESS_INTERVAL = 1.0f;
-float ButtonSet::sincePress = 2.0f;
 
 void ButtonSet::select(int index)
 {
@@ -30,38 +29,29 @@ void ButtonSet::draw(sf::RenderTarget& target, sf::RenderStates states) const
 		target.draw(b, states);
 }
 
-void ButtonSet::update(float dt)
+void ButtonSet::moveSelection(int di)
+{
+	int secindex = selindex + di;
+	while (secindex >= 0 && secindex <= buttons.size() - 1 && !buttons[secindex].isEnabled())
+		secindex += di;
+	if (secindex >= 0 && secindex <= buttons.size() - 1) {
+		buttons[selindex].setSelected(false);
+		buttons[secindex].setSelected(true);
+		selindex = secindex;
+	}
+}
+
+void ButtonSet::onKeyPress(sf::Keyboard::Key key)
 {
 	if (selindex == -1)
 		return;
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z) || sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
+	if(key == sf::Keyboard::Z || key == sf::Keyboard::Enter)
 		finsihedSelection(selindex);
-		return;
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) || sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-		int secindex = selindex-1;
-		while (secindex >= 0 && !buttons[secindex].isEnabled())
-			secindex--;
-		if (secindex >= 0 && sincePress > PRESS_INTERVAL) {
-			buttons[selindex].setSelected(false);
-			buttons[selindex - 1].setSelected(true);
-			selindex--;
-		}
-		sincePress = 0;
-	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) || sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
-		int secindex = selindex + 1;
-		while (secindex <= buttons.size()-1 && !buttons[secindex].isEnabled())
-			secindex++;
-		if (sincePress > PRESS_INTERVAL && secindex <= buttons.size() - 1) {
-			buttons[selindex].setSelected(false);
-			buttons[selindex + 1].setSelected(true);
-			selindex++;
-		}
-		sincePress = 0;
-	}
-	else
-		sincePress = PRESS_INTERVAL;
-	sincePress += dt;
+
+	if (key == sf::Keyboard::W || key == sf::Keyboard::Up)
+		moveSelection(-1);
+
+	if (key == sf::Keyboard::S || key == sf::Keyboard::Down)
+		moveSelection(1);
 }

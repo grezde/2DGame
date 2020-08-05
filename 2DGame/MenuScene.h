@@ -32,6 +32,7 @@ public:
 	~MenuScene();
 
 	virtual void update(float dt) override;
+	virtual void onKeyPress(sf::Keyboard::Key key) override;
 
 	friend class MainMenuButtonSet;
 };

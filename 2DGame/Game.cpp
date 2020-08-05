@@ -35,21 +35,17 @@ void Game::run(Scene* initialScene)
                 scenes.back()->onTextEntered(event.text.unicode);
             if (event.type == sf::Event::MouseButtonPressed)
                 scenes.back()->onMousePress(event.mouseButton.button, { event.mouseButton.x, event.mouseButton.y });
-            if (event.type == sf::Event::Resized)
-                scenes.back()->onWindowResize(sf::Vector2i(event.size.width, event.size.height));
+            if (event.type == sf::Event::Resized) {
+                for(Scene* sc : scenes)
+                    sc->onWindowResize(sf::Vector2i(event.size.width, event.size.height));
+            }
         }
         
         sf::Time current = clock.getElapsedTime();
         float dt = float((current - previous).asMicroseconds()) / 1e6;
         previous = current;
-        t += dt;
-        n++;
-        if (t > 1.0f) {
-            t -= 1.0f;
-            std::cout << n << "FPS\n";
-            n = 0;
-        }
-
+        if (dt > 0.05f)
+            dt = 0;
         if (updateAll) {
             updateAll = false;
             for (int i = scenes.size() - 1; i >= 0; i--)
@@ -67,7 +63,14 @@ void Game::run(Scene* initialScene)
         Scene* nextScene = scenes.back()->nextScene();
         if (nextScene == nullptr)
             nextScene = next;
-        if (scenes.back()->shouldQuit() || exit) {
+        if (clearAll) {
+            while (!scenes.empty()) {
+                delete scenes.back();
+                scenes.pop_back();
+            }
+            clearAll = false;
+        }
+        else if (scenes.back()->shouldQuit() || exit) {
             delete scenes.back();
             scenes.pop_back();
             if (!scenes.empty()) {

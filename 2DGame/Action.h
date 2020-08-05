@@ -35,6 +35,7 @@ public:
 
 	virtual void hlPointMoved() {};
 	virtual void reinitScene() {};
+	virtual void onKeyPress(sf::Keyboard::Key key) {};
 
 private:
 	static Action* getActionClass(char code, std::vector<std::string> data);

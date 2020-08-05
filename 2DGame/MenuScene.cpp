@@ -27,7 +27,12 @@ MenuScene::~MenuScene()
 
 void MenuScene::update(float dt)
 {
-	bs.update(dt);
+
+}
+
+void MenuScene::onKeyPress(sf::Keyboard::Key key)
+{
+	bs.onKeyPress(key);
 }
 
 MainMenuButtonSet::MainMenuButtonSet(MenuScene* parent)

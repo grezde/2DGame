@@ -26,9 +26,6 @@ class SaveSelectionScene
 	: public VideoLikeScene
 {
 private:
-	bool stoppedPressing = false;
-	float sinceStart = 0;
-
 	sf::Texture backTex;
 	sf::Sprite backSpr;
 
@@ -40,7 +37,7 @@ private:
 public:
 	SaveSelectionScene();
 
-	virtual void draw(sf::RenderWindow* window);
-	virtual void update(float dt);
+	virtual void update(float dt) override;
+	virtual void onKeyPress(sf::Keyboard::Key key) override;
 };
 

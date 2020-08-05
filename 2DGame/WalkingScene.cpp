@@ -1,6 +1,7 @@
 #include "WalkingScene.h"
 #include <fstream>
 #include "InventoryScene.h"
+#include "PauseMenuScene.h"
 
 const float WalkingScene::SCALE = 5.0f;
 WalkingScene* WalkingScene::curentWS = nullptr;
@@ -47,4 +48,9 @@ void WalkingScene::onKeyPress(sf::Keyboard::Key key)
 	if (key == sf::Keyboard::C) {
 		next = new InventoryScene();
 	}
+	else if (key == sf::Keyboard::Escape) {
+		next = new PauseMenuScene();
+	}
+	else
+		r->onKeyPress(key);
 }

@@ -3,6 +3,7 @@
 #include "Game.h"
 #include "Globals.h"
 #include "WalkingScene.h"
+#include "MenuScene.h"
 
 void SaveSelectionScene::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
@@ -18,19 +19,20 @@ SaveSelectionScene::SaveSelectionScene()
 	backSpr.setScale(float(Game::WIDTH) / float(backTex.getSize().x), float(Game::HEIGHT) / float(backTex.getSize().y));
 }
 
-void SaveSelectionScene::draw(sf::RenderWindow* window)
-{
-}
 
 void SaveSelectionScene::update(float dt)
 {
-	if (!stoppedPressing) {
-		if (!(sf::Keyboard::isKeyPressed(sf::Keyboard::Z) || sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)))
-			stoppedPressing = true;
-		return;
-	}
+	//bs.update(dt);
+}
 
-	bs.update(dt);
+void SaveSelectionScene::onKeyPress(sf::Keyboard::Key key)
+{
+	if (key == sf::Keyboard::Escape) {
+		exit = true;
+		next = new MenuScene();
+	}
+	else
+		bs.onKeyPress(key);
 }
 
 std::vector<std::string> SaveSelectionBS::getSaveNames()

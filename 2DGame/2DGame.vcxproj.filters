@@ -148,7 +148,10 @@
       <Filter>Source Files\Walking\Actions</Filter>
     </ClCompile>
     <ClCompile Include="SceneScaling.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="PauseMenuScene.cpp">
+      <Filter>Source Files\Menus</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -243,6 +246,9 @@
       <Filter>Header Files\Base</Filter>
     </ClInclude>
     <ClInclude Include="SceneScaling.h">
+      <Filter>Header Files\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="PauseMenuScene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
