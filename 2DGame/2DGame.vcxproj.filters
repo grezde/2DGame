@@ -153,6 +153,12 @@
     <ClCompile Include="PauseMenuScene.cpp">
       <Filter>Source Files\Menus</Filter>
     </ClCompile>
+    <ClCompile Include="PopupScene.cpp">
+      <Filter>Source Files\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="SavePopupScene.cpp">
+      <Filter>Source Files\Saving\Save</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="RenderAction.h">
@@ -249,7 +255,13 @@
       <Filter>Header Files\Base</Filter>
     </ClInclude>
     <ClInclude Include="PauseMenuScene.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Menus</Filter>
+    </ClInclude>
+    <ClInclude Include="SavePopupScene.h">
+      <Filter>Header Files\Saving\Save</Filter>
+    </ClInclude>
+    <ClInclude Include="PopupScene.h">
+      <Filter>Header Files\Base</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

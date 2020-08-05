@@ -6,7 +6,7 @@ class Scene : public IGameElement
 protected:
 	Scene* next = nullptr;
 	bool exit = false;
-	bool updateDown = false;
+	bool updateDown;
 	sf::Transform transform;
 
 public:

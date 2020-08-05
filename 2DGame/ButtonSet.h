@@ -10,7 +10,7 @@ private:
 	int selindex;
 
 protected:
-	float buttonSpace = 0.5f;
+	float buttonSpace;
 	std::vector<Button> buttons;
 
 private:
@@ -22,7 +22,7 @@ protected:
 	void select(int index);
 
 public:
-	ButtonSet(std::vector<std::string> options, sf::FloatRect bounds);
+	ButtonSet(std::vector<std::string> options, sf::FloatRect bounds, float btnSpace = 0.5f);
 
 	void onKeyPress(sf::Keyboard::Key key);
 	virtual void finsihedSelection(int selected) = 0;

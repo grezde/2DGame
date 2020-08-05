@@ -10,6 +10,8 @@ private:
 	std::map<std::string, int> ints;
 	std::string name, filepath;
 
+	bool modifications;
+
 	static std::vector<std::string> saves;
 	static bool loadedSaves;
 
@@ -36,5 +38,6 @@ public:
 	static std::vector<std::string>& getSaves();
 
 	void loadToFile();
+	inline bool wasModified() { return modifications; }
 };
 

@@ -10,9 +10,6 @@ class SaveSelectionBS
 private:
 	SaveSelectionScene* parent;
 
-protected:
-	float buttonSpace = 0.25f;
-
 private:
 	static std::vector<std::string> getSaveNames();
 

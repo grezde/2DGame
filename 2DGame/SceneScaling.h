@@ -8,3 +8,10 @@ public:
 	virtual void onWindowResize(sf::Vector2i size) override;
 };
 
+class TopRightScene
+	: public Scene
+{
+public:
+	virtual void onWindowResize(sf::Vector2i size) override;
+};
+

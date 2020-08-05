@@ -3,6 +3,8 @@
 #include <sstream>
 #include <direct.h>
 #include <filesystem>
+#include "Game.h"
+#include "SavePopupScene.h"
 
 const int Save::MAXINT = 500;
 const int Save::MAXSAVES = 5;
@@ -18,6 +20,7 @@ std::string Save::gets(std::string n)
 
 void Save::sets(std::string n, std::string v)
 {
+	modifications = true;
 	strings[n] = v;
 }
 
@@ -30,6 +33,7 @@ void Save::rems(std::string n)
 {
 	if (strings.find(n) == strings.end())
 		return;
+	modifications = true;
 	strings.erase(n);
 }
 
@@ -42,6 +46,7 @@ int Save::geti(std::string n)
 
 void Save::seti(std::string n, int v)
 {
+	modifications = true;
 	ints[n] = v;
 }
 
@@ -54,6 +59,7 @@ void Save::remi(std::string n)
 {
 	if (ints.find(n) == ints.end())
 		return;
+	modifications = true;
 	ints.erase(n);
 }
 
@@ -68,6 +74,7 @@ std::string Save::get(std::string n)
 
 Save::Save(std::string savename, bool exists)
 {
+	modifications = false;
 	name = savename;
 	filepath = "Files/saves/" + savename + "/";
 
@@ -128,12 +135,15 @@ std::vector<std::string>& Save::getSaves()
 
 void Save::loadToFile()
 {
+	modifications = false;
+	Game::curent()->setNextScene(false, new SavePopupScene(name));
+
 	std::ofstream fout(filepath + "text.data");
 	for (auto ps : strings)
 		fout << ps.first << "=" << ps.second << "\n";
 	
 	fout.close();
-	fout.open(filepath + "numbers.data");
+	fout.open(filepath + "number.data");
 	for (auto pi : ints)
 		fout << pi.first << "=" << pi.second << "\n";
 }

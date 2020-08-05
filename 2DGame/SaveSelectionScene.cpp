@@ -47,7 +47,7 @@ std::vector<std::string> SaveSelectionBS::getSaveNames()
 }
 
 SaveSelectionBS::SaveSelectionBS(SaveSelectionScene* parent)
-	: parent(parent), ButtonSet(getSaveNames(), sf::FloatRect(50, 60, 300, 480))
+	: parent(parent), ButtonSet(getSaveNames(), sf::FloatRect(50, 60, 300, 480), 0.25f)
 {
 	for (int i = Save::getSaves().size(); i < Save::MAXSAVES; i++) {
 		buttons[i].setEnabled(false);

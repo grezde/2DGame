@@ -12,8 +12,9 @@ void ButtonSet::select(int index)
 	selindex = index;
 }
 
-ButtonSet::ButtonSet(std::vector<std::string> options, sf::FloatRect bounds)
+ButtonSet::ButtonSet(std::vector<std::string> options, sf::FloatRect bounds, float btnSpace)
 {
+	buttonSpace = btnSpace;
 	float btnh = bounds.height / float(options.size() + (options.size()-1) * buttonSpace);
 	for (int i = 0; i < options.size(); i++) {
 		sf::FloatRect btnb(bounds.left, bounds.top + (1+buttonSpace) * i * btnh, bounds.width, btnh);

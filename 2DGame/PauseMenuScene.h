@@ -16,6 +16,17 @@ public:
 	virtual void finsihedSelection(int selected) override;
 };
 
+class PauseMenuConfirmationBS
+	: public ButtonSet
+{
+private:
+	PauseMenuScene* parent;
+
+public:
+	PauseMenuConfirmationBS(PauseMenuScene* parent);
+
+	virtual void finsihedSelection(int selected) override;
+};
 
 class PauseMenuScene
 	: public VideoLikeScene
@@ -23,7 +34,11 @@ class PauseMenuScene
 private:
 	sf::Texture backtex;
 	sf::Sprite backspr;
+	
+	bool confirmation = false;
 	PauseMenuBS bs;
+	PauseMenuConfirmationBS cbs;
+	sf::Text confirmText;
 
 public:
 	PauseMenuScene();
@@ -33,5 +48,6 @@ public:
 	virtual void onKeyPress(sf::Keyboard::Key key) override;
 
 	friend class PauseMenuBS;
+	friend class PauseMenuConfirmationBS;
 };
 

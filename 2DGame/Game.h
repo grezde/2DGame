@@ -8,6 +8,7 @@ class Game
 private:
 	sf::RenderWindow* window;
 	std::vector<Scene*> scenes;
+	std::vector<Scene*> weakscenes;
 	static Game* curentGame;
 
 	bool exit = false;

@@ -6,9 +6,7 @@ Game* Game::curentGame = nullptr;
 
 Game::Game()
 {
-    window = new sf::RenderWindow(sf::VideoMode(WIDTH, HEIGHT), "Johnson INC");
-    Globals::font = new sf::Font();
-    Globals::font->loadFromFile("Files/other/FFFForward.TTF");
+    window = new sf::RenderWindow(sf::VideoMode(WIDTH, HEIGHT), "Johnson Simultator v0.1.2");
 }
 
 void Game::run(Scene* initialScene)
@@ -38,6 +36,8 @@ void Game::run(Scene* initialScene)
             if (event.type == sf::Event::Resized) {
                 for(Scene* sc : scenes)
                     sc->onWindowResize(sf::Vector2i(event.size.width, event.size.height));
+                for(Scene* sc : weakscenes)
+                    sc->onWindowResize(sf::Vector2i(event.size.width, event.size.height));
             }
         }
         
@@ -46,20 +46,13 @@ void Game::run(Scene* initialScene)
         previous = current;
         if (dt > 0.05f)
             dt = 0;
+        
         if (updateAll) {
             updateAll = false;
-            for (int i = scenes.size() - 1; i >= 0; i--)
-                scenes[i]->update(dt);
+            for (int j = scenes.size()-1; j >= 0; j--)
+                scenes[j]->update(dt);
         }
-        else if(!scenes.empty()) {
-            int i = scenes.size()-1;
-            scenes[i]->update(dt);
-            while (scenes[i]->updateBeneath() && i > 0) {
-                i--;
-                scenes[i]->update(dt);
-            }
-        }
-
+        
         Scene* nextScene = scenes.back()->nextScene();
         if (nextScene == nullptr)
             nextScene = next;
@@ -68,21 +61,35 @@ void Game::run(Scene* initialScene)
                 delete scenes.back();
                 scenes.pop_back();
             }
+            while (!weakscenes.empty()) {
+                delete weakscenes.back();
+                weakscenes.pop_back();
+            }
             clearAll = false;
         }
-        else if (scenes.back()->shouldQuit() || exit) {
-            delete scenes.back();
-            scenes.pop_back();
-            if (!scenes.empty()) {
-                scenes.back()->reinit();
-                scenes.back()->onWindowResize(sf::Vector2i(window->getSize().x, window->getSize().y));
+        else {
+            if (scenes.back()->shouldQuit() || exit) {
+                delete scenes.back();
+                scenes.pop_back();
+                if (!scenes.empty())
+                    scenes.back()->reinit();
+                exit = false;
             }
-            exit = false;
+            for (int i = 0; i < weakscenes.size(); i++)
+                if (weakscenes[i]->shouldQuit()) {
+                    delete scenes[i];
+                    scenes.erase(scenes.begin() + i);
+                    i = 0;
+                }
         }
         if (nextScene != nullptr) {
-            if (!scenes.empty())
-                scenes.back()->nextScene(nullptr);
-            scenes.push_back(nextScene);
+            if (nextScene->updateBeneath())
+                weakscenes.push_back(nextScene);
+            else {
+                if (!scenes.empty())
+                    scenes.back()->nextScene(nullptr);
+                scenes.push_back(nextScene);
+            }
             nextScene->onWindowResize(sf::Vector2i(window->getSize().x, window->getSize().y));
             nextScene->init();
             next = nullptr;
@@ -93,7 +100,9 @@ void Game::run(Scene* initialScene)
         }
 
         window->clear();
-        for (auto scene : scenes)
+        for (Scene* scene : scenes)
+            window->draw(*scene, scene->getTransform());
+        for(Scene* scene : weakscenes)
             window->draw(*scene, scene->getTransform());
         window->display();
     }

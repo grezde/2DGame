@@ -180,9 +180,11 @@
     <ClCompile Include="MenuScene.cpp" />
     <ClCompile Include="PauseMenuScene.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PopupScene.cpp" />
     <ClCompile Include="RenderAction.cpp" />
     <ClCompile Include="Room.cpp" />
     <ClCompile Include="Save.cpp" />
+    <ClCompile Include="SavePopupScene.cpp" />
     <ClCompile Include="SaveSelectionScene.cpp" />
     <ClCompile Include="SceneScaling.cpp" />
     <ClCompile Include="SpeechBoxScene.cpp" />
@@ -210,6 +212,8 @@
     <ClInclude Include="Item.h" />
     <ClInclude Include="MenuScene.h" />
     <ClInclude Include="PauseMenuScene.h" />
+    <ClInclude Include="PopupScene.h" />
+    <ClInclude Include="SavePopupScene.h" />
     <ClInclude Include="SaveSelectionScene.h" />
     <ClInclude Include="SceneScaling.h" />
     <ClInclude Include="SpeechContainer.h" />
