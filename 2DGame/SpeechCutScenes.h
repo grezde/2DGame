@@ -8,9 +8,6 @@ class WelcomeSCS
 public:
 	WelcomeSCS() : SpeechCutScene("welcome") {};
 	
-	virtual void onFinished() override 
-	{
-		next = new WalkingScene("johnson_classroom");
-	}
+	virtual void onFinished() override;
 
 };

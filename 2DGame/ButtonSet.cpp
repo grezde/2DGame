@@ -10,6 +10,7 @@ void ButtonSet::select(int index)
 	if(index != -1)
 		buttons[index].setSelected(true);
 	selindex = index;
+	changedSelection(selindex);
 }
 
 ButtonSet::ButtonSet(std::vector<std::string> options, sf::FloatRect bounds, float btnSpace)
@@ -39,6 +40,7 @@ void ButtonSet::moveSelection(int di)
 		buttons[selindex].setSelected(false);
 		buttons[secindex].setSelected(true);
 		selindex = secindex;
+		changedSelection(selindex);
 	}
 }
 

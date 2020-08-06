@@ -2,6 +2,7 @@
 #include "MenuScene.h"
 #include "Globals.h"
 #include "Game.h"
+#include "SavePopupScene.h"
 
 PauseMenuScene::PauseMenuScene()
 	: bs(this), cbs(this)
@@ -54,7 +55,8 @@ void PauseMenuBS::finsihedSelection(int selected)
 		parent->next = nullptr;
 	}
 	else if (selected == 1) {
-		Globals::save->loadToFile();
+		Globals::save->loadToFile(true);
+		Game::curent()->setNextScene(false, new SavePopupScene(Globals::save->saveName()));
 	}
 	else {
 		if (!Globals::save->wasModified()) {
@@ -67,14 +69,14 @@ void PauseMenuBS::finsihedSelection(int selected)
 }
 
 PauseMenuConfirmationBS::PauseMenuConfirmationBS(PauseMenuScene* parent)
-	: parent(parent), ButtonSet({ "Don't save", "Save and leave" }, sf::FloatRect(300, 300, 200, 100), 0.2f)
+	: parent(parent), ButtonSet({ "Save and leave", "Don't save" }, sf::FloatRect(300, 300, 200, 100), 0.2f)
 {
 }
 
 void PauseMenuConfirmationBS::finsihedSelection(int selected)
 {
-	if (selected == 1)
-		Globals::save->loadToFile();
+	if (selected == 0)
+		Globals::save->loadToFile(true);
 	parent->next = new MenuScene();
 	Game::curent()->clearAllScenes();
 }

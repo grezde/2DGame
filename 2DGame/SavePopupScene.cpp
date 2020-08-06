@@ -6,13 +6,13 @@ SavePopupScene::SavePopupScene(std::string name)
 	spr.setTexture(*Globals::popupBoxTex);
 	
 	text2.setFont(*Globals::font);
-	text2.setCharacterSize(30);
-	text2.setPosition(20, 80);
+	text2.setCharacterSize(25);
+	text2.setPosition(20, 85);
 	text2.setFillColor(sf::Color::Black);
 	text2.setString("saved.");
 	highlighted.setFont(*Globals::font);
-	highlighted.setCharacterSize(30);
-	highlighted.setPosition(20, 30);
+	highlighted.setCharacterSize(25);
+	highlighted.setPosition(20, 35);
 	highlighted.setFillColor(sf::Color(128, 0, 0));
 	highlighted.setString(name);
 }

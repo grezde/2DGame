@@ -6,7 +6,7 @@ void PopupScene::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	sf::Transform tr = sf::Transform::Identity;
 	tr.translate(Game::WIDTH - x, 0);
-	states.transform = tr * states.transform;
+	states.transform = states.transform * tr;
 	
 	normalDraw(target, states);
 }

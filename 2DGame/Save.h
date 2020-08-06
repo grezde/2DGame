@@ -2,6 +2,20 @@
 #include <string>
 #include <map>
 #include <vector>
+#include <SFML/Graphics.hpp> 
+
+class SaveMetadata
+{
+public:
+	int day, month, year;
+	int seconds;
+	sf::Texture* tex = nullptr;
+
+public:
+	SaveMetadata(std::string savename, bool exists);
+	std::string getDate();
+	std::string getTime();
+};
 
 class Save
 {
@@ -11,8 +25,11 @@ private:
 	std::string name, filepath;
 
 	bool modifications;
+	sf::Clock clock;
+	int metaindex;
 
 	static std::vector<std::string> saves;
+	static std::vector<SaveMetadata> metas;
 	static bool loadedSaves;
 
 public:
@@ -36,8 +53,10 @@ public:
 	Save(std::string savename, bool exists = true);
 	
 	static std::vector<std::string>& getSaves();
+	static SaveMetadata& getMetadata(int index);
 
-	void loadToFile();
+	void loadToFile(bool saveImage);
 	inline bool wasModified() { return modifications; }
+	inline std::string saveName() { return name; }
 };
 

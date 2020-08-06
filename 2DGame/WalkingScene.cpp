@@ -16,6 +16,7 @@ void WalkingScene::draw(sf::RenderTarget& target, sf::RenderStates states) const
 
 WalkingScene::WalkingScene(std::string roomName)
 {
+	saveDraw = true;
 	Globals::save->sets("current_room", roomName);
 	r = new Room(roomName);
 	p = new Player(r);

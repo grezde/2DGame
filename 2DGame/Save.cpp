@@ -10,6 +10,7 @@ const int Save::MAXINT = 500;
 const int Save::MAXSAVES = 5;
 bool Save::loadedSaves = false;
 std::vector<std::string> Save::saves = std::vector<std::string>();
+std::vector<SaveMetadata> Save::metas = std::vector<SaveMetadata>();
 
 std::string Save::gets(std::string n)
 {
@@ -81,15 +82,19 @@ Save::Save(std::string savename, bool exists)
 	if (!exists) {
 		sets("save_name", savename);
 		std::filesystem::create_directory("Files/saves/" + savename);
-		loadToFile();
+		loadToFile(false);
 		Save::getSaves();
+		metaindex = saves.size();
 		saves.push_back(savename);
+		metas.push_back(SaveMetadata(savename, false));
 		std::ofstream fout("Files/saves/saves.txt");
 		fout << saves.size() << "\n";
 		for (std::string s : saves)
 			fout << s << "\n";
 		return;
 	}
+	else
+		metaindex = std::find(saves.begin(), saves.end(), savename) - saves.begin();
 
 	std::ifstream fin(filepath+"text.data");
 	std::string s, name, val;
@@ -128,16 +133,29 @@ std::vector<std::string>& Save::getSaves()
 		for (int i = 0; i < n; i++) {
 			fin >> s;
 			saves.push_back(s);
+			metas.push_back(SaveMetadata(s, true));
 		}
 	}
 	return saves;
 }
 
-void Save::loadToFile()
+SaveMetadata& Save::getMetadata(int index)
+{
+	return metas[index];
+}
+
+void Save::loadToFile(bool saveImage)
 {
 	modifications = false;
-	Game::curent()->setNextScene(false, new SavePopupScene(name));
 
+	sf::RenderTexture rt;
+	rt.create(Game::WIDTH, Game::HEIGHT);
+	rt.clear();
+	rt.draw(*Game::curent());
+	rt.display();
+	delete metas[metaindex].tex;
+	metas[metaindex].tex = new sf::Texture(rt.getTexture());
+	metas[metaindex].tex->copyToImage().saveToFile(filepath + "thumbnail.png");
 
 	std::ofstream fout(filepath + "text.data");
 	for (auto ps : strings)
@@ -147,4 +165,23 @@ void Save::loadToFile()
 	fout.open(filepath + "number.data");
 	for (auto pi : ints)
 		fout << pi.first << "=" << pi.second << "\n";
+}
+
+SaveMetadata::SaveMetadata(std::string savename, bool exists)
+{
+	std::ifstream fin("Files/saves/" + savename + "/meta.data");
+	fin >> day >> month >> year;
+	fin >> seconds;
+	tex = new sf::Texture();
+	tex->loadFromFile("Files/saves/" + savename + "/thumbnail.png");
+}
+
+std::string SaveMetadata::getDate()
+{
+	return std::string();
+}
+
+std::string SaveMetadata::getTime()
+{
+	return std::string();
 }

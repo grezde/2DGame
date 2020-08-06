@@ -190,6 +190,7 @@
     <ClCompile Include="SpeechBoxScene.cpp" />
     <ClCompile Include="SpeechContainer.cpp" />
     <ClCompile Include="SpeechCutScene.cpp" />
+    <ClCompile Include="SpeechCutScenes.cpp" />
     <ClCompile Include="SpeechManager.cpp" />
     <ClCompile Include="TeleportAction.cpp" />
     <ClCompile Include="VariableAction.cpp" />

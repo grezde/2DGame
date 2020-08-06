@@ -156,6 +156,9 @@
     <ClCompile Include="SavePopupScene.cpp">
       <Filter>Source Files\Saving\Save</Filter>
     </ClCompile>
+    <ClCompile Include="SpeechCutScenes.cpp">
+      <Filter>Source Files\Speech</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="RenderAction.h">

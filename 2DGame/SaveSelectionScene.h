@@ -16,7 +16,20 @@ private:
 public:
 	SaveSelectionBS(SaveSelectionScene* parent);
 
-	virtual void finsihedSelection(int selected);
+	virtual void finsihedSelection(int selected) override;
+	virtual void changedSelection(int selected) override;
+};
+
+class SaveConfirmationBS
+	: public ButtonSet
+{
+private:
+	SaveSelectionScene* parent;
+
+public:
+	SaveConfirmationBS(SaveSelectionScene* parent);
+
+	virtual void finsihedSelection(int selected) override;
 };
 
 class SaveSelectionScene 
@@ -25,8 +38,13 @@ class SaveSelectionScene
 private:
 	sf::Texture backTex;
 	sf::Sprite backSpr;
+	sf::Sprite thumbSpr;
+	sf::Text dateLabel;
+	sf::Text timeLabel;
 
+	int state = 0;
 	SaveSelectionBS bs;
+	SaveConfirmationBS cbs;
 
 private:
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
@@ -36,5 +54,8 @@ public:
 
 	virtual void update(float dt) override;
 	virtual void onKeyPress(sf::Keyboard::Key key) override;
+
+	friend class SaveSelectionBS;
+	friend class SaveConfirmationBS;
 };
 

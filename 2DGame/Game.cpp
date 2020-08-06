@@ -118,6 +118,30 @@ void Game::setNextScene(bool shouldExit, Scene* nextScene)
     next = nextScene;
 }
 
+void Game::drawOnTarget(sf::RenderTarget& target, sf::RenderStates states, int nScenes)
+{
+    std::vector<Scene*>* vecptr = &scenes;
+    int i = 0;
+    while (i < nScenes) {
+        if (i == vecptr->size() && vecptr == &scenes) {
+            nScenes -= i;
+            i = 0;
+            vecptr = &weakscenes;
+        }
+        if (i == vecptr->size() && vecptr == &weakscenes)
+            break;
+        target.draw(*(vecptr->at(i)), states);
+        i++;
+    }
+}
+
+void Game::draw(sf::RenderTarget& target, sf::RenderStates states) const
+{
+    for (const Scene* sc : scenes)
+        if (sc->drawOnSave())
+            target.draw(*sc, states);
+}
+
 Game::~Game()
 {
     delete window;

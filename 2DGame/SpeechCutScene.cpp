@@ -5,6 +5,7 @@
 SpeechCutScene::SpeechCutScene(std::vector<std::string> data)
 	: BasicSpeechScene(data)
 {
+	saveDraw = true;
 	textColor = sf::Color(200, 200, 200);
 	selectedColor = sf::Color(255, 0, 0);
 	styleDisplayText(label);
@@ -14,6 +15,7 @@ SpeechCutScene::SpeechCutScene(std::vector<std::string> data)
 SpeechCutScene::SpeechCutScene(std::string filename)
 	: BasicSpeechScene("Files/sequences/" + filename + ".txt")
 {
+	saveDraw = true;
 	textColor = sf::Color(200, 200, 200);
 	selectedColor = sf::Color(255, 0, 0);
 	styleDisplayText(label);

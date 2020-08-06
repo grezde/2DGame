@@ -26,4 +26,5 @@ public:
 
 	void onKeyPress(sf::Keyboard::Key key);
 	virtual void finsihedSelection(int selected) = 0;
+	virtual void changedSelection(int selected) {};
 };

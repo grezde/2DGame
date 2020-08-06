@@ -25,7 +25,7 @@ void TopRightScene::onWindowResize(sf::Vector2i size)
 		transform.scale(nx / ox, nx / ox, nx / 2, ny / 2);
 	}
 	else {
-		transform.translate((nx- ox * ny / oy) / 2, 0);
+		transform.translate((-ox * ny/oy + nx) / 2, 0);
 		transform.scale(ny / oy, ny / oy, nx / 2, ny / 2);
 	}
 	transform.translate((nx - ox) / 2, (ny - oy) / 2);

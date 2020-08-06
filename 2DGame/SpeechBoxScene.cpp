@@ -16,6 +16,7 @@ const int SpeechBoxScene::CHAR_SIZE = 25;
 SpeechBoxScene::SpeechBoxScene(std::vector<std::string> data)
 	: BasicSpeechScene(data)
 {
+	saveDraw = true;
 	boxTex.loadFromFile("Files/global/speech_box.png");
 	boxSpr.setTexture(boxTex);
 	boxSpr.setOrigin(boxTex.getSize().x / 2, boxTex.getSize().y);
