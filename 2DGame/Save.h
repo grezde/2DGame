@@ -11,6 +11,9 @@ public:
 	int seconds;
 	sf::Texture* tex = nullptr;
 
+private:
+	std::string getMonth(int i);
+
 public:
 	SaveMetadata(std::string savename, bool exists);
 	std::string getDate();
@@ -54,6 +57,7 @@ public:
 	
 	static std::vector<std::string>& getSaves();
 	static SaveMetadata& getMetadata(int index);
+	static void deleteSave(std::string name);
 
 	void loadToFile(bool saveImage);
 	inline bool wasModified() { return modifications; }

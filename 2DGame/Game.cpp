@@ -6,7 +6,7 @@ Game* Game::curentGame = nullptr;
 
 Game::Game()
 {
-    window = new sf::RenderWindow(sf::VideoMode(WIDTH, HEIGHT), "Johnson Simultator v0.1.2");
+    window = new sf::RenderWindow(sf::VideoMode(WIDTH, HEIGHT), "Johnson Simultator v0.1.3");
 }
 
 void Game::run(Scene* initialScene)

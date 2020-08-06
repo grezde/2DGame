@@ -1,10 +1,11 @@
 #include "Save.h"
+#include <filesystem>
 #include <fstream>
 #include <sstream>
-#include <direct.h>
-#include <filesystem>
-#include "Game.h"
+#include <iomanip>
 #include "SavePopupScene.h"
+#include "Game.h"
+#include <ctime>
 
 const int Save::MAXINT = 500;
 const int Save::MAXSAVES = 5;
@@ -144,6 +145,11 @@ SaveMetadata& Save::getMetadata(int index)
 	return metas[index];
 }
 
+void Save::deleteSave(std::string name)
+{
+
+}
+
 void Save::loadToFile(bool saveImage)
 {
 	modifications = false;
@@ -165,23 +171,69 @@ void Save::loadToFile(bool saveImage)
 	fout.open(filepath + "number.data");
 	for (auto pi : ints)
 		fout << pi.first << "=" << pi.second << "\n";
+
+	metas[metaindex].seconds += int(clock.getElapsedTime().asSeconds());
+	clock.restart();
+	fout.close();
+	fout.open(filepath + "meta.data");
+	fout << metas[metaindex].day << " " << metas[metaindex].month << " " << metas[metaindex].year << "\n";
+	fout << metas[metaindex].seconds;
+}
+
+std::string SaveMetadata::getMonth(int i)
+{
+	switch (i)
+	{
+	case 1: return "Ianuarie";
+	case 2: return "Februarie";
+	case 3: return "Martie";
+	case 4: return "Aprilie";
+	case 5: return "Mai";
+	case 6: return "Iunie";
+	case 7: return "Iulie";
+	case 8: return "August";
+	case 9: return "Septmebrie";
+	case 10: return "Octombie";
+	case 11: return "Noiembrie";
+	case 12: return "Decembrie";
+	default: return "?????";
+	}
 }
 
 SaveMetadata::SaveMetadata(std::string savename, bool exists)
 {
-	std::ifstream fin("Files/saves/" + savename + "/meta.data");
-	fin >> day >> month >> year;
-	fin >> seconds;
-	tex = new sf::Texture();
-	tex->loadFromFile("Files/saves/" + savename + "/thumbnail.png");
+	if (exists) {
+		std::ifstream fin("Files/saves/" + savename + "/meta.data");
+		fin >> day >> month >> year;
+		fin >> seconds;
+		tex = new sf::Texture();
+		tex->loadFromFile("Files/saves/" + savename + "/thumbnail.png");
+	}
+	else {
+		seconds = 0;
+		std::time_t t = std::time(0);
+		std::tm now;
+		localtime_s(&now, &t);
+		year = 1900+now.tm_year;
+		month = now.tm_mon + 1;
+		day = now.tm_mday;
+	}
 }
 
 std::string SaveMetadata::getDate()
 {
-	return std::string();
+	std::ostringstream oss;
+	oss << std::setfill('0') << std::setw(2) << day << " " << getMonth(month) << " " << year;
+	return oss.str();
 }
 
 std::string SaveMetadata::getTime()
 {
-	return std::string();
+	std::ostringstream oss;
+	int min = seconds / 60;
+	int hrs = min / 60;
+	oss << hrs << ":";
+	oss << std::setfill('0') << std::setw(2) << min % 60 << ":";
+	oss << std::setfill('0') << std::setw(2) << seconds % 60;
+	return oss.str();
 }
