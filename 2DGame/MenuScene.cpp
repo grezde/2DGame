@@ -42,6 +42,8 @@ MainMenuButtonSet::MainMenuButtonSet(MenuScene* parent)
 		buttons[0].setEnabled(false);
 		select(1);
 	}
+	if (Save::getSaves().size() >= Save::MAXSAVES)
+		buttons[1].setEnabled(false);
 }
 
 void MainMenuButtonSet::finsihedSelection(int selected)

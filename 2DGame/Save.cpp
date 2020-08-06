@@ -6,6 +6,7 @@
 #include "SavePopupScene.h"
 #include "Game.h"
 #include <ctime>
+#include <iostream>
 
 const int Save::MAXINT = 500;
 const int Save::MAXSAVES = 5;
@@ -85,43 +86,43 @@ Save::Save(std::string savename, bool exists)
 		std::filesystem::create_directory("Files/saves/" + savename);
 		loadToFile(false);
 		Save::getSaves();
-		metaindex = saves.size();
 		saves.push_back(savename);
 		metas.push_back(SaveMetadata(savename, false));
 		std::ofstream fout("Files/saves/saves.txt");
 		fout << saves.size() << "\n";
 		for (std::string s : saves)
 			fout << s << "\n";
-		return;
 	}
-	else
-		metaindex = std::find(saves.begin(), saves.end(), savename) - saves.begin();
+	else {
+		std::ifstream fin(filepath + "text.data");
+		std::string s, name, val;
+		while (!fin.eof()) {
+			std::getline(fin, s);
+			int x = s.find('=');
+			if (x == -1)
+				continue;
+			name = s.substr(0, x);
+			val = s.substr(x + 1);
+			strings.insert(std::pair<std::string, std::string>(name, val));
+		}
 
-	std::ifstream fin(filepath+"text.data");
-	std::string s, name, val;
-	while (!fin.eof()) {
-		std::getline(fin, s);
-		int x = s.find('=');
-		if (x == -1)
-			continue;
-		name = s.substr(0, x);
-		val = s.substr(x + 1);
-		strings.insert(std::pair<std::string, std::string>(name, val));
+		fin.close();
+		fin.open(filepath + "number.data");
+		while (!fin.eof()) {
+			std::getline(fin, s);
+			int x = s.find('=');
+			if (x == -1)
+				continue;
+			name = s.substr(0, x);
+			val = s.substr(x + 1);
+			int in = 0;
+			std::istringstream(val) >> in;
+			ints.insert(std::pair<std::string, int>(name, in));
+		}
 	}
 
-	fin.close();
-	fin.open(filepath + "number.data");
-	while (!fin.eof()) {
-		std::getline(fin, s);
-		int x = s.find('=');
-		if (x == -1)
-			continue;
-		name = s.substr(0, x);
-		val = s.substr(x + 1);
-		int in = 0;
-		std::istringstream(val) >> in;
-		ints.insert(std::pair<std::string, int>(name, in));
-	}
+	metaindex = std::find(saves.begin(), saves.end(), savename) - saves.begin();
+	std::cout << metaindex << "\n";
 }
 
 std::vector<std::string>& Save::getSaves()
