@@ -14,8 +14,9 @@ protected:
 	std::vector<std::string> data;
 
 public:
-	Action(std::vector<std::string> data) : data(data) {};
-	Action() {};
+	Action(std::vector<std::string> data) : data(data) {}
+	Action() {}
+	virtual ~Action() {}
 
 	virtual void setRoom(Room* roomPtr) { room = roomPtr; }
 	virtual void setPlayer(Player* playerPtr) { player = playerPtr; }

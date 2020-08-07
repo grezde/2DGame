@@ -1,5 +1,21 @@
 #pragma once
 #include "SceneScaling.h"
+#include "TextSelector.h"
+
+class InventoryScene;
+
+class InventoryTS
+	: public TextSelector
+{
+private:
+	InventoryScene* parent;
+
+public:
+	InventoryTS(InventoryScene* parent);
+
+	virtual void onSelected(int newsel) override;
+	virtual void finishedSelection(int sel) override;
+};
 
 class InventoryScene 
 	: public VideoLikeScene
@@ -7,21 +23,13 @@ class InventoryScene
 private:
 	sf::Texture backtex;
 	sf::Sprite backspr;
-	std::vector<sf::Text> labels;
 	std::vector<sf::Text> decoration;
 	sf::Text description;
 	std::vector<sf::Text> stats;
-	int selected = 0;
-	int usageSelected = -1;
-
-public:
-	static const sf::Color SELECTED;
-	static const sf::Color UNSELECTED;
+	InventoryTS ts;
 
 private:
 	sf::Text createLabel(bool big);
-	void setSelected(int newsel);
-
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
 public:
@@ -30,5 +38,6 @@ public:
 	virtual void update(float dt) override;
 	virtual void onKeyPress(sf::Keyboard::Key key) override;
 
+	friend class InventoryTS;
 };
 

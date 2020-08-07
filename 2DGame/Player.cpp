@@ -41,7 +41,6 @@ Player::Player(Room* room)
 
 	int toLoad = Globals::save->geti("coords_from_save");
 	if (toLoad) {
-		Globals::save->remi("coords_from_save");
 		float ix = Globals::save->geti("current_player_x");
 		float iy = Globals::save->geti("current_player_y");
 		int ii = Globals::save->geti("current_player_rot");
@@ -121,6 +120,7 @@ void Player::update(float dt)
 
 	Globals::save->seti("current_player_x", pos.x * 100.0f);
 	Globals::save->seti("current_player_y", pos.y * 100.0f);
+	Globals::save->remi("coords_from_save");
 }
 
 void Player::draw(sf::RenderTarget& target, sf::RenderStates states) const

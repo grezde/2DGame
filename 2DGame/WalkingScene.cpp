@@ -37,8 +37,8 @@ void WalkingScene::setNextScene(bool shouldExit, Scene* nextScene)
 
 void WalkingScene::update(float dt)
 {
-	p->update(dt);
 	r->update(dt);
+	p->update(dt);
 }
 
 void WalkingScene::reinit()

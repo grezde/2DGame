@@ -176,6 +176,7 @@
     <ClCompile Include="InventoryAction.cpp" />
     <ClCompile Include="InventoryScene.cpp" />
     <ClCompile Include="Item.cpp" />
+    <ClCompile Include="ItemUseScene.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MenuScene.cpp" />
     <ClCompile Include="PauseMenuScene.cpp" />
@@ -193,6 +194,7 @@
     <ClCompile Include="SpeechCutScenes.cpp" />
     <ClCompile Include="SpeechManager.cpp" />
     <ClCompile Include="TeleportAction.cpp" />
+    <ClCompile Include="TextSelector.cpp" />
     <ClCompile Include="VariableAction.cpp" />
     <ClCompile Include="WalkingScene.cpp" />
   </ItemGroup>
@@ -210,6 +212,7 @@
     <ClInclude Include="InventoryAction.h" />
     <ClInclude Include="InventoryScene.h" />
     <ClInclude Include="Item.h" />
+    <ClInclude Include="ItemUseScene.h" />
     <ClInclude Include="MenuScene.h" />
     <ClInclude Include="PauseMenuScene.h" />
     <ClInclude Include="PopupScene.h" />
@@ -228,6 +231,7 @@
     <ClInclude Include="SpeechCutScenes.h" />
     <ClInclude Include="SpeechManager.h" />
     <ClInclude Include="TeleportAction.h" />
+    <ClInclude Include="TextSelector.h" />
     <ClInclude Include="VariableAction.h" />
     <ClInclude Include="WalkingScene.h" />
   </ItemGroup>

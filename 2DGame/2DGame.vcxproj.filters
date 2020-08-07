@@ -61,6 +61,18 @@
     <Filter Include="Source Files\Base">
       <UniqueIdentifier>{f3485dfc-09be-44dd-b828-3e7aa3f15f52}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Menus\GUI">
+      <UniqueIdentifier>{9f7fb0d3-e409-43a8-8643-e38991a12ccb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Menus\Scenes">
+      <UniqueIdentifier>{8031e18b-0af5-4151-a09b-95a558f7ffa2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Menus\GUI">
+      <UniqueIdentifier>{01989df7-45ae-42e5-b826-0207d96ef83f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Menus\Scenes">
+      <UniqueIdentifier>{3a6169bf-4a11-4976-bac9-41eada1cf9c4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="RenderAction.cpp">
@@ -108,18 +120,6 @@
     <ClCompile Include="Player.cpp">
       <Filter>Source Files\Walking</Filter>
     </ClCompile>
-    <ClCompile Include="MenuScene.cpp">
-      <Filter>Source Files\Menus</Filter>
-    </ClCompile>
-    <ClCompile Include="SaveSelectionScene.cpp">
-      <Filter>Source Files\Menus</Filter>
-    </ClCompile>
-    <ClCompile Include="ButtonSet.cpp">
-      <Filter>Source Files\Menus</Filter>
-    </ClCompile>
-    <ClCompile Include="Button.cpp">
-      <Filter>Source Files\Menus</Filter>
-    </ClCompile>
     <ClCompile Include="Inventory.cpp">
       <Filter>Source Files\Saving\Inventory</Filter>
     </ClCompile>
@@ -147,9 +147,6 @@
     <ClCompile Include="SceneScaling.cpp">
       <Filter>Source Files\Base</Filter>
     </ClCompile>
-    <ClCompile Include="PauseMenuScene.cpp">
-      <Filter>Source Files\Menus</Filter>
-    </ClCompile>
     <ClCompile Include="PopupScene.cpp">
       <Filter>Source Files\Base</Filter>
     </ClCompile>
@@ -158,6 +155,27 @@
     </ClCompile>
     <ClCompile Include="SpeechCutScenes.cpp">
       <Filter>Source Files\Speech</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemUseScene.cpp">
+      <Filter>Source Files\Saving\Inventory</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Source Files\Menus\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="ButtonSet.cpp">
+      <Filter>Source Files\Menus\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="TextSelector.cpp">
+      <Filter>Source Files\Menus\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuScene.cpp">
+      <Filter>Source Files\Menus\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="PauseMenuScene.cpp">
+      <Filter>Source Files\Menus\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="SaveSelectionScene.cpp">
+      <Filter>Source Files\Menus\Scenes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -209,20 +227,8 @@
     <ClInclude Include="Room.h">
       <Filter>Header Files\Walking</Filter>
     </ClInclude>
-    <ClInclude Include="MenuScene.h">
-      <Filter>Header Files\Menus</Filter>
-    </ClInclude>
-    <ClInclude Include="SaveSelectionScene.h">
-      <Filter>Header Files\Menus</Filter>
-    </ClInclude>
     <ClInclude Include="Scene.h">
       <Filter>Header Files\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="ButtonSet.h">
-      <Filter>Header Files\Menus</Filter>
-    </ClInclude>
-    <ClInclude Include="Button.h">
-      <Filter>Header Files\Menus</Filter>
     </ClInclude>
     <ClInclude Include="Inventory.h">
       <Filter>Header Files\Saving\Inventory</Filter>
@@ -251,14 +257,32 @@
     <ClInclude Include="SceneScaling.h">
       <Filter>Header Files\Base</Filter>
     </ClInclude>
-    <ClInclude Include="PauseMenuScene.h">
-      <Filter>Header Files\Menus</Filter>
-    </ClInclude>
     <ClInclude Include="SavePopupScene.h">
       <Filter>Header Files\Saving\Save</Filter>
     </ClInclude>
     <ClInclude Include="PopupScene.h">
       <Filter>Header Files\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemUseScene.h">
+      <Filter>Header Files\Saving\Inventory</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Header Files\Menus\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="ButtonSet.h">
+      <Filter>Header Files\Menus\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="TextSelector.h">
+      <Filter>Header Files\Menus\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuScene.h">
+      <Filter>Header Files\Menus\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="PauseMenuScene.h">
+      <Filter>Header Files\Menus\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="SaveSelectionScene.h">
+      <Filter>Header Files\Menus\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

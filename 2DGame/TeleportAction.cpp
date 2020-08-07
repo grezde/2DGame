@@ -2,6 +2,8 @@
 #include "Player.h"
 #include "Game.h"
 #include "WalkingScene.h"
+#include <iostream>
+#include "Globals.h"
 
 const float TeleportAction::TIME_INTERVAL = 0.2f;
 const sf::Vector2f TeleportAction::OFFSET_ON_TELEPORT = sf::Vector2f(0.5f, 0.8f);
@@ -28,10 +30,8 @@ void TeleportAction::init()
 	if (lastTeleport.empty())
 		return;
 
-	if (lastTeleport == nextRoom) {
-		//StartAction::stopActing();
+	if (lastTeleport == nextRoom && !Globals::save->geti("coords_from_save"))
 		player->setPosition(sf::Vector2f(locations.back().x, locations.back().y) + OFFSET_ON_TELEPORT);
-	}
 }
 
 void TeleportAction::addLocation(int x, int y)
