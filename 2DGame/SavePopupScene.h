@@ -4,6 +4,13 @@
 class SavePopupScene :
 	public PopupScene
 {
+public:
+	enum SaveType {
+		Saved,
+		Deleted,
+		Loaded
+	};
+
 private:
 	sf::Sprite spr;
 	sf::Text highlighted;
@@ -13,7 +20,7 @@ protected:
 	virtual void normalDraw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
 public:
-	SavePopupScene(std::string name);
+	SavePopupScene(std::string name, SaveType type);
 	
 };
 

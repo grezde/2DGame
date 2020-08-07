@@ -45,8 +45,8 @@ Room::Room(std::string name)
 Room::~Room()
 {
 	delete[] data;
-	for (auto type : types)
-		for (auto action : type.actions)
+	for (Type& type : types)
+		for (Action* action : type.actions)
 			delete action;
 }
 

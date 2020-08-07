@@ -4,7 +4,7 @@
 #include "Globals.h"
 #include "WalkingScene.h"
 #include "MenuScene.h"
-#include <iostream>
+#include "SavePopupScene.h"
 
 void SaveSelectionScene::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
@@ -110,6 +110,12 @@ void SaveConfirmationBS::finsihedSelection(int selected)
 		parent->next = new WalkingScene(lastRoom);
 	}
 	else {
-		std::cout << "STERGEREA INCA NU FUNCTIONEAZA";
+		Game::curent()->setNextScene(true, new SavePopupScene(Save::getSaves().at(parent->state - 1), SavePopupScene::Deleted));
+		Save::deleteSave(Save::getSaves().at(parent->state - 1));
+		parent->exit = true;
+		if (Save::getSaves().size() > 0)
+			parent->next = new SaveSelectionScene();
+		else
+			parent->next = new MenuScene();
 	}
 }

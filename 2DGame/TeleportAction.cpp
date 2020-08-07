@@ -21,7 +21,6 @@ TeleportAction::TeleportAction(std::vector<std::string> data)
 
 TeleportAction::~TeleportAction()
 {
-	lastTeleport = "";
 }
 
 void TeleportAction::init()

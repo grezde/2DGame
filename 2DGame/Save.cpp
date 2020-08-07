@@ -84,7 +84,6 @@ Save::Save(std::string savename, bool exists)
 	if (!exists) {
 		sets("save_name", savename);
 		std::filesystem::create_directory("Files/saves/" + savename);
-		loadToFile(false);
 		Save::getSaves();
 		saves.push_back(savename);
 		metas.push_back(SaveMetadata(savename, false));
@@ -92,6 +91,7 @@ Save::Save(std::string savename, bool exists)
 		fout << saves.size() << "\n";
 		for (std::string s : saves)
 			fout << s << "\n";
+		sets("save_name", savename);
 	}
 	else {
 		std::ifstream fin(filepath + "text.data");
@@ -122,7 +122,8 @@ Save::Save(std::string savename, bool exists)
 	}
 
 	metaindex = std::find(saves.begin(), saves.end(), savename) - saves.begin();
-	std::cout << metaindex << "\n";
+	if (!exists)
+		loadToFile(false);
 }
 
 std::vector<std::string>& Save::getSaves()
@@ -148,7 +149,14 @@ SaveMetadata& Save::getMetadata(int index)
 
 void Save::deleteSave(std::string name)
 {
-
+	int i = std::find(saves.begin(), saves.end(), name) - saves.begin();
+	saves.erase(saves.begin() + i);
+	metas.erase(metas.begin() + i);
+	std::ofstream fout("Files/saves/saves.txt");
+	fout << saves.size() << "\n";
+	for (std::string s : saves)
+		fout << s << "\n";
+	std::filesystem::remove_all("Files/saves/" + name);
 }
 
 void Save::loadToFile(bool saveImage)
@@ -160,7 +168,8 @@ void Save::loadToFile(bool saveImage)
 	rt.clear();
 	rt.draw(*Game::curent());
 	rt.display();
-	delete metas[metaindex].tex;
+	if(metas[metaindex].tex != nullptr)
+		delete metas[metaindex].tex;
 	metas[metaindex].tex = new sf::Texture(rt.getTexture());
 	metas[metaindex].tex->copyToImage().saveToFile(filepath + "thumbnail.png");
 

@@ -58,8 +58,6 @@ void Game::run(Scene* initialScene)
             sc->update(dt);
         
         Scene* nextScene = scenes.back()->nextScene();
-        if (nextScene == nullptr)
-            nextScene = next;
         if (clearAll) {
             while (!scenes.empty()) {
                 delete scenes.back();
@@ -87,15 +85,22 @@ void Game::run(Scene* initialScene)
                 }
         }
         if (nextScene != nullptr) {
+            if (!scenes.empty())
+                scenes.back()->nextScene(nullptr);
             if (nextScene->updateBeneath())
                 weakscenes.push_back(nextScene);
-            else {
-                if (!scenes.empty())
-                    scenes.back()->nextScene(nullptr);
+            else
                 scenes.push_back(nextScene);
-            }
             nextScene->onWindowResize(sf::Vector2i(window->getSize().x, window->getSize().y));
             nextScene->init();
+        }
+        if (next != nullptr) {
+            if (next->updateBeneath())
+                weakscenes.push_back(next);
+            else
+                scenes.push_back(next);
+            next->onWindowResize(sf::Vector2i(window->getSize().x, window->getSize().y));
+            next->init();
             next = nullptr;
         }
         if (scenes.size() == 0) {

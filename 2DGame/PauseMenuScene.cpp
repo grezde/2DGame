@@ -56,7 +56,7 @@ void PauseMenuBS::finsihedSelection(int selected)
 	}
 	else if (selected == 1) {
 		Globals::save->loadToFile(true);
-		Game::curent()->setNextScene(false, new SavePopupScene(Globals::save->saveName()));
+		Game::curent()->setNextScene(false, new SavePopupScene(Globals::save->saveName(), SavePopupScene::Saved));
 	}
 	else {
 		if (!Globals::save->wasModified()) {

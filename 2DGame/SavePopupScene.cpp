@@ -1,7 +1,7 @@
 #include "SavePopupScene.h"
 #include "Globals.h"
 
-SavePopupScene::SavePopupScene(std::string name)
+SavePopupScene::SavePopupScene(std::string name, SavePopupScene::SaveType type)
 {
 	spr.setTexture(*Globals::popupBoxTex);
 	
@@ -9,7 +9,12 @@ SavePopupScene::SavePopupScene(std::string name)
 	text2.setCharacterSize(25);
 	text2.setPosition(20, 85);
 	text2.setFillColor(sf::Color::Black);
-	text2.setString("saved.");
+	if(type == Saved)
+		text2.setString("was saved.");
+	if (type == Deleted)
+		text2.setString("was deleted.");
+	if (type == Loaded)
+		text2.setString("was loaded.");
 	highlighted.setFont(*Globals::font);
 	highlighted.setCharacterSize(25);
 	highlighted.setPosition(20, 35);
