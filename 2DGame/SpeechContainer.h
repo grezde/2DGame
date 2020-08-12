@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <vector>
+#include "ConditionParser.h"
 
 class ChainSC;
 
@@ -17,7 +18,8 @@ public:
 		Chain,
 		Execute,
 		Metadata,
-		Prompt
+		Prompt,
+		GameCondition
 	};
 	typedef std::vector<std::string>::iterator iter;
 	static ChainSC* parse(iter start, iter end);
@@ -89,4 +91,14 @@ public:
 	std::string varname;
 
 	PromptSC() : SpeechContainer(Prompt) {}
+};
+
+class GameConditionSC : public SpeechContainer
+{
+public:
+	ConditionParser* parser = nullptr;
+	std::vector<ChainSC*> choices;
+
+	GameConditionSC() : SpeechContainer(GameCondition) {}
+	~GameConditionSC();
 };

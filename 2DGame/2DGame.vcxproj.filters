@@ -183,6 +183,9 @@
     <ClCompile Include="VariableConditionParser.cpp">
       <Filter>Source Files\Saving\Save</Filter>
     </ClCompile>
+    <ClCompile Include="InevntoryConditionParser.cpp">
+      <Filter>Source Files\Saving\Inventory</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="RenderAction.h">
@@ -295,6 +298,9 @@
     </ClInclude>
     <ClInclude Include="VariableConditionParser.h">
       <Filter>Header Files\Saving\Save</Filter>
+    </ClInclude>
+    <ClInclude Include="InevntoryConditionParser.h">
+      <Filter>Header Files\Saving\Inventory</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

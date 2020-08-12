@@ -115,6 +115,14 @@ void SpeechManager::updateState(float dt)
 			else
 				text = "_";
 		}
+		else if (s == PickingGameCondition) {
+			GameConditionSC* gsc = ((GameConditionSC*)(stack.back()));
+			int index = gsc->parser->getChoice();
+			stack.pop_back();
+			if(index != -1)
+				stack.push_back(gsc->choices[index]);
+			s = RequestNext;
+		}
 		else if (s == RequestNext) {
 			text.clear();
 			while (!stack.empty() && stack.back()->type() != SpeechContainer::Chain) {
@@ -149,6 +157,8 @@ void SpeechManager::updateState(float dt)
 				s = ProcessMetadata;
 			else if (stack.back()->type() == SpeechContainer::Prompt)
 				s = WritingPromptText;
+			else if (stack.back()->type() == SpeechContainer::GameCondition)
+				s = PickingGameCondition;
 			return;
 		}
 	}

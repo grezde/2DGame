@@ -4,7 +4,7 @@
 
 bool SpeechContainer::specialCharacter(char c)
 {
-	return c == '*' || c == '>' || c == '/' || c == '#' || c == '?';
+	return c == '*' || c == '>' || c == '/' || c == '#' || c == '?' || c == ':';
 }
 
 ChainSC* SpeechContainer::parse(iter start, iter end)
@@ -67,6 +67,18 @@ ChainSC* SpeechContainer::parse(iter start, iter end)
 			script.push_back(psc);
 			i += 2;
 		}
+		else if (i->at(0) == ':') {
+			GameConditionSC* gcs = new GameConditionSC();
+			gcs->parser = ConditionParser::getParser(i->substr(2));
+			std::istringstream iss((i+1)->substr(2));
+			i += 2;
+			for (int q = 0; q < gcs->parser->nChoices(); q++) {
+				int x;
+				iss >> x;
+				gcs->choices.push_back(parse(i, i + x));
+				i += x;
+			}
+		}
 	}
 	return new ChainSC(script);
 }
@@ -86,4 +98,9 @@ ChainSC::~ChainSC()
 ExecuteSC::~ExecuteSC()
 {
 	delete action;
+}
+
+GameConditionSC::~GameConditionSC()
+{
+	delete parser;
 }

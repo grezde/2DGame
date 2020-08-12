@@ -22,6 +22,8 @@ public:
 
 		ProcessMetadata,
 
+		PickingGameCondition,
+
 		RequestNext,
 		Finished,
 	};
