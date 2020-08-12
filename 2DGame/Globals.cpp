@@ -23,7 +23,7 @@ void Globals::processCommands()
 		} while (!iss.eof());
 		if (words.size() == 0)
 			continue;
-		if (words[0] == "inventory") {
+		if (words[0] == "inv") {
 			if (Globals::save == nullptr) {
 				std::cout << "= No save file\n";
 				continue;

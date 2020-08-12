@@ -35,7 +35,7 @@ Player::Player(Room* room)
 	
 	emoteTex.loadFromFile("Files/global/emotes.png");
 	emoteSpr.setTexture(emoteTex);
-	setEmote(4);
+	setEmote(1);
 	emoteSpr.setScale(EMOTE_SCALE, EMOTE_SCALE);
 	emoteSpr.setOrigin(emoteTex.getSize().x / 4, emoteTex.getSize().y / 2);
 
@@ -65,9 +65,13 @@ void Player::setEmote(int number)
 	));
 }
 
-void Player::update(float dt)
+void Player::preupdate(float dt)
 {
 	emoteNumber = 0;
+}
+
+void Player::update(float dt)
+{
 	float dx = 0, dy = 0;
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) || sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 		dx -= 1.0f;

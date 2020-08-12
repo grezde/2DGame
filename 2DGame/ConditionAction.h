@@ -1,16 +1,15 @@
 #pragma once
 #include "Action.h"
 #include "Globals.h"
+#include "ConditionParser.h"
 
 class ConditionAction : public Action
 {
 private:
-	std::map<int, Action*> actions;
-	std::string varname;
-	
+	std::vector<Action*> actions;
+	ConditionParser* cp = nullptr;
 	Action* curent = nullptr;
-	int curentindex = Save::MAXINT+1;
-
+	
 public:
 	ConditionAction(std::vector<std::string> data);
 	~ConditionAction();

@@ -22,6 +22,7 @@ public:
 	virtual void onMousePress(sf::Mouse::Button button, sf::Vector2i position) {}
 	virtual void onTextEntered(char character) {}
 	virtual void onWindowResize(sf::Vector2i size) = 0; //for transforms
+	virtual void onLostFocus() {}
 	
 	inline bool shouldQuit() const { return exit; }
 	inline Scene* nextScene() const { return next; }

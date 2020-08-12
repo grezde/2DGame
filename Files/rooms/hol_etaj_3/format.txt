@@ -70,9 +70,8 @@ Este cam la nivelul obrazului unui om.
 
 11 5 2
 
-2 b
-first_locker_broken
-0 1 2 5 3+
+1 b
+var first_locker_broken 0 1 2 3-4 5
 
 27 a
 * Lockerul asta are foarte multe fisuri
@@ -137,9 +136,8 @@ Cred ca insisti prea mult.
 first_locker_broken
 += 1
 
-2 b
-first_locker_broken
-0 1+
+1 b
+var first_locker_broken 0 1+
 2 i
 first_locker_unbroken.png
 background

@@ -8,51 +8,52 @@
 ConditionAction::ConditionAction(std::vector<std::string> data)
 	: Action(data)
 {
-	varname = data[0];
+	cp = ConditionParser::getParser(data[0]);
 }
 
 ConditionAction::~ConditionAction()
 {
-	for (auto pair : actions)
-		delete pair.second;
+	for (Action* ac : actions)
+		delete ac;
+	delete cp;
 }
 
 void ConditionAction::setRoom(Room* roomPtr)
 {
 	room = roomPtr;
-	for (auto pair : actions)
-		pair.second->setRoom(roomPtr);
+	for (Action* ac : actions)
+		ac->setRoom(roomPtr);
 }
 
 void ConditionAction::setPlayer(Player* playerPtr)
 {
 	player = playerPtr;
-	for (auto pair : actions)
-		pair.second->setPlayer(playerPtr);
+	for (Action* ac : actions)
+		ac->setPlayer(playerPtr);
 }
 
 void ConditionAction::addLocation(int x, int y)
 {
-	for (auto p : actions)
-		p.second->addLocation(x, y);
+	for (Action* ac : actions)
+		ac->addLocation(x, y);
 }
 
 void ConditionAction::preinit()
 {
-	for (auto p : actions)
-		p.second->preinit();
+	for (Action* ac : actions)
+		ac->preinit();
 }
 
 void ConditionAction::init()
 {
-	for (auto p : actions)
-		p.second->init();
+	for (Action* ac : actions)
+		ac->init();
 }
 
 void ConditionAction::postinit()
 {
-	for (auto p : actions)
-		p.second->postinit();
+	for (Action* ac : actions)
+		ac->postinit();
 }
 
 void ConditionAction::drawBackground(sf::RenderTarget& target, sf::RenderStates states) const
@@ -73,17 +74,16 @@ void ConditionAction::trigger()
 		curent->trigger();
 }
 
-
 void ConditionAction::hlPointMoved()
 {
-	for (auto p : actions)
-		p.second->hlPointMoved();
+	for (Action* ac : actions)
+		ac->hlPointMoved();
 }
 
 void ConditionAction::reinitScene()
 {
-	for (auto p : actions)
-		p.second->reinitScene();
+	for (Action* ac : actions)
+		ac->reinitScene();
 }
 
 void ConditionAction::onKeyPress(sf::Keyboard::Key k)
@@ -94,53 +94,19 @@ void ConditionAction::onKeyPress(sf::Keyboard::Key k)
 
 void ConditionAction::onRead(std::istream& fin)
 {
-	std::istringstream iss(data[1]+" ");
-	char c;
-	std::string s;
-	while (!iss.eof()) {
-		int x;
-		iss >> x;
-		iss.get(c);
-		if (iss.eof())
-			break;
-		if (c == '-')
-			x = -(3 * Save::MAXINT + x);
-		else if (c == '+')
-			x = 3 * Save::MAXINT + x;
+	for (int i = 0; i < cp->nChoices(); i++) {
 		Action* a = Action::readFromStream(fin);
-		;;;
-		actions[x] = a;
+		actions.push_back(a);
 	}
-	update(0);
 }
 
 void ConditionAction::update(float dt)
 {
-	int val = Globals::save->geti(varname);
-	if (val != curentindex) {
-		curentindex = val;
-		for (auto pair : actions) {
-			if (pair.first < -2 * Save::MAXINT) {
-				int realx = - pair.first - 3*Save::MAXINT;
-				if (val <= realx) {
-					curent = pair.second;
-					return;
-				}
-			} 
-			else if (pair.first > 2 * Save::MAXINT) {
-				int realx = pair.first - 3 * Save::MAXINT;
-				if (val >= realx) {
-					curent = pair.second;
-					return;
-				}
-			}
-			else if (pair.first == val) {
-				curent = pair.second;
-				return;
-			}
-		}
+	int i = cp->getChoice();
+	if (i == -1)
 		curent = nullptr;
-	}
+	else
+		curent = actions[i];
 
 	if(curent != nullptr)
 		curent->update(dt);

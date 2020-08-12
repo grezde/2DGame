@@ -177,6 +177,12 @@
     <ClCompile Include="SaveSelectionScene.cpp">
       <Filter>Source Files\Menus\Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="ConditionParser.cpp">
+      <Filter>Source Files\Saving\Save</Filter>
+    </ClCompile>
+    <ClCompile Include="VariableConditionParser.cpp">
+      <Filter>Source Files\Saving\Save</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="RenderAction.h">
@@ -283,6 +289,12 @@
     </ClInclude>
     <ClInclude Include="SaveSelectionScene.h">
       <Filter>Header Files\Menus\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="ConditionParser.h">
+      <Filter>Header Files\Saving\Save</Filter>
+    </ClInclude>
+    <ClInclude Include="VariableConditionParser.h">
+      <Filter>Header Files\Saving\Save</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

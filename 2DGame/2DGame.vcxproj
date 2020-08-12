@@ -168,6 +168,7 @@
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="ButtonSet.cpp" />
     <ClCompile Include="ConditionAction.cpp" />
+    <ClCompile Include="ConditionParser.cpp" />
     <ClCompile Include="Face.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Globals.cpp" />
@@ -196,6 +197,7 @@
     <ClCompile Include="TeleportAction.cpp" />
     <ClCompile Include="TextSelector.cpp" />
     <ClCompile Include="VariableAction.cpp" />
+    <ClCompile Include="VariableConditionParser.cpp" />
     <ClCompile Include="WalkingScene.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -204,6 +206,7 @@
     <ClInclude Include="Button.h" />
     <ClInclude Include="ButtonSet.h" />
     <ClInclude Include="ConditionAction.h" />
+    <ClInclude Include="ConditionParser.h" />
     <ClInclude Include="Face.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameElement.h" />
@@ -233,6 +236,7 @@
     <ClInclude Include="TeleportAction.h" />
     <ClInclude Include="TextSelector.h" />
     <ClInclude Include="VariableAction.h" />
+    <ClInclude Include="VariableConditionParser.h" />
     <ClInclude Include="WalkingScene.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

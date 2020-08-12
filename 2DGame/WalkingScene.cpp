@@ -37,6 +37,7 @@ void WalkingScene::setNextScene(bool shouldExit, Scene* nextScene)
 
 void WalkingScene::update(float dt)
 {
+	p->preupdate(dt);
 	r->update(dt);
 	p->update(dt);
 }
@@ -56,4 +57,9 @@ void WalkingScene::onKeyPress(sf::Keyboard::Key key)
 	}
 	else
 		r->onKeyPress(key);
+}
+
+void WalkingScene::onLostFocus()
+{
+	this->next = new PauseMenuScene();
 }

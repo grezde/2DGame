@@ -44,6 +44,7 @@ public:
 	inline sf::Vector2i positionI() { return sf::Vector2i(pos.x, pos.y); }
 	inline void setPosition(sf::Vector2f pos) { this->pos = pos; }
 
+	void preupdate(float dt);
 	virtual void update(float dt) override;
 };
 

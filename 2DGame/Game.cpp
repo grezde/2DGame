@@ -18,6 +18,7 @@ void Game::run(Scene* initialScene)
 
     float t = 0, n=0;
 
+    int paused = 0;
     sf::Clock clock;
     sf::Time previous = clock.getElapsedTime();
     while (window->isOpen())
@@ -39,6 +40,13 @@ void Game::run(Scene* initialScene)
                 for(Scene* sc : weakscenes)
                     sc->onWindowResize(sf::Vector2i(event.size.width, event.size.height));
             }
+            if (event.type == sf::Event::LostFocus) {
+                scenes.back()->onLostFocus();
+                paused = 4;
+            }
+            if (event.type == sf::Event::GainedFocus) {
+                paused = 0;
+            }
         }
         
         sf::Time current = clock.getElapsedTime();
@@ -47,6 +55,11 @@ void Game::run(Scene* initialScene)
         if (dt > 0.05f)
             dt = 0;
         
+        if (paused == 1)
+            continue;
+        if (paused >= 2)
+            paused--;
+
         if (updateAll) {
             updateAll = false;
             for (int j = scenes.size()-1; j >= 0; j--)

@@ -3,9 +3,11 @@
 #include "MenuScene.h"
 #include "WalkingScene.h"
 #include <iostream>
+#include "VariableConditionParser.h"
 
 int main()
 {
+    VariableConditionParser vcp("first_locker_broken 0 1 2 3-4 5");
     Globals::init();
 
     Game johnson;

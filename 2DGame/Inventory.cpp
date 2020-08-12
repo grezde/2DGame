@@ -58,6 +58,8 @@ Item* Inventory::getItemAt(int slot)
 
 bool Inventory::addToInventory(std::string item, int count)
 {
+	if (items.find(item) == items.end())
+		return false;
 	for (int i = 0; i < 10; i++) {
 		std::string a = Globals::save->gets("inventory_slot_" + std::to_string(i));
 		if (a == item && items[item].type->stackable) {
