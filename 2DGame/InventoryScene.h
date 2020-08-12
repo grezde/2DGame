@@ -37,6 +37,7 @@ public:
 
 	virtual void update(float dt) override;
 	virtual void onKeyPress(sf::Keyboard::Key key) override;
+	virtual void reinit() override;
 
 	friend class InventoryTS;
 };

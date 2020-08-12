@@ -25,8 +25,12 @@ public:
 	TextSelector(float charSize, float lineSpacing);
 	void setStrings(std::vector<std::string> values);
 	void setPosition(sf::Vector2f pos);
-	sf::Vector2f getSize();
 	void setSelected(int newsel);
+
+	sf::Vector2f getSize();
+	inline int nChoices() { return labels.size(); }
+	inline int getSelected() { return selected; }
+
 	virtual void onKeyPress(sf::Keyboard::Key key) override;
 };
 

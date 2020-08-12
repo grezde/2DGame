@@ -1,6 +1,7 @@
 #include "InventoryScene.h"
 #include "Inventory.h"
 #include <iostream>
+#include "ItemUseScene.h"
 
 sf::Text InventoryScene::createLabel(bool big)
 {
@@ -52,6 +53,13 @@ void InventoryScene::onKeyPress(sf::Keyboard::Key key)
 		ts.onKeyPress(key);
 }
 
+void InventoryScene::reinit()
+{
+	ts.setStrings(Inventory::getFormatedInventory());
+	ts.setPosition(sf::Vector2f(120, 140));
+	ts.setSelected(ts.getSelected());
+}
+
 void InventoryTS::onSelected(int newsel)
 {
 	Item* it = Inventory::getItemAt(newsel);
@@ -76,5 +84,6 @@ InventoryTS::InventoryTS(InventoryScene* parent)
 
 void InventoryTS::finishedSelection(int sel)
 {
-	std::cout << "USE " << sel << "\n";
+	if(Inventory::getItemAt(sel) != nullptr)
+		parent->next = new ItemUseScene(sel);
 }

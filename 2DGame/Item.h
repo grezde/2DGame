@@ -26,6 +26,7 @@ public:
 
 	virtual void initItem(int slot) {}
 	virtual void useItem(int slot, int useNumber) {}
+	virtual void destroyItem(int slot) {}
 };
 
 class Item

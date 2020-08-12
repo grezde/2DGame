@@ -26,6 +26,7 @@ public:
 	static std::vector<std::string> getFormatedInventory();
 	static std::vector<std::string> getFormatedStats(int slot);
 
-	static bool addToInventory(std::string item, int count = 0);
+	static bool addToInventory(std::string item, int count = 1);
+	static bool removeInventory(int slot);
 };
 

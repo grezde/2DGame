@@ -37,7 +37,7 @@ void Inventory::setCount(int slot, int count)
 {
 	if (getItemAt(slot) == nullptr || !getItemAt(slot)->type->stackable)
 		return;
-	if (count == 0 ) {
+	if (count == 0) {
 		std::string fin = "_" + std::to_string(slot);
 		Globals::save->rems("inventory_slot" + fin);
 		Globals::save->remi("inventory_count" + fin);
@@ -60,21 +60,38 @@ bool Inventory::addToInventory(std::string item, int count)
 {
 	for (int i = 0; i < 10; i++) {
 		std::string a = Globals::save->gets("inventory_slot_" + std::to_string(i));
-		if (a == item) {
-			if (items[item].type->stackable) {
-				int count0 = Globals::save->geti("inventory_count_" + std::to_string(i));
-				Globals::save->seti("inventory_count_" + std::to_string(i), count0 + count);
-			}
+		if (a == item && items[item].type->stackable) {
+			int count0 = Globals::save->geti("inventory_count_" + std::to_string(i));
+			Globals::save->seti("inventory_count_" + std::to_string(i), count0 + count);
 			return true;
 		}
+	}
+	for (int i = 0; i < 10; i++) {
+		std::string a = Globals::save->gets("inventory_slot_" + std::to_string(i));
 		if (a.empty()) {
 			Globals::save->sets("inventory_slot_" + std::to_string(i), item);
 			if(items[item].type->stackable)
 				Globals::save->seti("inventory_count_" + std::to_string(i), count);
+			items[item].type->initItem(i);
 			return true;
 		}
 	}
 	return false;
+}
+
+bool Inventory::removeInventory(int slot)
+{
+	std::string fin = "_" + std::to_string(slot);
+	if (!Globals::save->hass("inventory_slot" + fin))
+		return false;
+	std::string itemName = Globals::save->gets("inventory_slot" + fin);
+	int metaCount = items[itemName].type->metaNames.size();
+	items[itemName].type->destroyItem(slot);
+	Globals::save->rems("inventory_slot" + fin);
+	Globals::save->remi("inventory_count" + fin);
+	for (int i = 0; i < metaCount; i++)
+		Globals::save->remi("inventory_meta_" + std::to_string(i) + fin);
+	return true;
 }
 
 std::vector<std::string> Inventory::getFormatedInventory()

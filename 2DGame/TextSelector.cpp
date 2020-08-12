@@ -53,7 +53,10 @@ void TextSelector::setPosition(sf::Vector2f pos)
 
 sf::Vector2f TextSelector::getSize()
 {
-	return sf::Vector2f(0, linesp * charsize * (labels.size() - 1) + charsize);
+	float width = 0;
+	for (sf::Text& t : labels)
+		width = std::max(t.getGlobalBounds().width, width);
+	return sf::Vector2f(width, linesp * charsize * (labels.size() - 1) + charsize);
 }
 
 void TextSelector::onKeyPress(sf::Keyboard::Key key)
