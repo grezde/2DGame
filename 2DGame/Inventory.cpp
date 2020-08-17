@@ -3,7 +3,7 @@
 #include <sstream>
 #include <iomanip>
 
-std::map<std::string, Item> Inventory::items = std::map<std::string, Item>();
+std::map<std::string, Item*> Inventory::items = std::map<std::string, Item*>();
 std::map<std::string, ItemType*> Inventory::types = std::map<std::string, ItemType*>();
 const int Inventory::SLOTS = 10;
 bool Inventory::read = false;
@@ -53,23 +53,22 @@ Item* Inventory::getItemAt(int slot)
 	std::string a = Globals::save->gets("inventory_slot_" + std::to_string(slot));
 	if (a.empty()) 
 		return nullptr;
-	return &items[a];
+	return items[a];
 }
 
 bool Inventory::addToInventory(std::string item, int count)
 {
 	if (items.find(item) == items.end())
 		return false;
-	if (!items[item].type->stackable && count != 1) {
+	if (!items[item]->type->stackable && count != 1) {
 		for (int i = 0; i < count; i++)
 			if (!addToInventory(item, 1))
 				return false;
 		return true;
 	}
-
 	for (int i = 0; i < 10; i++) {
 		std::string a = Globals::save->gets("inventory_slot_" + std::to_string(i));
-		if (a == item && items[item].type->stackable) {
+		if (a == item && items[item]->type->stackable) {
 			int count0 = Globals::save->geti("inventory_count_" + std::to_string(i));
 			Globals::save->seti("inventory_count_" + std::to_string(i), count0 + count);
 			return true;
@@ -79,9 +78,9 @@ bool Inventory::addToInventory(std::string item, int count)
 		std::string a = Globals::save->gets("inventory_slot_" + std::to_string(i));
 		if (a.empty()) {
 			Globals::save->sets("inventory_slot_" + std::to_string(i), item);
-			if(items[item].type->stackable)
+			if(items[item]->type->stackable)
 				Globals::save->seti("inventory_count_" + std::to_string(i), count);
-			items[item].type->initItem(i);
+			items[item]->type->initItem(i);
 			return true;
 		}
 	}
@@ -94,13 +93,19 @@ bool Inventory::removeInventory(int slot)
 	if (!Globals::save->hass("inventory_slot" + fin))
 		return false;
 	std::string itemName = Globals::save->gets("inventory_slot" + fin);
-	int metaCount = items[itemName].type->metaNames.size();
-	items[itemName].type->destroyItem(slot);
+	int metaCount = items[itemName]->type->metaNames.size();
+	items[itemName]->type->destroyItem(slot);
 	Globals::save->rems("inventory_slot" + fin);
 	Globals::save->remi("inventory_count" + fin);
 	for (int i = 0; i < metaCount; i++)
 		Globals::save->remi("inventory_meta_" + std::to_string(i) + fin);
 	return true;
+}
+
+void Inventory::clear()
+{
+	for (int i = 0; i < SLOTS; i++)
+		removeInventory(i);
 }
 
 std::vector<std::string> Inventory::getFormatedInventory()
@@ -115,7 +120,7 @@ std::vector<std::string> Inventory::getFormatedInventory()
 			oss << "--";
 		std::string item = Globals::save->gets("inventory_slot_" + std::to_string(i));
 		if (!item.empty())
-			oss << " " << items[item].displayName;
+			oss << " " << items[item]->displayName;
 		else
 			oss << " --------";
 		vs.push_back(oss.str());

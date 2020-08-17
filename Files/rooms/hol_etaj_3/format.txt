@@ -73,12 +73,12 @@ Este cam la nivelul obrazului unui om.
 1 b
 var first_locker_broken 0 1 2 3-4 5
 
-27 a
+29 a
 * Lockerul asta are foarte multe fisuri
 in el. Aproape ca ai putea sa il 
 * deschizi fara sa il spargi.
 > Incerci sa il deschizi?
-  2 18 2
+  2 20 2
 > Da
 > Nu
 / 2 v
@@ -87,14 +87,16 @@ first_locker_broken
 * L-ai desfacut cu usurinta. Te uiti
 inauntru si vezi un fular.
 > Furi fularul?
-  2 8 1
+  2 10 1
 > Da
 > Nu
+: inv give worn_scarf
+: 2 6
+* Ai fi furat fular, numai ca nu mai
+ai loc in buzunare.
 / 2 v
 first_locker_broken
 = 2
-/ 1 g
-worn_scarf
 * Ai obtinut itemul fular! Verifica
 inventarul.
 * Golanule.
@@ -102,18 +104,20 @@ inventarul.
 * Decizi sa nu deschizi lockerul. Poate
 ai facut o alegere buna.
 
-15 a
+17 a
 * Lockerul e deja deschis. Te uiti
 inauntru si vezi un fular.
 > Furi fularul?
-  2 8 1
+  2 10 1
 > Da
 > Nu
+: inv give worn_scarf
+: 2 6
+* Ai fi furat fularul, numai ca nu mai
+ai loc in buzunarele alea pline.
 / 2 v
 first_locker_broken
 = 2
-/ 1 g
-worn_scarf
 * Ai obtinut itemul fular! Verifica
 inventarul.
 * Golanule.
@@ -126,15 +130,15 @@ Lockerul este complet gol.
 first_locker_broken
 += 1
 
-1 a
-* AICI NU E NIMIC.
-
 5 a
 * Serios, chiar nu mai e nimic aici.
 Cred ca insisti prea mult.
 / 2 v
 first_locker_broken
 += 1
+
+1 a
+* AICI NU E NIMIC.
 
 1 b
 var first_locker_broken 0 1+

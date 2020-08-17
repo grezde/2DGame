@@ -3,6 +3,7 @@
 #include <string>
 #include <istream>
 #include <map>
+#include <SFML/Graphics.hpp>
 
 class ItemType
 {
@@ -16,11 +17,14 @@ public:
 	vecstr useNames;
 	bool stackable;
 	std::string name;
+	sf::Texture tex;
 
 private:
 	static ItemType* getTypeClass(std::string name);
 
 public:
+	ItemType(std::string name);
+
 	static ItemType* readType(std::istream& stream);
 	static std::map<std::string, ItemType*> readTypeFile();
 
@@ -39,10 +43,13 @@ public:
 	ItemType* type;
 	std::vector<int> stats;
 	std::string info;
+	sf::Texture tex;
 
 public:
-	static Item readItem(std::istream& stream, typemap& types);
-	static std::map<std::string, Item> readItemFile(typemap& types);
+	Item(std::string name);
+
+	static Item* readItem(std::istream& stream, typemap& types);
+	static std::map<std::string, Item*> readItemFile(typemap& types);
 	
 };
 

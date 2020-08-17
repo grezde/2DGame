@@ -3,6 +3,7 @@
 #include "Game.h"
 #include <iostream>
 #include <sstream>
+#include "ConditionParser.h"
 
 Save* Globals::save = nullptr;
 sf::Font* Globals::font = nullptr;
@@ -16,42 +17,36 @@ void Globals::processCommands()
 		std::cout << "> ";
 		std::getline(std::cin, line);
 		std::vector<std::string> words;
-		std::istringstream iss(line); 
+		std::istringstream iss(line);
 		do {
 			iss >> word;
 			words.push_back(word);
 		} while (!iss.eof());
 		if (words.size() == 0)
 			continue;
-		if (words[0] == "inv") {
-			if (Globals::save == nullptr) {
-				std::cout << "= No save file\n";
-				continue;
-			}
-			if (words.size() != 3)
-				std::cout << " = Incomplete command\n";
-			else if (words[1] == "add")
-				std::cout << (Inventory::addToInventory(words[2]) ? " = Added new item\n" : " = Failed to add to inventory\n");
-			else if (words[1] == "remove") {
-				int slot;
-				std::istringstream(words[2]) >> slot;
-				std::cout << (Inventory::removeInventory(slot) ? " = Removed item\n" : " = Failed to remove from inventory\n");
-			}
+		if (Globals::save == nullptr) {
+			std::cout << "   -> No save file.\n";
+			continue;
+		}
+		if (words[0] == ":") {
+			ConditionParser* cp = ConditionParser::getParser(line.substr(2));
+			if (cp->getChoice())
+				std::cout << "   = true\n";
 			else
-				std::cout << " = Unknown inventory command\n";
+				std::cout << "   = false\n";
 		}
-		if (words[0] == "stop") {
-			Game::curent()->clearAllScenes();
-			break;
-		}
-		if (words[0] == "save") {
-			if (Globals::save == nullptr) {
-				std::cout << " = No save file\n";
-				continue;
+		else if (words[0] == "inv") {
+			if (words.size() == 2) {
+				if (words[1] == "clear") {
+					Inventory::clear();
+					std::cout << "   => Inventory cleared.\n";
+					continue;
+				}
 			}
-			Globals::save->loadToFile(true);
-			std::cout << " = Saved file\n";
+			std::cout << "   -> Uknown inventory command.\n";
 		}
+		else
+			std::cout << "   -> Uknown command.\n";
 	}
 }
 

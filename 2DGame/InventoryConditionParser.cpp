@@ -1,15 +1,15 @@
-#include "InevntoryConditionParser.h"
+#include "InventoryConditionParser.h"
 #include "Inventory.h"
 #include <sstream>
 
-InevntoryConditionParser::InevntoryConditionParser(std::string text)
+InventoryConditionParser::InventoryConditionParser(std::string text)
 {
 	alreadyDone = false;
 	third = 1;
 	std::istringstream(text) >> first >> second >> third;
 }
 
-int InevntoryConditionParser::getChoice()
+int InventoryConditionParser::getChoice()
 {
 	if(alreadyDone)
 		return -1;

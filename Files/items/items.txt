@@ -6,15 +6,15 @@ Fularul asta este rupt
 in mai multe locuri. 
 Este foarte vechi.
 
-pack_malboro_red
-Malboro Rosu
+pack_marlboro_red
+Marlboro Rosu
 CIGAR 10 8
 Asta este pachetul 
 legendar de Malboro 
 rosu scurt.
 
-pack_dunhil_blue
-Dunhil Albastru
+pack_dunhill_blue
+Dunhill Albastru
 CIGAR 8 3
 Cumva pachetul asta 
 imi aduce aminte

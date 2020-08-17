@@ -25,6 +25,9 @@ void InventoryScene::draw(sf::RenderTarget& target, sf::RenderStates states) con
 		target.draw(label, states);
 	for (const sf::Text& label : stats)
 		target.draw(label, states);
+	if (drawSprs) {
+		target.draw(itemspr, states);
+	}
 }
 
 InventoryScene::InventoryScene()
@@ -37,6 +40,7 @@ InventoryScene::InventoryScene()
 	description = createLabel(false);
 	description.setPosition(400, 265);
 	ts.setSelected(0);
+	itemspr.setPosition(510, 75);
 }
 
 void InventoryScene::update(float dt)
@@ -74,6 +78,14 @@ void InventoryTS::onSelected(int newsel)
 		parent->stats.push_back(parent->createLabel(false));
 		parent->stats[i].setString(statStrs[i]);
 		parent->stats[i].setPosition(400, start + 30 + 35 * i);
+	}
+	if (it != nullptr) {
+		parent->itemspr.setTexture(it->tex);
+		parent->itemspr.setScale(175.0f / it->tex.getSize().x, 175.0f / it->tex.getSize().y);
+		parent->drawSprs = true;
+	}
+	else {
+		parent->drawSprs = false;
 	}
 }
 

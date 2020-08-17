@@ -1,7 +1,7 @@
 #pragma once
 #include "ConditionParser.h"
 
-class InevntoryConditionParser :
+class InventoryConditionParser :
 	public BooleanConditionParser
 {
 private:
@@ -11,7 +11,7 @@ private:
 	int third;
 
 public:
-	InevntoryConditionParser(std::string text);
+	InventoryConditionParser(std::string text);
 
 	virtual int getChoice() override;
 

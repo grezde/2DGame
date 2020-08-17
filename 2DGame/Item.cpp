@@ -5,7 +5,13 @@
 
 ItemType* ItemType::getTypeClass(std::string name)
 {
-	return new ItemType();
+	return new ItemType(name);
+}
+
+ItemType::ItemType(std::string name)
+{
+	this->name = name;
+	this->tex.loadFromFile("Files/items/" + name + ".png");
 }
 
 ItemType* ItemType::readType(std::istream& stream)
@@ -52,41 +58,48 @@ std::map<std::string, ItemType*> ItemType::readTypeFile()
 	return types;
 }
 
-Item Item::readItem(std::istream& stream, Item::typemap& types)
+Item::Item(std::string name)
 {
-	Item t;
-	std::string s, type;
-	std::getline(stream, t.name);
-	std::getline(stream, t.displayName);
+	this->name = name;
+	if (!this->tex.loadFromFile("Files/items/" + name + ".png"))
+		this->tex.loadFromFile("Files/items/item_not_found.png");
+}
+
+Item* Item::readItem(std::istream& stream, Item::typemap& types)
+{
+	std::string s, type, name;
+	std::getline(stream, name);
+	Item* t = new Item(name);
+	std::getline(stream, t->displayName);
 	std::getline(stream, s);
 	std::istringstream iss(s);
 	iss >> type;
-	t.type = types[type];
+	t->type = types[type];
 	while (!iss.eof()) {
 		int x;
 		iss >> x;
-		t.stats.push_back(x);
+		t->stats.push_back(x);
 	}
-	std::getline(stream, t.info);
+	std::getline(stream, t->info);
 	std::getline(stream, s);
 	while (!s.empty()) {
-		t.info += "\n" + s;
+		t->info += "\n" + s;
 		std::getline(stream, s);
 	}
 	return t;
 }
 
-std::map<std::string, Item> Item::readItemFile(Item::typemap& types)
+std::map<std::string, Item*> Item::readItemFile(Item::typemap& types)
 {
-	std::map<std::string, Item> items;
+	std::map<std::string, Item*> items;
 	std::ifstream fin("Files/items/items.txt");
 	int n;
 	std::string s, name;
 	fin >> n;
 	std::getline(fin, s);
 	for (int i = 0; i < n; i++) {
-		Item it = readItem(fin, types);
-		items[it.name] = it;
+		Item* it = readItem(fin, types);
+		items[it->name] = it;
 	}
 	return items;
 }

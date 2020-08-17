@@ -1,4 +1,9 @@
 current_room=hol_etaj_3
+inventory_slot_0=lighter_cheap
+inventory_slot_1=pack_marlboro_red
+inventory_slot_2=pack_marlboro_red
+inventory_slot_3=pack_marlboro_red
+inventory_slot_4=pack_dunhill_blue
 nickname=Cristi
 off_name=Cristian
 save_name=xxx_xxx

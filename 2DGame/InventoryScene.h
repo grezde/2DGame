@@ -28,6 +28,9 @@ private:
 	std::vector<sf::Text> stats;
 	InventoryTS ts;
 
+	bool drawSprs = false;
+	sf::Sprite itemspr;
+
 private:
 	sf::Text createLabel(bool big);
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;

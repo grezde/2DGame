@@ -5,7 +5,7 @@
 class Inventory
 {
 private:
-	static std::map<std::string, Item> items;
+	static std::map<std::string, Item*> items;
 	static std::map<std::string, ItemType*> types;
 	static bool read;
 
@@ -28,5 +28,6 @@ public:
 
 	static bool addToInventory(std::string item, int count = 1);
 	static bool removeInventory(int slot);
+	static void clear();
 };
 

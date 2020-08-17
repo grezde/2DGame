@@ -1,6 +1,7 @@
 #include "SpeechContainer.h"
 #include "Action.h"
 #include <sstream>
+#include <iostream>
 
 bool SpeechContainer::specialCharacter(char c)
 {
@@ -75,9 +76,11 @@ ChainSC* SpeechContainer::parse(iter start, iter end)
 			for (int q = 0; q < gcs->parser->nChoices(); q++) {
 				int x;
 				iss >> x;
+				std::cout << x << " ";
 				gcs->choices.push_back(parse(i, i + x));
 				i += x;
 			}
+			script.push_back(gcs);
 		}
 	}
 	return new ChainSC(script);

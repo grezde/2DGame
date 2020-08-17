@@ -4,6 +4,7 @@
 #include "Save.h"
 
 #include "VariableConditionParser.h"
+#include "InventoryConditionParser.h"
 
 ConditionParser* ConditionParser::getParser(std::string condition)
 {
@@ -13,6 +14,8 @@ ConditionParser* ConditionParser::getParser(std::string condition)
 
 	if (start == "var")
 		return new VariableConditionParser(condition);
+	if (start == "inv")
+		return new InventoryConditionParser(condition);
 
 	return nullptr;
 }
